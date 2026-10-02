@@ -360,7 +360,7 @@ def _write_method(docs_dir: Path, results: dict[str, Any]) -> Path:
         f"ESS >= {_cfg.CONFIG.mcmc_min_ess}, accept rate inside "
         f"{_cfg.CONFIG.mcmc_accept_band}. Posterior quantiles are withheld "
         "unless this passes.",
-        f"- **Hurst** -- only a slope inside (0, 1) is admissible; the "
+        "- **Hurst** -- only a slope inside (0, 1) is admissible; the "
         "aggregate-variance estimate is annotated with its verdict rather than "
         "reported as a number.",
         f"- **Bulletin 17C skewness** -- beyond Cs = "

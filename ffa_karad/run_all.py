@@ -341,7 +341,7 @@ def _docs_only(outdir: Path) -> int:
     print(f"docs: {len(written)} pages in {_cfg.SITE_SRC_DIR}")
     for path in written.values():
         print(f"  {path}")
-    print(f"  mkdocs build --strict   # then publish site/")
+    print("  mkdocs build --strict   # then publish site/")
     return 0
 
 

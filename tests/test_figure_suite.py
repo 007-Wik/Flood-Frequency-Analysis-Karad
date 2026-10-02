@@ -243,7 +243,7 @@ def test_p6_states_the_convergence_verdict(ctx):
 
 
 def test_p7_only_plots_candidates_that_were_fitted(ctx):
-    fig = fs.plot_p7_qq_plots(ctx)
+    fs.plot_p7_qq_plots(ctx)
     ranked = ctx.fits.ranking.sort_values(["accepted", "aicc"], ascending=[False, True])
     for name in ranked["distribution"].head(6):
         assert ctx.fit(name) is not None
