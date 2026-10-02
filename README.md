@@ -8,25 +8,54 @@
   ██║     ██║     ██║  ██║    ██║  ██╗██║  ██║██║  ██║██║  ██║██████╔╝
   ╚═╝     ╚═╝     ╚═╝  ╚═╝    ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ 
         Flood Frequency Analysis · Krishna Basin · CWC & IS 11223
-```
-
 <p align="center">
-  <a href="https://github.com/007-Wik/Flood-Frequency-Analysis-Karad">
-    <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=20&pause=1000&color=2EA44F&center=true&vCenter=true&width=600&height=40&lines=Flood+Frequency+Analysis;Krishna+River+at+Karad;IS+11223%3A1985+%26+CWC+Methods" alt="Typing SVG" />
-  </a>
-</p>
-
-<p align="center">
+  <!-- GitHub Stats -->
   <a href="https://github.com/007-Wik/Flood-Frequency-Analysis-Karad/actions/workflows/ci.yml">
-    <img src="https://img.shields.io/github/actions/workflow/status/007-Wik/Flood-Frequency-Analysis-Karad/ci.yml?style=flat-square&logo=github-actions&label=CI%20Build" alt="CI Status" />
+    <img src="https://img.shields.io/github/actions/workflow/status/007-Wik/Flood-Frequency-Analysis-Karad/ci.yml?style=for-the-badge&logo=githubactions&logoColor=white&label=CI%20Build" alt="CI Status" />
   </a>
   <a href="https://github.com/007-Wik/Flood-Frequency-Analysis-Karad/stargazers">
-    <img src="https://img.shields.io/github/stars/007-Wik/Flood-Frequency-Analysis-Karad?style=flat-square&color=gold&logo=github" alt="GitHub Stars" />
+    <img src="https://img.shields.io/github/stars/007-Wik/Flood-Frequency-Analysis-Karad?style=for-the-badge&color=gold&logo=github&logoColor=white" alt="GitHub Stars" />
   </a>
+  <a href="https://github.com/007-Wik/Flood-Frequency-Analysis-Karad/network/members">
+    <img src="https://img.shields.io/github/forks/007-Wik/Flood-Frequency-Analysis-Karad?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Forks" />
+  </a>
+  <a href="https://github.com/007-Wik/Flood-Frequency-Analysis-Karad/issues">
+    <img src="https://img.shields.io/github/issues/007-Wik/Flood-Frequency-Analysis-Karad?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Issues" />
+  </a>
+  <br>
+  
+  <!-- Python & Code Quality -->
+  <img src="https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python Versions" />
+  <a href="https://github.com/psf/black">
+    <img src="https://img.shields.io/badge/Code%20Style-Black-000000?style=for-the-badge&logo=python&logoColor=white" alt="Code Style: Black" />
+  </a>
+  <a href="https://pycqa.github.io/isort/">
+    <img src="https://img.shields.io/badge/Imports-isort-1674b1?style=for-the-badge&logo=python&logoColor=white" alt="Imports: isort" />
+  </a>
+  <a href="https://flake8.pycqa.org/">
+    <img src="https://img.shields.io/badge/Linter-Flake8-informational?style=for-the-badge&logo=python&logoColor=white" alt="Linter: Flake8" />
+  </a>
+  <img src="https://img.shields.io/badge/Tests-130%20Passed-success?style=for-the-badge&logo=pytest&logoColor=white" alt="Tests" />
+  <img src="https://img.shields.io/badge/Coverage-83%25-brightgreen?style=for-the-badge&logo=codecov&logoColor=white" alt="Coverage" />
+  <br>
+  
+  <!-- Tech Stack & Libraries -->
+  <img src="https://img.shields.io/badge/Numpy-777BB4?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy" />
+  <img src="https://img.shields.io/badge/SciPy-8CAAE6?style=for-the-badge&logo=scipy&logoColor=white" alt="SciPy" />
+  <img src="https://img.shields.io/badge/Pandas-2C2D72?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas" />
+  <img src="https://img.shields.io/badge/Plotly-239120?style=for-the-badge&logo=plotly&logoColor=white" alt="Plotly" />
+  <img src="https://img.shields.io/badge/scikit_learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="scikit-learn" />
+  <img src="https://img.shields.io/badge/Jupyter-F37626.svg?&style=for-the-badge&logo=Jupyter&logoColor=white" alt="Jupyter" />
+  <img src="https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white" alt="Markdown" />
+  <br>
+  
+  <!-- Project Standards & Environment -->
   <a href="https://github.com/007-Wik/Flood-Frequency-Analysis-Karad/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/007-Wik/Flood-Frequency-Analysis-Karad?style=flat-square&color=2EA44F" alt="License" />
+    <img src="https://img.shields.io/github/license/007-Wik/Flood-Frequency-Analysis-Karad?style=for-the-badge&color=2EA44F" alt="License" />
   </a>
-  <img src="https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python Versions" />
+  <img src="https://img.shields.io/badge/Standard-IS%2011223%3A1985-007ACC?style=for-the-badge" alt="IS 11223:1985" />
+  <img src="https://img.shields.io/badge/Guideline-CWC%20%7C%20USGS%2017C-blueviolet?style=for-the-badge" alt="CWC & USGS 17C" />
+  <img src="https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker Ready" />
 </p>
 
 A modular, production-grade Python package for Flood Frequency Analysis (FFA) implementing **IS 11223:1985** and **Central Water Commission (CWC)** methodologies, with cross-checks against **USGS Bulletin 17C**.
