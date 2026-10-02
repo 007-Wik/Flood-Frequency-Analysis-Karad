@@ -11,22 +11,22 @@
 ```
 
 <p align="center">
+  <a href="https://github.com/007-Wik/Flood-Frequency-Analysis-Karad">
+    <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=20&pause=1000&color=2EA44F&center=true&vCenter=true&width=600&height=40&lines=Flood+Frequency+Analysis;Krishna+River+at+Karad;IS+11223%3A1985+%26+CWC+Methods" alt="Typing SVG" />
+  </a>
+</p>
+
+<p align="center">
   <a href="https://github.com/007-Wik/Flood-Frequency-Analysis-Karad/actions/workflows/ci.yml">
-    <img src="https://img.shields.io/github/actions/workflow/status/007-Wik/Flood-Frequency-Analysis-Karad/ci.yml?style=for-the-badge&logo=github-actions&label=CI%20Build" alt="CI Status" />
+    <img src="https://img.shields.io/github/actions/workflow/status/007-Wik/Flood-Frequency-Analysis-Karad/ci.yml?style=flat-square&logo=github-actions&label=CI%20Build" alt="CI Status" />
   </a>
   <a href="https://github.com/007-Wik/Flood-Frequency-Analysis-Karad/stargazers">
-    <img src="https://img.shields.io/github/stars/007-Wik/Flood-Frequency-Analysis-Karad?style=for-the-badge&color=gold&logo=github" alt="GitHub Stars" />
-  </a>
-  <a href="https://github.com/007-Wik/Flood-Frequency-Analysis-Karad/network/members">
-    <img src="https://img.shields.io/github/forks/007-Wik/Flood-Frequency-Analysis-Karad?style=for-the-badge&logo=github" alt="GitHub Forks" />
+    <img src="https://img.shields.io/github/stars/007-Wik/Flood-Frequency-Analysis-Karad?style=flat-square&color=gold&logo=github" alt="GitHub Stars" />
   </a>
   <a href="https://github.com/007-Wik/Flood-Frequency-Analysis-Karad/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/007-Wik/Flood-Frequency-Analysis-Karad?style=for-the-badge&color=2EA44F" alt="License" />
+    <img src="https://img.shields.io/github/license/007-Wik/Flood-Frequency-Analysis-Karad?style=flat-square&color=2EA44F" alt="License" />
   </a>
-  <img src="https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python Versions" />
-  <a href="https://github.com/psf/black">
-    <img src="https://img.shields.io/badge/code%20style-black-000000.svg?style=for-the-badge&logo=python&logoColor=white" alt="Code Style: Black" />
-  </a>
+  <img src="https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python Versions" />
 </p>
 
 A modular, production-grade Python package for Flood Frequency Analysis (FFA) implementing **IS 11223:1985** and **Central Water Commission (CWC)** methodologies, with cross-checks against **USGS Bulletin 17C**.
