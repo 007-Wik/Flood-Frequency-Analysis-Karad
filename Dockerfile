@@ -32,5 +32,5 @@ RUN useradd -m -u 1000 appuser && \
     chown -R appuser:appuser /app
 USER appuser
 
-# Default command: run pytest suite to verify correctness
-CMD ["pytest", "-v"]
+# Default command: run the full pipeline to generate report and figures
+CMD ["python", "-m", "ffa_karad.run_all"]

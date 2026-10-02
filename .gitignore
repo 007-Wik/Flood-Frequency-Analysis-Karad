@@ -65,3 +65,8 @@ _validate_lmo.py
 archives/
 *.zip
 
+# GSD / Agent Files
+.gsd/
+.agent/
+.agents/
+GSD-STYLE.md
