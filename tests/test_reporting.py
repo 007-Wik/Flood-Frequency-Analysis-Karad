@@ -77,10 +77,17 @@ def test_report_never_uses_scientific_notation_for_discharges(results):
     reading a government document will read as a typo.  Probabilities keep
     scientific notation, where it belongs."""
     text = rep.build_markdown(results)
-    discharge_columns = ("adopted_lp3_cumecs", "adopted_ci_lower_cumecs",
-                         "adopted_ci_upper_cumecs", "gumbel_ev1_cumecs",
-                         "ln2_cumecs", "discharge_cumecs", "water_level_m",
-                         "depth_over_zero_gauge_m", "top_of_structure_m")
+    discharge_columns = (
+        "adopted_lp3_cumecs",
+        "adopted_ci_lower_cumecs",
+        "adopted_ci_upper_cumecs",
+        "gumbel_ev1_cumecs",
+        "ln2_cumecs",
+        "discharge_cumecs",
+        "water_level_m",
+        "depth_over_zero_gauge_m",
+        "top_of_structure_m",
+    )
     for line in text.splitlines():
         if not line.startswith("|") or not any(c in line for c in discharge_columns):
             continue

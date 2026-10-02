@@ -36,8 +36,24 @@ htmlcov/
 *.swo
 .DS_Store
 
-# Output logs (keep directory, ignore transient logs)
+# Generated analysis artifacts.  Everything under outputs/ is rebuilt by
+# `python -m ffa_karad.run_all`; only the directory placeholders are tracked,
+# so a stale report or figure from an earlier run can never be committed as if
+# it were current.
+outputs/*
+!outputs/figures/
+!outputs/tables/
+outputs/figures/*
+!outputs/figures/.gitkeep
+outputs/tables/*
+!outputs/tables/.gitkeep
 outputs/logs/*.log
+
+# Superseded notebook-era results and plots.  Their numbers predate the
+# package's gates and are scientifically wrong (e.g. GEV hitting its 20,000
+# cumecs parameter ceiling); the current tables live in outputs/tables.
+results/
+
 *.tmp
 
 # Temporary test scripts
