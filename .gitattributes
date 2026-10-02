@@ -1,0 +1,9 @@
+# Ensure consistent line endings across platforms
+* text=auto
+*.csv text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.toml text eol=lf

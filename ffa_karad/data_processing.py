@@ -277,12 +277,12 @@ def load_raw_csv(path: pathlib.Path | None = None) -> pd.DataFrame:
         )
 
     digest = util.sha256_of(path)
-    if digest != _cfg.RAW_DATA_SHA256:
+    if digest not in _cfg.RAW_DATA_VALID_SHA256S:
         log.warning(
-            "raw CSV SHA-256 %s does not match the pinned %s -- the data file has "
+            "raw CSV SHA-256 %s does not match expected checksums %s -- the data file has "
             "changed. Re-pin config.RAW_DATA_SHA256 only after reviewing the change.",
             digest[:16],
-            _cfg.RAW_DATA_SHA256[:16],
+            list(_cfg.RAW_DATA_VALID_SHA256S),
         )
 
     frame = pd.read_csv(path, encoding="utf-8-sig", dtype=str)

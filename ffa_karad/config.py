@@ -47,6 +47,19 @@ RAW_DATA_SHA256: Final[str] = (
     "f2f0e629d111ba0569c8ed8b55a82cc2cc2b93b2f6a2fc110d5b590756ab77ba"
 )
 
+#: SHA-256 of the CSV when checked out with Unix LF newlines (e.g. on Linux/macOS CI runners)
+RAW_DATA_SHA256_LF: Final[str] = (
+    "690a82a2df438763bc593ebd6d055c1862e93f51a3e90731bf0c13001f049c07"
+)
+
+#: Valid checksums allowing both CRLF and LF checkouts across platforms
+RAW_DATA_VALID_SHA256S: Final[frozenset[str]] = frozenset(
+    {
+        RAW_DATA_SHA256,
+        RAW_DATA_SHA256_LF,
+    }
+)
+
 # ---------------------------------------------------------------------------
 # Determinism
 # ---------------------------------------------------------------------------

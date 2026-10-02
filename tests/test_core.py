@@ -15,7 +15,7 @@ def test_data_ingestion_and_sha256():
     assert bundle.n_records == 57
     assert len(bundle.q) == 57
     assert len(bundle.years) == 57
-    assert bundle.source_sha256 == config.RAW_DATA_SHA256
+    assert bundle.source_sha256 in config.RAW_DATA_VALID_SHA256S
     assert np.isclose(np.mean(bundle.q), 2856.58, atol=0.1)
 
 
