@@ -36,13 +36,11 @@ jobs:
 
       - name: Run Pipeline
         run: |
-          python -m ffa_karad.run_all
+          python -m ffa_karad.run_all --docs
 
-      - name: Prepare Pages Directory
+      - name: Build MkDocs Site
         run: |
-          mkdir public
-          cp -r outputs/* public/
-          mv public/report.md public/index.md
+          mkdocs build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -50,7 +48,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './public'
+          path: './site'
 
       - name: Deploy to GitHub Pages
         id: deployment
