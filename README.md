@@ -53,7 +53,7 @@
   
   <!-- Project Standards & Environment -->
   <a href="https://github.com/007-Wik/Flood-Frequency-Analysis-Karad/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/007-Wik/Flood-Frequency-Analysis-Karad?style=for-the-badge&color=2EA44F" alt="License" />
+    <img src="https://img.shields.io/badge/License-Custom_Academic-2EA44F?style=for-the-badge" alt="License" />
   </a>
   <img src="https://img.shields.io/badge/Standard-IS%2011223%3A1985-007ACC?style=for-the-badge" alt="IS 11223:1985" />
   <img src="https://img.shields.io/badge/Guideline-CWC%20%7C%20USGS%2017C-blueviolet?style=for-the-badge" alt="CWC & USGS 17C" />

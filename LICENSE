@@ -1,26 +1,27 @@
-MIT License
+CUSTOM ACADEMIC, NON-COMMERCIAL, AND STRICT ATTRIBUTION LICENSE
 
-Copyright (c) 2024
+Copyright (c) 2024-Present
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. DEFINITIONS
+"Software" refers to the Flood Frequency Analysis (FFA) package, algorithms, codebase, and associated documentation.
+"Data" refers to the hydrological records obtained from the Central Water Commission (CWC), Government of India.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+2. GRANT OF LICENSE (ACADEMIC & RESEARCH USE)
+Permission is hereby granted, free of charge, to any person obtaining a copy of this Software, to view, use, study, and modify the Software strictly for personal, academic, and non-commercial research purposes.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+3. RESTRICTIONS (PROPRIETARY & NON-COMMERCIAL)
+- NO COMMERCIAL USE: The Software, its outputs, and any derivative works may NOT be used, sold, monetized, distributed, or incorporated into any commercial product or engineering consultancy service without explicit prior written permission from the copyright holder.
+- STRICT ATTRIBUTION: Any academic publication, public display, or non-commercial distribution of this Software (or modifications thereof) must prominently display this copyright notice and explicitly attribute the original authors.
+- NO PROPRIETARY RE-LICENSING: You may not distribute this Software or modified versions under a different or less restrictive license. 
+
+4. ALL RIGHTS RESERVED
+All rights not expressly granted in Section 2 are strictly reserved by the copyright holder.
+
+5. DISCLAIMER OF WARRANTY
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ---
-
-Data Source: Central Water Commission (CWC), Government of India
-Station: Krishna at Karad Bridge (AK000X6), Satara District, Maharashtra
+DATA SOURCE & REGULATORY ATTRIBUTION
+- Data Source: Central Water Commission (CWC), Government of India
+- Station: Krishna River at Karad Bridge (AK000X6), Satara District, Maharashtra, India
+- Regulatory Guidelines Implemented: IS 11223:1985 & USGS Bulletin 17C
