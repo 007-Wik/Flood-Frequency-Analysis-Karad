@@ -235,8 +235,8 @@ Requires **Python 3.10+** (tested on Python 3.10, 3.11, and 3.12 across Linux, W
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/FFA.git
-cd FFA
+git clone https://github.com/007-Wik/Flood-Frequency-Analysis-Karad.git
+cd Flood-Frequency-Analysis-Karad
 
 # Create and activate virtual environment
 python -m venv .venv
