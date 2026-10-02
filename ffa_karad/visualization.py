@@ -48,22 +48,60 @@ DPI = 160
 
 @dataclasses.dataclass
 class FigureRecord:
+    """One written figure, with enough metadata to place it in the gallery.
+
+    ``html_path`` is ``None`` when a figure has no interactive form: matplotlib
+    cannot be made interactive without shipping a converter, and inventing one
+    would misrepresent a static image as a live plot.
+    """
+
     name: str
     path: Path
     caption: str
+    html_path: Path | None = None
+    section: str = ""
+    tier: int = 2
+    aspect: str = "wide"
+    engine: str = "seaborn"
+    question: str = ""
+
+    @property
+    def interactive(self) -> bool:
+        return self.html_path is not None
 
     def to_dict(self) -> dict[str, Any]:
-        return {"name": self.name, "path": str(self.path), "caption": self.caption}
+        return {
+            "name": self.name,
+            "path": str(self.path),
+            "caption": self.caption,
+            "html_path": None if self.html_path is None else str(self.html_path),
+            "section": self.section,
+            "tier": self.tier,
+            "aspect": self.aspect,
+            "engine": self.engine,
+            "question": self.question,
+        }
 
 
 def _save(fig: plt.Figure, outdir: Path, name: str, caption: str) -> FigureRecord:
+    """Write one legacy single-panel figure with its registry metadata."""
     outdir = Path(outdir)
     outdir.mkdir(parents=True, exist_ok=True)
     path = outdir / f"{name}.png"
-    fig.savefig(path, dpi=DPI, bbox_inches="tight")
+    fig.savefig(path, dpi=_cfg.CONFIG.dpi, bbox_inches="tight")
     plt.close(fig)
+    meta = _cfg.figure_meta(name)
     log.info("wrote %s", path.name)
-    return FigureRecord(name=name, path=path, caption=caption)
+    return FigureRecord(
+        name=name,
+        path=path,
+        caption=caption,
+        section=_cfg.LEGACY_FIGURE_SECTION,
+        tier=_cfg.LEGACY_FIGURE_TIER,
+        aspect=meta.aspect,
+        engine="seaborn",
+        question="",
+    )
 
 
 # ---------------------------------------------------------------------------

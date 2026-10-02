@@ -232,6 +232,20 @@ class DistributionFit:
         x = np.asarray(values, dtype=float)
         return dist.cdf(np.log(x) if self.candidate.needs_jacobian else x)
 
+    def pdf(self, values: Sequence[float] | np.ndarray) -> np.ndarray:
+        """Density on the discharge scale.
+
+        For a fit performed in log space the change of variables contributes
+        the ``1/x`` Jacobian, so the density is of the *discharge*, not of
+        ``ln Q``.
+        """
+        dist = _scipy_distribution(self.candidate, self.params)
+        x = np.asarray(values, dtype=float)
+        if self.candidate.needs_jacobian:
+            with np.errstate(divide="ignore", invalid="ignore"):
+                return dist.pdf(np.log(x)) / x
+        return dist.pdf(x)
+
     def ppf(self, exceedance: Sequence[float] | np.ndarray) -> np.ndarray:
         """Quantile on the discharge scale for a non-exceedance probability."""
         dist = _scipy_distribution(self.candidate, self.params)

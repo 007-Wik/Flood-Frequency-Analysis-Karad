@@ -213,3 +213,30 @@ def test_sub_annual_panel(bundle):
     fig, ax = viz.plot_sub_annual(frame)
     assert ax.get_lines() or ax.patches
     assert len(ax.get_legend().get_texts()) >= 2
+
+
+def test_fit_pdf_is_a_density_on_the_discharge_scale(bundle, fits):
+    """The log-space LP3 density needs the 1/x Jacobian or it is not a density."""
+    low, high = float(bundle.q.min()), float(bundle.q.max())
+    grid = np.linspace(0.2 * low, 4.0 * high, 4001)
+    for name in ("Gumbel", "LN2", "LP3"):
+        fit = fits.by_name(name)
+        density = fit.pdf(grid)
+        assert np.all(np.isfinite(density)), name
+        assert (density >= 0).all(), name
+        total = float(np.trapezoid(density, grid))
+        assert 0.99 < total < 1.01, f"{name} integrates to {total}"
+
+
+def test_fit_pdf_agrees_with_the_cdf_it_was_derived_from(bundle, fits):
+    """A density whose integral disagrees with the CDF is not the same curve."""
+    for name in ("Gumbel", "LP3"):
+        fit = fits.by_name(name)
+        lo, hi = float(bundle.q.min()), float(bundle.q.max())
+        grid = np.linspace(lo, hi, 2001)
+        integrated = np.concatenate(
+            [[0.0], np.cumsum(np.diff(grid) * (fit.pdf(grid)[:-1] + fit.pdf(grid)[1:]) / 2.0)]
+        )
+        assert np.allclose(
+            integrated, fit.cdf(grid) - fit.cdf(grid)[0], atol=1e-6
+        ), name

@@ -62,6 +62,7 @@ from typing import Any, Sequence
 import numpy as np
 import pandas as pd
 from scipy import optimize as sopt
+from scipy import stats as sps
 
 from . import config as _cfg
 from . import util
@@ -427,6 +428,78 @@ def threshold_stability(
     return pd.DataFrame(rows)
 
 
+def mean_residual_life(
+    values: Sequence[float] | np.ndarray,
+    thresholds: Sequence[float] | None = None,
+    min_exceedances: int = 5,
+    level: float = 0.95,
+) -> pd.DataFrame:
+    """Mean excess ``e(u)`` over candidate thresholds, with a confidence band.
+
+    The mean residual life plot is the standard first look at threshold choice:
+    for a GPD tail the mean excess grows linearly in ``u``, and a curve that
+    visibly bends within the plotted range says the threshold is too high.  It
+    says nothing on its own about the *shape*; the stability check in
+    :func:`threshold_stability` is what confirms that.
+
+    Parameters
+    ----------
+    values:
+        The base sample the exceedances are taken from.
+    thresholds:
+        Candidate thresholds.  Defaults to 40 points from the minimum to the
+        92nd percentile.
+    min_exceedances:
+        Thresholds with fewer exceedances than this are left blank rather than
+        given a mean computed from a handful of points.
+    level:
+        Confidence level for the band; the half-width is
+        ``z * sd(e(u)) / sqrt(n)``.
+
+    Returns
+    -------
+    pandas.DataFrame
+        ``threshold``, ``n_exceed``, ``mean_excess``, ``excess_sd``,
+        ``ci_lower``, ``ci_upper`` and ``usable``.
+    """
+    x = util.as_float_array(values)
+    if thresholds is None:
+        thresholds = np.linspace(float(x.min()), float(np.percentile(x, 92.0)), 40)
+    z = float(sps.norm.ppf(0.5 + level / 2.0))
+    rows = []
+    for u in np.asarray(thresholds, dtype=float).ravel():
+        exceed = x[x > u]
+        if exceed.size < min_exceedances:
+            rows.append(
+                {
+                    "threshold": float(u),
+                    "n_exceed": int(exceed.size),
+                    "mean_excess": np.nan,
+                    "excess_sd": np.nan,
+                    "ci_lower": np.nan,
+                    "ci_upper": np.nan,
+                    "usable": False,
+                }
+            )
+            continue
+        excess = exceed - u
+        mean = float(excess.mean())
+        sd = float(excess.std(ddof=1))
+        half = z * sd / np.sqrt(exceed.size)
+        rows.append(
+            {
+                "threshold": float(u),
+                "n_exceed": int(exceed.size),
+                "mean_excess": mean,
+                "excess_sd": sd,
+                "ci_lower": mean - half,
+                "ci_upper": mean + half,
+                "usable": True,
+            }
+        )
+    return pd.DataFrame(rows)
+
+
 # ---------------------------------------------------------------------------
 # Optional sub-annual peak source
 # ---------------------------------------------------------------------------
@@ -757,6 +830,7 @@ __all__ = [
     "jenkinson_collison_threshold",
     "profile_penalty_threshold",
     "threshold_stability",
+    "mean_residual_life",
     "load_daily_peaks",
     "POTResult",
     "run",

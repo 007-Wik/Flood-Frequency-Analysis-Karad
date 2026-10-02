@@ -38,7 +38,9 @@ from . import config as _cfg
 from . import cwc_manual_check as _cc
 from . import data_processing as _dp
 from . import distribution_fitting as _df
+from . import documentation as _doc
 from . import estimation_design_flood as _edf
+from . import figure_suite as _fs
 from . import lmoments as _lm
 from . import machine_learning as _ml
 from . import outliers as _out
@@ -216,20 +218,57 @@ def run(
 
     want_figures = _cfg.CONFIG.write_figures if write_figures is None else write_figures
     figures: list[Any] = []
+    gallery: dict[str, Any] = {}
     if want_figures and design is not None and fits is not None:
-        figures = (
+        figure_dir = outdir / "figures"
+        # The legacy single-panel set goes to an appendix folder: every one of
+        # them is a subset of a P-figure, so publishing them at the same level
+        # would show the same evidence twice.
+        core = (
             stage(
                 "visualization",
                 lambda: _viz.render_all(
-                    bundle, design, fits, pot_result, outdir / "figures", sub_annual
+                    bundle, design, fits, pot_result,
+                    figure_dir / "appendix", sub_annual,
                 ),
-                store="figures",
             )
             or []
         )
+        # The notebook's own P1-P14 suite, driven by the same result objects.
+        suite = (
+            stage(
+                "figure_suite",
+                lambda: _fs.render_suite(
+                    bundle,
+                    design,
+                    fits,
+                    pot_result,
+                    figure_dir,
+                    stats=results.get("stats"),
+                    lmoments=results.get("lmoments"),
+                    autocorrelation=results.get("autocorrelation"),
+                    lp3=results.get("lp3"),
+                    monte_carlo=results.get("monte_carlo"),
+                    mcmc=results.get("mcmc"),
+                    machine_learning=results.get("machine_learning"),
+                ),
+            )
+            or []
+        )
+        gallery = (
+            stage(
+                "gallery",
+                lambda: _fs.write_gallery(suite + core, figure_dir),
+            )
+            or {}
+        )
+        figures = suite + core
+        results["figures"] = figures
+        results["gallery"] = gallery
 
     report_inputs = {
-        k: v for k, v in results.items() if k not in {"bundle", "sub_annual"}
+        k: v for k, v in results.items()
+        if k not in {"bundle", "sub_annual", "figures", "gallery"}
     }
     artifacts = stage(
         "reporting",
@@ -240,6 +279,15 @@ def run(
             station=getattr(_cfg.CONFIG, "station_id", "AK000X6"),
         ),
     )
+    if _cfg.CONFIG.build_docs:
+        stage(
+            "documentation",
+            lambda: _doc.build_docs(
+                report_inputs,
+                figures,
+                figures_dir=outdir / "figures",
+            ),
+        )
     if artifacts is not None:
         results.pop("figures", None)
 
@@ -251,6 +299,45 @@ def run(
         sum(1 for s in stages if not s.ok),
     )
     return PipelineResult(results=results, stages=stages, artifacts=artifacts)
+
+
+def _docs_only(outdir: Path) -> int:
+    """Rebuild the GitHub Pages site from an existing run, no re-analysis.
+
+    Useful in CI, where the pipeline has already run and only the docs are
+    stale, and on a machine where a full 40,000-draw MCMC is not worth paying
+    for to fix a typo in a caption.
+    """
+    figure_dir = outdir / "figures"
+    manifest = json.loads((figure_dir / "figures.json").read_text(encoding="utf-8"))
+    records = [
+        _viz.FigureRecord(
+            name=item["name"],
+            path=Path(item["path"]),
+            caption=item["caption"],
+            html_path=(
+                None if item.get("html_path") is None else Path(item["html_path"])
+            ),
+            section=item.get("section", ""),
+            tier=int(item.get("tier", 2)),
+            aspect=item.get("aspect", "wide"),
+            engine=item.get("engine", "seaborn"),
+            question=item.get("question", ""),
+        )
+        for item in manifest["figures"]
+    ]
+    results_path = outdir / "results.json"
+    results = {}
+    if results_path.exists():
+        # The JSON dump is enough for the site's headline numbers; anything
+        # absent is simply not printed.
+        results = json.loads(results_path.read_text(encoding="utf-8"))
+    written = _doc.build_docs(results, records, figures_dir=figure_dir)
+    print(f"docs: {len(written)} pages in {_cfg.SITE_SRC_DIR}")
+    for path in written.values():
+        print(f"  {path}")
+    print(f"  mkdocs build --strict   # then publish site/")
+    return 0
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -275,12 +362,40 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--no-figures", action="store_true", help="skip figure rendering"
     )
+    parser.add_argument(
+        "--no-html",
+        action="store_true",
+        help="write PNG only, skipping the interactive HTML figures",
+    )
+    parser.add_argument(
+        "--docs",
+        action="store_true",
+        help="also write the mkdocs GitHub Pages source into site_src/",
+    )
+    parser.add_argument(
+        "--docs-only",
+        action="store_true",
+        help="build the site from the figures already in --outdir, without "
+        "re-running the analysis",
+    )
     parser.add_argument("--quiet", action="store_true", help="warnings only")
     args = parser.parse_args(argv)
 
     logging.getLogger(util.LOGGER_NAME).setLevel(
         logging.WARNING if args.quiet else logging.INFO
     )
+
+    if args.docs_only:
+        return _docs_only(Path(args.outdir))
+
+    if args.no_html or args.docs:
+        overrides = {}
+        if args.no_html:
+            overrides["write_figure_html"] = False
+        if args.docs:
+            overrides["build_docs"] = True
+        _cfg.CONFIG = dataclasses.replace(_cfg.CONFIG, **overrides)
+
     outcome = run(
         outdir=args.outdir,
         n_mc_records=args.n_mc_records,
@@ -294,6 +409,13 @@ def main(argv: list[str] | None = None) -> int:
     for record in outcome.stages:
         if not record.ok:
             print(f"  FAILED {record.name}: {record.detail}")
+    if outcome.results.get("gallery"):
+        counts = outcome.results["gallery"].get("counts", {})
+        print(
+            f"gallery: {counts.get('figures')} figures "
+            f"({counts.get('interactive')} interactive) "
+            f"-> {Path(args.outdir) / 'figures' / 'index.html'}"
+        )
     if outcome.artifacts:
         print(f"report: {outcome.artifacts.markdown_path}")
         print(f"tables: {len(outcome.artifacts.csv_paths)} CSV files")

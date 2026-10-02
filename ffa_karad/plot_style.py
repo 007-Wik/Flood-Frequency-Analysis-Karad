@@ -139,7 +139,8 @@ def distribution_color(name: str) -> str:
     if key in COLORS:
         return COLORS[key]
     digest = hashlib.sha256(key.encode("utf-8")).hexdigest()
-    return sns.color_palette("husl", 12)[int(digest[:8], 16) % 12]
+    red, green, blue = sns.color_palette("husl", 12)[int(digest[:8], 16) % 12]
+    return f"#{int(red * 255):02X}{int(green * 255):02X}{int(blue * 255):02X}"
 
 
 def distribution_style(name: str) -> str:

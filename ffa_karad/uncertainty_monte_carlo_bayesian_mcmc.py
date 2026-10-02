@@ -64,6 +64,21 @@ class MonteCarloResults:
     exceedance_probability: pd.DataFrame
     coverage: pd.DataFrame
     notes: list[str]
+    #: 5th/25th/75th/95th percentile of the simulated estimates, one row per
+    #: return period.  ``summary`` carries the median and the 95% interval,
+    #: which is what Bulletin 17C asks for; the fan figure needs the inner
+    #: quartiles as well, and deriving them from a stored frame keeps the
+    #: figure and the table reading the same numbers.
+    fan: pd.DataFrame = dataclasses.field(
+        default_factory=pd.DataFrame, repr=False
+    )
+    #: The simulated estimates themselves for a small set of return periods,
+    #: long format with one row per (period, record).  A violin of the whole
+    #: 500-record x 9-period array is unreadable and would bloat the JSON dump,
+    #: so only the periods actually drawn are kept.
+    replicate_samples: pd.DataFrame = dataclasses.field(
+        default_factory=pd.DataFrame, repr=False
+    )
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -75,6 +90,7 @@ class MonteCarloResults:
                 orient="records"
             ),
             "coverage": self.coverage.to_dict(orient="records"),
+            "fan": self.fan.to_dict(orient="records"),
             "notes": self.notes,
         }
 
@@ -137,6 +153,37 @@ def monte_carlo_record_uncertainty(
     summary["mc_relative_width"] = (
         summary["mc_upper_cumecs"] - summary["mc_lower_cumecs"]
     ) / summary["observed_lp3_cumecs"]
+
+    fan = pd.DataFrame(
+        {
+            "return_period_yr": list(periods),
+            "mc_mean_cumecs": replicates.mean(axis=0),
+            "mc_p05_cumecs": np.percentile(replicates, 5.0, axis=0),
+            "mc_p25_cumecs": np.percentile(replicates, 25.0, axis=0),
+            "mc_median_cumecs": summary["mc_median_cumecs"].to_numpy(),
+            "mc_p75_cumecs": np.percentile(replicates, 75.0, axis=0),
+            "mc_p95_cumecs": np.percentile(replicates, 95.0, axis=0),
+            "observed_lp3_cumecs": observed_q,
+        }
+    )
+
+    # Violin insets are drawn at 10, 100 and 1000 years; keep only those.
+    violin_periods = [t for t in (10.0, 100.0, 1000.0) if t in periods]
+    samples = []
+    for period in violin_periods:
+        column = int(np.argmin(np.abs(np.asarray(periods) - period)))
+        samples.append(
+            pd.DataFrame(
+                {
+                    "return_period_yr": float(period),
+                    "record": np.arange(replicates.shape[0], dtype=int),
+                    "simulated_cumecs": replicates[:, column],
+                }
+            )
+        )
+    replicate_samples = (
+        pd.concat(samples, ignore_index=True) if samples else pd.DataFrame()
+    )
 
     # Empirical probability that a fresh record of this length would put the
     # true parent quantile on the *other* side of the adopted estimate.
@@ -207,6 +254,8 @@ def monte_carlo_record_uncertainty(
         exceedance_probability=probability,
         coverage=coverage,
         notes=notes,
+        fan=fan,
+        replicate_samples=replicate_samples,
     )
 
 

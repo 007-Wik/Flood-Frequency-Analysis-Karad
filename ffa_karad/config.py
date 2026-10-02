@@ -36,7 +36,18 @@ OUTPUT_DIR: Final[pathlib.Path] = PROJECT_ROOT / "outputs"
 FIGURE_DIR: Final[pathlib.Path] = OUTPUT_DIR / "figures"
 TABLE_DIR: Final[pathlib.Path] = OUTPUT_DIR / "tables"
 LOG_DIR: Final[pathlib.Path] = OUTPUT_DIR / "logs"
+#: Reference documents supplied with the analysis (reports, station abstracts).
+#: Not part of the generated site: these are large binaries a reviewer reads
+#: locally, and copying them into a web build would add tens of megabytes to
+#: every page load.
 DOCS_DIR: Final[pathlib.Path] = PROJECT_ROOT / "docs"
+
+#: Generated mkdocs source tree for GitHub Pages.  Separate from ``DOCS_DIR``
+#: so the site contains only what the pipeline wrote.
+SITE_SRC_DIR: Final[pathlib.Path] = PROJECT_ROOT / "site_src"
+
+#: mkdocs build output, published by GitHub Pages.
+SITE_BUILD_DIR: Final[pathlib.Path] = PROJECT_ROOT / "site"
 
 RAW_DATA_FILENAME: Final[str] = "Dischage data KRISHNA KARAD BRIDGE.csv"
 
@@ -320,8 +331,243 @@ class AnalysisConfig:
     float_format: str = "%.4g"
     write_figures: bool = True
 
+    # -- Figure presentation ------------------------------------------------
+    #: Also write a standalone ``.html`` next to every PNG.  Plotly figures get a
+    #: genuinely interactive page; matplotlib figures get a static page that
+    #: carries the caption and the source numbers, because matplotlib cannot be
+    #: made interactive without shipping a converter.
+    write_figure_html: bool = True
+    #: ``"cdn"`` keeps the HTML small but needs a network to open it; ``True``
+    #: inlines plotly.js so a copied HTML file works offline.  The published
+    #: site uses ``"directory"``: one shared ``plotly.min.js`` beside the pages.
+    plotly_js: object = "directory"
+    #: Multi-panel figures are wider than they are tall; a 4:3 canvas wastes the
+    #: space a 16:9 slide or a browser tile actually has.  ``wide`` figures are
+    #: rendered at this aspect, ``square`` at 1:1.
+    wide_figsize: tuple[float, float] = (16.0, 9.0)
+    square_figsize: tuple[float, float] = (11.0, 11.0)
+    tall_figsize: tuple[float, float] = (9.0, 12.0)
+    dpi: int = 180
+
+    # -- Documentation ------------------------------------------------------
+    #: Write the mkdocs source tree for the GitHub Pages site under
+    #: :data:`SITE_SRC_DIR`.  Off by default: a data run should not need the
+    #: site, and ``mkdocs build`` is a separate step (see ``--docs-only``).
+    build_docs: bool = False
+    #: Sections shown in the published gallery, in order.  Each entry is the
+    #: notebook section a reviewing officer would ask for by name.
+    doc_sections: tuple[str, ...] = (
+        "Data & Quality",
+        "Flood Frequency Analysis",
+        "Uncertainty & Bayesian",
+        "Diagnostics",
+        "Exploratory",
+    )
+
 
 CONFIG: Final[AnalysisConfig] = AnalysisConfig()
+
+
+# ---------------------------------------------------------------------------
+# Figure registry
+# ---------------------------------------------------------------------------
+#
+# Every figure answers one question a reviewing officer actually asks.  The
+# registry records *which* question, so the published gallery can be read as an
+# argument rather than as a pile of pictures, and so a figure cannot silently
+# disappear from one section and reappear in another.
+#
+# ``tier`` is an editorial judgement about how much of the officer's time a
+# figure deserves:
+#
+# ``1`` decision-critical -- the figure the adoption rests on.  These are the
+#     only ones that also appear in the one-page summary.
+# ``2`` supporting -- the evidence behind a tier-1 claim, or a caveat that must
+#     travel with it (POT refusal, Hurst inadmissibility, MCMC gate).
+# ``3`` exploratory -- genuinely useful while working, but not part of the
+#     submitted argument.  Published under "Exploratory" and, in the contact
+#     sheet, demoted below the fold.
+#
+# ``aspect`` picks the canvas from ``AnalysisConfig``: a flood-frequency curve is
+# wide, a correlation matrix needs a square, a stacked time series needs height.
+
+
+@dataclasses.dataclass(frozen=True)
+class FigureMeta:
+    """Editorial metadata for one figure."""
+
+    name: str
+    section: str
+    tier: int
+    aspect: str  # "wide" | "square" | "tall"
+    question: str
+    engine: str  # "plotly" | "seaborn"
+
+
+#: Ordered registry.  ``render_suite`` iterates the notebook order; the gallery
+#: iterates section order.
+FIGURE_REGISTRY: Final[tuple[FigureMeta, ...]] = (
+    FigureMeta(
+        "P1_time_series_trend_anomaly",
+        "Data & Quality",
+        2,
+        "tall",
+        "Is the record homogeneous enough to fit one distribution?",
+        "plotly",
+    ),
+    FigureMeta(
+        "P2_seaborn_distribution",
+        "Exploratory",
+        3,
+        "wide",
+        "What does the sample actually look like, decade by decade?",
+        "seaborn",
+    ),
+    FigureMeta(
+        "P3_flood_frequency_curves",
+        "Flood Frequency Analysis",
+        1,
+        "wide",
+        "Which curve is adopted, and do the alternatives bracket it?",
+        "plotly",
+    ),
+    FigureMeta(
+        "P4a_pairplot",
+        "Exploratory",
+        3,
+        "square",
+        "Which features carry signal, and which are collinear?",
+        "seaborn",
+    ),
+    FigureMeta(
+        "P4b_jointplot",
+        "Exploratory",
+        3,
+        "square",
+        "Is the lag-1 dependence worth modelling?",
+        "seaborn",
+    ),
+    FigureMeta(
+        "P4c_correlation_heatmap",
+        "Exploratory",
+        3,
+        "square",
+        "Where would a regression leak the target into its own features?",
+        "seaborn",
+    ),
+    FigureMeta(
+        "P5_monte_carlo_uncertainty_fan",
+        "Uncertainty & Bayesian",
+        2,
+        "wide",
+        "How much of the design flood is sampling error?",
+        "plotly",
+    ),
+    FigureMeta(
+        "P6_bayesian_mcmc_posteriors",
+        "Uncertainty & Bayesian",
+        2,
+        "wide",
+        "Is the posterior identified, and did the chain converge?",
+        "plotly",
+    ),
+    FigureMeta(
+        "P7_qq_probability_plots",
+        "Diagnostics",
+        2,
+        "wide",
+        "Does each candidate reproduce the observed order statistics?",
+        "plotly",
+    ),
+    FigureMeta(
+        "P8_skewness_kurtosis",
+        "Uncertainty & Bayesian",
+        2,
+        "wide",
+        "How much do the moment estimates move under resampling?",
+        "seaborn",
+    ),
+    FigureMeta(
+        "P9_acf_pacf_hurst_lag",
+        "Diagnostics",
+        2,
+        "wide",
+        "Is the series independent, or is memory being ignored?",
+        "plotly",
+    ),
+    FigureMeta(
+        "P10_distribution_ranking",
+        "Flood Frequency Analysis",
+        1,
+        "wide",
+        "On what evidence was one candidate preferred over the others?",
+        "plotly",
+    ),
+    FigureMeta(
+        "P11_pot_gpd",
+        "Uncertainty & Bayesian",
+        2,
+        "wide",
+        "Does an independent peaks-over-threshold method corroborate the result?",
+        "plotly",
+    ),
+    FigureMeta(
+        "P12_ml_panel",
+        "Exploratory",
+        3,
+        "wide",
+        "Can a non-parametric model predict the peak out of fold?",
+        "seaborn",
+    ),
+    FigureMeta(
+        "P13_publication_dashboard",
+        "Flood Frequency Analysis",
+        1,
+        "wide",
+        "The submission summary: what was adopted, and on what caveat?",
+        "plotly",
+    ),
+    FigureMeta(
+        "P14_comprehensive",
+        "Exploratory",
+        3,
+        "wide",
+        "Everything at once, for review rather than for citation.",
+        "seaborn",
+    ),
+)
+
+#: Figures built by the pre-P1 suite in :mod:`ffa_karad.visualization`.  They are
+#: still correct and still tested, but every one of them is a single-panel
+#: subset of a P-figure above, so publishing them beside P1-P14 would show the
+#: same evidence twice.  They are written to ``figures/appendix/`` and labelled
+#: as superseded rather than deleted, because the tests are the specification.
+LEGACY_FIGURE_TIER: Final[int] = 3
+LEGACY_FIGURE_SECTION: Final[str] = "Appendix: legacy single-panel figures"
+
+
+def figure_meta(name: str) -> FigureMeta:
+    """Registry entry for ``name``; a default entry for unlisted figures."""
+    for meta in FIGURE_REGISTRY:
+        if meta.name == name:
+            return meta
+    return FigureMeta(
+        name=name,
+        section=LEGACY_FIGURE_SECTION,
+        tier=LEGACY_FIGURE_TIER,
+        aspect="square",
+        question="",
+        engine="seaborn",
+    )
+
+
+def figsize_for(aspect: str) -> tuple[float, float]:
+    """Canvas size in inches for a named aspect."""
+    return {
+        "wide": CONFIG.wide_figsize,
+        "square": CONFIG.square_figsize,
+        "tall": CONFIG.tall_figsize,
+    }[aspect]
 
 
 def run_timestamp() -> str:
@@ -357,8 +603,14 @@ def describe() -> str:
         f"  ACF max lag                : {CONFIG.acf_max_lag} "
         f"(band at alpha {CONFIG.acf_alpha})",
         f"  freeboard (m)              : {CONFIG.freeboard_m} "
-        f"@ T={CONFIG.freeboard_return_period:g} yr",
-        f"  master seed                : {MASTER_SEED}",
+f"@ T={CONFIG.freeboard_return_period:g} yr",
+    f"  master seed                : {MASTER_SEED}",
+    f"  figure canvas              : wide {CONFIG.wide_figsize[0]:g}x"
+    f"{CONFIG.wide_figsize[1]:g}, square {CONFIG.square_figsize[0]:g}x"
+    f"{CONFIG.square_figsize[1]:g}, tall {CONFIG.tall_figsize[0]:g}x"
+    f"{CONFIG.tall_figsize[1]:g} in @ {CONFIG.dpi} dpi",
+    f"  figure html                : {CONFIG.write_figure_html} "
+    f"(plotly.js={CONFIG.plotly_js})",
     ]
     return "\n".join(lines)
 
@@ -371,6 +623,8 @@ __all__ = [
     "TABLE_DIR",
     "LOG_DIR",
     "DOCS_DIR",
+    "SITE_SRC_DIR",
+    "SITE_BUILD_DIR",
     "RAW_DATA_FILENAME",
     "RAW_DATA_SHA256",
     "MASTER_SEED",
@@ -378,6 +632,12 @@ __all__ = [
     "STATION",
     "AnalysisConfig",
     "CONFIG",
+    "FigureMeta",
+    "FIGURE_REGISTRY",
+    "LEGACY_FIGURE_SECTION",
+    "LEGACY_FIGURE_TIER",
+    "figure_meta",
+    "figsize_for",
     "run_timestamp",
     "describe",
 ]
