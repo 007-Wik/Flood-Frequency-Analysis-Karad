@@ -1,0 +1,154 @@
+<svg width="1200" height="280" viewBox="0 0 1200 280" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Deep water gradient background -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0f2e"/>
+      <stop offset="40%" style="stop-color:#0c1f5e"/>
+      <stop offset="100%" style="stop-color:#061a3a"/>
+    </linearGradient>
+    <!-- River shimmer -->
+    <linearGradient id="river" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:0"/>
+      <stop offset="25%" style="stop-color:#3b82f6;stop-opacity:0.6"/>
+      <stop offset="50%" style="stop-color:#60a5fa;stop-opacity:0.9"/>
+      <stop offset="75%" style="stop-color:#3b82f6;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:0"/>
+    </linearGradient>
+    <!-- Flood curve accent -->
+    <linearGradient id="curveGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#38bdf8;stop-opacity:0.55"/>
+    </linearGradient>
+    <!-- Title glow -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="280" fill="url(#bg)"/>
+
+  <!-- Subtle grid lines -->
+  <g stroke="#1e3a8a" stroke-width="0.5" opacity="0.3">
+    <line x1="0" y1="56" x2="1200" y2="56"/>
+    <line x1="0" y1="112" x2="1200" y2="112"/>
+    <line x1="0" y1="168" x2="1200" y2="168"/>
+    <line x1="0" y1="224" x2="1200" y2="224"/>
+    <line x1="240" y1="0" x2="240" y2="280"/>
+    <line x1="480" y1="0" x2="480" y2="280"/>
+    <line x1="720" y1="0" x2="720" y2="280"/>
+    <line x1="960" y1="0" x2="960" y2="280"/>
+  </g>
+
+  <!-- FLOOD FREQUENCY CURVE — decorative background curve -->
+  <path d="M 0,260 C 60,258 120,252 200,230 C 280,208 340,190 420,168 C 500,146 560,132 640,118 C 720,104 800,96 880,90 C 960,84 1040,82 1120,80 L 1200,79 L 1200,280 L 0,280 Z"
+        fill="url(#curveGrad)"/>
+  <!-- curve line -->
+  <path d="M 0,260 C 60,258 120,252 200,230 C 280,208 340,190 420,168 C 500,146 560,132 640,118 C 720,104 800,96 880,90 C 960,84 1040,82 1120,80 L 1200,79"
+        fill="none" stroke="#38bdf8" stroke-width="2.5" opacity="0.7"/>
+
+  <!-- Monte Carlo fan lines (uncertainty) -->
+  <g opacity="0.18" stroke="#7dd3fc" stroke-width="1">
+    <path d="M 0,260 C 200,200 500,130 1200,70" fill="none"/>
+    <path d="M 0,260 C 200,215 500,150 1200,95" fill="none"/>
+    <path d="M 0,260 C 200,188 500,115 1200,60" fill="none"/>
+    <path d="M 0,260 C 200,228 500,165 1200,110" fill="none"/>
+    <path d="M 0,260 C 200,178 500,100 1200,50" fill="none"/>
+  </g>
+
+  <!-- Data points on curve -->
+  <g fill="#60a5fa" opacity="0.9">
+    <circle cx="200" cy="230" r="5"/>
+    <circle cx="420" cy="168" r="5"/>
+    <circle cx="640" cy="118" r="5.5"/>
+    <circle cx="880" cy="90" r="5"/>
+    <circle cx="1120" cy="80" r="4.5"/>
+  </g>
+  <!-- Return period labels -->
+  <g fill="#93c5fd" font-family="monospace" font-size="10" opacity="0.7">
+    <text x="195" y="222" text-anchor="middle">T=5</text>
+    <text x="415" y="160" text-anchor="middle">T=25</text>
+    <text x="635" y="110" text-anchor="middle">T=100</text>
+    <text x="875" y="82" text-anchor="middle">T=500</text>
+  </g>
+
+  <!-- River shimmer band -->
+  <rect x="0" y="250" width="1200" height="12" fill="url(#river)" rx="2"/>
+
+  <!-- LEFT accent bar -->
+  <rect x="48" y="55" width="5" height="120" fill="#38bdf8" rx="2"/>
+
+  <!-- MAIN TITLE -->
+  <text x="75" y="105" font-family="'Segoe UI', Arial, sans-serif" font-size="38" font-weight="800"
+        fill="white" filter="url(#glow)" letter-spacing="1">Flood Frequency Analysis</text>
+
+  <!-- SUBTITLE -->
+  <text x="75" y="145" font-family="'Segoe UI', Arial, sans-serif" font-size="22" font-weight="400"
+        fill="#93c5fd" letter-spacing="0.5">Krishna River at Karad Bridge · Maharashtra, India</text>
+
+  <!-- TAGLINE -->
+  <text x="75" y="178" font-family="'Segoe UI', Arial, sans-serif" font-size="14"
+        fill="#64748b" letter-spacing="1">
+    57-YEAR RECORD · 12 DISTRIBUTIONS · BAYESIAN MCMC · MONTE CARLO · ML ENSEMBLE
+  </text>
+
+  <!-- Pill badges -->
+  <!-- Badge 1: CWC -->
+  <rect x="75" y="198" width="110" height="26" rx="13" fill="#1e3a8a" stroke="#3b82f6" stroke-width="1"/>
+  <text x="130" y="215" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600"
+        fill="#93c5fd" text-anchor="middle">CWC Guidelines</text>
+  <!-- Badge 2: Q100 -->
+  <rect x="197" y="198" width="150" height="26" rx="13" fill="#450a0a" stroke="#ef4444" stroke-width="1"/>
+  <text x="272" y="215" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600"
+        fill="#fca5a5" text-anchor="middle">Q₁₀₀ = 7,181 cumecs</text>
+  <!-- Badge 3: Best Fit -->
+  <rect x="359" y="198" width="148" height="26" rx="13" fill="#064e3b" stroke="#10b981" stroke-width="1"/>
+  <text x="433" y="215" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="600"
+        fill="#6ee7b7" text-anchor="middle">Best Fit: Log-Pearson III</text>
+  <!-- Badge 4: Station -->
+  <rect x="519" y="198" width="120" height="26" rx="13" fill="#1c1917" stroke="#78716c" stroke-width="1"/>
+  <text x="579" y="215" font-family="'Segoe UI', Arial, sans-serif" font-size="11"
+        fill="#d6d3d1" text-anchor="middle">AK000X6 · 1965–2022</text>
+
+  <!-- RIGHT SIDE: key stats panel -->
+  <rect x="900" y="45" width="265" height="185" rx="12"
+        fill="#0f172a" stroke="#1e40af" stroke-width="1.5" opacity="0.9"/>
+
+  <text x="1032" y="73" font-family="'Segoe UI', Arial, sans-serif" font-size="12"
+        fill="#64748b" text-anchor="middle" letter-spacing="2">KEY METRICS</text>
+  <line x1="920" y1="80" x2="1145" y2="80" stroke="#1e3a8a" stroke-width="1"/>
+
+  <!-- Stat rows -->
+  <text x="920" y="102" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#94a3b8">Record Length</text>
+  <text x="1145" y="102" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="700" fill="#e2e8f0" text-anchor="end">57 years</text>
+
+  <text x="920" y="122" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#94a3b8">Peak of Record</text>
+  <text x="1145" y="122" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="700" fill="#fbbf24" text-anchor="end">7,177 cumecs</text>
+
+  <text x="920" y="142" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#94a3b8">Mean Annual Max</text>
+  <text x="1145" y="142" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="700" fill="#e2e8f0" text-anchor="end">2,857 cumecs</text>
+
+  <text x="920" y="162" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#94a3b8">Q₁₀₀ (Gumbel)</text>
+  <text x="1145" y="162" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="700" fill="#f87171" text-anchor="end">7,181 cumecs</text>
+
+  <text x="920" y="182" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#94a3b8">Q₁₀₀₀ (Gumbel)</text>
+  <text x="1145" y="182" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="700" fill="#c084fc" text-anchor="end">9,687 cumecs</text>
+
+  <text x="920" y="202" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#94a3b8">Distributions Fitted</text>
+  <text x="1145" y="202" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="700" fill="#34d399" text-anchor="end">12</text>
+
+  <text x="920" y="222" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#94a3b8">MCMC Samples</text>
+  <text x="1145" y="222" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="700" fill="#e2e8f0" text-anchor="end">12,000</text>
+
+</svg>

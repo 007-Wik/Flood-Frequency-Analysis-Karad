@@ -1,18 +1,20 @@
-# ---------------------------------------------------------------------------
-# Karad (AK000X6) Flood-Frequency Analysis -- pinned environment
-#
-# Lower bounds are the versions the pipeline was developed and verified on.
-# Exact verified versions are recorded in outputs/environment_manifest.json
-# by ffa_karad/packages.py at run time.
-# ---------------------------------------------------------------------------
-
+# Core scientific stack
 numpy>=1.26,<3
-scipy>=1.11
-pandas>=2.0
-matplotlib>=3.7
-seaborn>=0.13
-statsmodels>=0.14
-scikit-learn>=1.3
-plotly>=5.18
-openpyxl>=3.1          # Excel export of result tables
-pytest>=7.4            # test suite only
+scipy>=1.11.0
+pandas>=2.0.0
+
+# Visualisation
+matplotlib>=3.7.0
+seaborn>=0.13.0
+plotly>=5.18.0
+
+# Statistics, hydrology & ML
+statsmodels>=0.14.0
+scikit-learn>=1.3.0
+openpyxl>=3.1.0
+
+# Optional extended tools
+pymannkendall>=1.4.3
+tqdm>=4.65.0
+pytest>=7.4.0
+

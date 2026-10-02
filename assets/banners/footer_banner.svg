@@ -1,0 +1,31 @@
+<svg width="1200" height="80" viewBox="0 0 1200 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="footerbg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0a0f2e"/>
+      <stop offset="50%" style="stop-color:#0c1f5e"/>
+      <stop offset="100%" style="stop-color:#0a0f2e"/>
+    </linearGradient>
+    <linearGradient id="wave" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:0"/>
+      <stop offset="30%" style="stop-color:#3b82f6;stop-opacity:0.5"/>
+      <stop offset="50%" style="stop-color:#60a5fa;stop-opacity:0.8"/>
+      <stop offset="70%" style="stop-color:#3b82f6;stop-opacity:0.5"/>
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="80" fill="url(#footerbg)"/>
+  <!-- wave -->
+  <path d="M 0,20 C 100,10 200,30 300,20 C 400,10 500,30 600,20 C 700,10 800,30 900,20 C 1000,10 1100,30 1200,20 L 1200,80 L 0,80 Z"
+        fill="#0f172a" opacity="0.6"/>
+  <path d="M 0,20 C 100,10 200,30 300,20 C 400,10 500,30 600,20 C 700,10 800,30 900,20 C 1000,10 1100,30 1200,20"
+        fill="none" stroke="url(#wave)" stroke-width="2"/>
+
+  <text x="600" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="13"
+        fill="#64748b" text-anchor="middle" letter-spacing="3">
+    KRISHNA RIVER  ·  KARAD  ·  MAHARASHTRA  ·  INDIA
+  </text>
+  <text x="600" y="70" font-family="'Segoe UI', Arial, sans-serif" font-size="10"
+        fill="#334155" text-anchor="middle" letter-spacing="2">
+    Central Water Commission · Flood Frequency Analysis · CWC Guidelines Compliant
+  </text>
+</svg>

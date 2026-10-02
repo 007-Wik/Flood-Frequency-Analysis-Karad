@@ -1,6 +1,8 @@
 # Python bytecode & cache
 __pycache__/
 *.py[cod]
+*.pyo
+.Python
 *$py.class
 *.so
 
@@ -9,12 +11,18 @@ __pycache__/
 venv/
 env/
 ENV/
+.env
+*.env
 
 # Distribution / packaging
 build/
 dist/
 *.egg-info/
 .eggs/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
 
 # Testing & Coverage
 .pytest_cache/
@@ -26,9 +34,11 @@ htmlcov/
 .idea/
 *.swp
 *.swo
+.DS_Store
 
 # Output logs (keep directory, ignore transient logs)
 outputs/logs/*.log
+*.tmp
 
 # Temporary test scripts
 _dump_nb.py
@@ -38,3 +48,4 @@ _validate_lmo.py
 # Archives & Large Zips
 archives/
 *.zip
+
