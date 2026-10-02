@@ -228,8 +228,12 @@ def run(
             stage(
                 "visualization",
                 lambda: _viz.render_all(
-                    bundle, design, fits, pot_result,
-                    figure_dir / "appendix", sub_annual,
+                    bundle,
+                    design,
+                    fits,
+                    pot_result,
+                    figure_dir / "appendix",
+                    sub_annual,
                 ),
             )
             or []
@@ -267,7 +271,8 @@ def run(
         results["gallery"] = gallery
 
     report_inputs = {
-        k: v for k, v in results.items()
+        k: v
+        for k, v in results.items()
         if k not in {"bundle", "sub_annual", "figures", "gallery"}
     }
     artifacts = stage(

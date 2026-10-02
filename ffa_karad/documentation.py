@@ -129,11 +129,7 @@ def build_docs(
     results = results or {}
     docs_dir = Path(outdir) if outdir is not None else _cfg.SITE_SRC_DIR
     docs_dir.mkdir(parents=True, exist_ok=True)
-    src_figures = (
-        Path(figures_dir)
-        if figures_dir is not None
-        else _cfg.FIGURE_DIR
-    )
+    src_figures = Path(figures_dir) if figures_dir is not None else _cfg.FIGURE_DIR
     live = [f for f in figures if Path(getattr(f, "path", "")).exists()]
 
     written: dict[str, Path] = {}
@@ -222,11 +218,7 @@ def _write_index(docs_dir: Path, results: dict[str, Any], figures: list[Any]) ->
         verdict = "ACCEPTED" if pot.accepted else "NOT ADOPTED"
         lines.append(
             f"- **Peaks over threshold:** {verdict}"
-            + (
-                ""
-                if pot.accepted
-                else f" -- {pot.reject_reasons[0]}"
-            )
+            + ("" if pot.accepted else f" -- {pot.reject_reasons[0]}")
         )
     if mcmc is not None:
         d = mcmc.diagnostics
@@ -283,7 +275,9 @@ def _write_figures_page(
     """A Markdown gallery: image, then the caption that qualifies it."""
     by_section: dict[str, list[Any]] = {}
     for record in figures:
-        by_section.setdefault(getattr(record, "section", "") or "Other", []).append(record)
+        by_section.setdefault(getattr(record, "section", "") or "Other", []).append(
+            record
+        )
 
     ordered = [s for s in _cfg.CONFIG.doc_sections if s in by_section]
     ordered += [s for s in sorted(by_section) if s not in ordered]
@@ -429,7 +423,9 @@ def _write_api(docs_dir: Path) -> Path:
         "| Module | Stage |",
         "| --- | --- |",
     ]
-    lines += [f"| `ffa_karad.{name}` | {text.split('.')[0]} |" for name, text in _stage_rows()]
+    lines += [
+        f"| `ffa_karad.{name}` | {text.split('.')[0]} |" for name, text in _stage_rows()
+    ]
     lines += [
         "",
         "## Figure registry",
@@ -471,7 +467,7 @@ def _write_theory(docs_dir: Path) -> Path:
         "    processHtmlClass: 'arithmatex'\n"
         "  }\n"
         "};",
-        encoding="utf-8"
+        encoding="utf-8",
     )
 
     lines = [
@@ -524,11 +520,11 @@ def _write_theory(docs_dir: Path) -> Path:
 def _write_mkdocs(docs_dir: Path) -> Path:
     """A mkdocs config using only the bundled themes."""
     path = docs_dir.parent / "mkdocs.yml"
-    
+
     # Do not overwrite an existing mkdocs.yml so we preserve custom themes!
     if path.exists():
         return path
-        
+
     path.write_text(
         "site_name: Karad Flood Frequency Analysis\n"
         "site_description: Generated flood-frequency analysis, figures and "
@@ -588,9 +584,7 @@ def _write_manifest(
     return path
 
 
-def _copy_figure_assets(
-    docs_dir: Path, src_figures: Path, figures: list[Any]
-) -> Path:
+def _copy_figure_assets(docs_dir: Path, src_figures: Path, figures: list[Any]) -> Path:
     """Copy the figure files into the site tree so Pages can serve them."""
     target = docs_dir / "figures"
     target.mkdir(parents=True, exist_ok=True)

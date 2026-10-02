@@ -180,7 +180,9 @@ def test_trend_line_is_the_theil_sen_fit(bundle, ctx):
 def test_weibull_positions_are_sorted_and_span_one_to_n(bundle, ctx):
     assert np.all(np.diff(ctx.t_observed) >= 0)
     assert ctx.pp_weibull[0] == pytest.approx(1 / (bundle.n_records + 1))
-    assert ctx.pp_weibull[-1] == pytest.approx(bundle.n_records / (bundle.n_records + 1))
+    assert ctx.pp_weibull[-1] == pytest.approx(
+        bundle.n_records / (bundle.n_records + 1)
+    )
     assert np.allclose(np.sort(ctx.q), ctx.q_sorted)
 
 
@@ -259,12 +261,8 @@ def test_p9_annotates_an_inadmissible_hurst_estimate(ctx):
 
 def test_p9_rolling_variance_and_ljung_box_use_the_ordered_series(ctx):
     fig = fs.plot_p9_dependence(ctx)
-    rolling = next(
-        t for t in fig.data if t.name == "10-yr Rolling Var"
-    )
-    expected = (
-        pd_series(ctx.q).rolling(10, center=True).var().to_numpy(dtype=float)
-    )
+    rolling = next(t for t in fig.data if t.name == "10-yr Rolling Var")
+    expected = pd_series(ctx.q).rolling(10, center=True).var().to_numpy(dtype=float)
     assert np.allclose(rolling.y, expected, equal_nan=True)
 
 
@@ -287,7 +285,9 @@ def test_p11_is_stamped_with_the_pot_verdict(ctx):
 def test_p12_reports_out_of_fold_skill_not_train_skill(ctx):
     fig = fs.plot_p12_ml_panel(ctx)
     bar_labels = [
-        text.get_text() for ax in fig.axes for text in ax.get_yticklabels() + ax.get_xticklabels()
+        text.get_text()
+        for ax in fig.axes
+        for text in ax.get_yticklabels() + ax.get_xticklabels()
     ]
     captions = " ".join(ax.get_title() for ax in fig.axes)
     assert "Out-of-Fold" in captions or any("Out-of-Fold" in b for b in bar_labels)
@@ -317,7 +317,9 @@ def test_importance_is_averaged_over_folds_not_duplicated(ctx, results):
     assert (importance >= 0).all()
 
     # Averaging per-fold rows must reproduce the single set of features, once.
-    rf = next(s for s in results["machine_learning"].scores if s.model == "RandomForest")
+    rf = next(
+        s for s in results["machine_learning"].scores if s.model == "RandomForest"
+    )
     expected = rf.feature_importance.groupby("feature")["importance"].mean()
     assert set(importance.index) == set(expected.index)
     assert len(importance) == len(rf.feature_importance["feature"].unique())

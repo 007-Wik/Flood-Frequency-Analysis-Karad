@@ -235,7 +235,12 @@ def test_fit_pdf_agrees_with_the_cdf_it_was_derived_from(bundle, fits):
         lo, hi = float(bundle.q.min()), float(bundle.q.max())
         grid = np.linspace(lo, hi, 2001)
         integrated = np.concatenate(
-            [[0.0], np.cumsum(np.diff(grid) * (fit.pdf(grid)[:-1] + fit.pdf(grid)[1:]) / 2.0)]
+            [
+                [0.0],
+                np.cumsum(
+                    np.diff(grid) * (fit.pdf(grid)[:-1] + fit.pdf(grid)[1:]) / 2.0
+                ),
+            ]
         )
         assert np.allclose(
             integrated, fit.cdf(grid) - fit.cdf(grid)[0], atol=1e-6

@@ -413,13 +413,16 @@ def _section_checklist(results: dict[str, Any], figures: Sequence[Any]) -> list[
             for item in checklist.manual_items
         ]
     if figures:
-        live = [f for f in figures if getattr(f, "path", None) is not None
-                and Path(f.path).exists()]
+        live = [
+            f
+            for f in figures
+            if getattr(f, "path", None) is not None and Path(f.path).exists()
+        ]
         by_section: dict[str, list[Any]] = {}
         for record in live:
-            by_section.setdefault(
-                getattr(record, "section", "") or "Other", []
-            ).append(record)
+            by_section.setdefault(getattr(record, "section", "") or "Other", []).append(
+                record
+            )
         lines += [
             "",
             "### Figures",
@@ -432,7 +435,11 @@ def _section_checklist(results: dict[str, Any], figures: Sequence[Any]) -> list[
         for section, records in by_section.items():
             lines += [f"#### {section}", ""]
             for record in sorted(records, key=lambda r: (r.tier, r.name)):
-                suffix = " (+ interactive HTML)" if getattr(record, "interactive", False) else ""
+                suffix = (
+                    " (+ interactive HTML)"
+                    if getattr(record, "interactive", False)
+                    else ""
+                )
                 lines.append(
                     f"- **tier {record.tier}** `outputs/figures/{record.name}.png`"
                     f"{suffix} -- {record.caption}"

@@ -603,14 +603,14 @@ def describe() -> str:
         f"  ACF max lag                : {CONFIG.acf_max_lag} "
         f"(band at alpha {CONFIG.acf_alpha})",
         f"  freeboard (m)              : {CONFIG.freeboard_m} "
-f"@ T={CONFIG.freeboard_return_period:g} yr",
-    f"  master seed                : {MASTER_SEED}",
-    f"  figure canvas              : wide {CONFIG.wide_figsize[0]:g}x"
-    f"{CONFIG.wide_figsize[1]:g}, square {CONFIG.square_figsize[0]:g}x"
-    f"{CONFIG.square_figsize[1]:g}, tall {CONFIG.tall_figsize[0]:g}x"
-    f"{CONFIG.tall_figsize[1]:g} in @ {CONFIG.dpi} dpi",
-    f"  figure html                : {CONFIG.write_figure_html} "
-    f"(plotly.js={CONFIG.plotly_js})",
+        f"@ T={CONFIG.freeboard_return_period:g} yr",
+        f"  master seed                : {MASTER_SEED}",
+        f"  figure canvas              : wide {CONFIG.wide_figsize[0]:g}x"
+        f"{CONFIG.wide_figsize[1]:g}, square {CONFIG.square_figsize[0]:g}x"
+        f"{CONFIG.square_figsize[1]:g}, tall {CONFIG.tall_figsize[0]:g}x"
+        f"{CONFIG.tall_figsize[1]:g} in @ {CONFIG.dpi} dpi",
+        f"  figure html                : {CONFIG.write_figure_html} "
+        f"(plotly.js={CONFIG.plotly_js})",
     ]
     return "\n".join(lines)
 

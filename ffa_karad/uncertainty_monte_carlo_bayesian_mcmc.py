@@ -69,9 +69,7 @@ class MonteCarloResults:
     #: which is what Bulletin 17C asks for; the fan figure needs the inner
     #: quartiles as well, and deriving them from a stored frame keeps the
     #: figure and the table reading the same numbers.
-    fan: pd.DataFrame = dataclasses.field(
-        default_factory=pd.DataFrame, repr=False
-    )
+    fan: pd.DataFrame = dataclasses.field(default_factory=pd.DataFrame, repr=False)
     #: The simulated estimates themselves for a small set of return periods,
     #: long format with one row per (period, record).  A violin of the whole
     #: 500-record x 9-period array is unreadable and would bloat the JSON dump,
