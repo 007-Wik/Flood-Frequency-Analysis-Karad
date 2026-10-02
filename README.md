@@ -1,4 +1,14 @@
-# 🌊 Flood Frequency Analysis: Krishna River at Karad (AK000X6)
+# Flood Frequency Analysis: Krishna River at Karad (AK000X6)
+
+```text
+  ███████╗███████╗ █████╗     ██╗  ██╗ █████╗ ██████╗  █████╗ ██████╗ 
+  ██╔════╝██╔════╝██╔══██╗    ██║ ██╔╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗
+  █████╗  █████╗  ███████║    █████╔╝ ███████║██████╔╝███████║██║  ██║
+  ██╔══╝  ██╔══╝  ██╔══██║    ██╔═██╗ ██╔══██║██╔══██╗██╔══██║██║  ██║
+  ██║     ██║     ██║  ██║    ██║  ██╗██║  ██║██║  ██║██║  ██║██████╔╝
+  ╚═╝     ╚═╝     ╚═╝  ╚═╝    ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ 
+        Flood Frequency Analysis · Krishna Basin · CWC & IS 11223
+```
 
 <p align="center">
   <img src="https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10 | 3.11 | 3.12" />
@@ -18,21 +28,96 @@ A modular, production-grade Python package for Flood Frequency Analysis (FFA) im
 
 ---
 
-## 📍 1. Station & Record Overview
+## 1. System Architecture & Methodology Flow
 
-- 🏷️ **Station Code**: AK000X6
-- 🗺️ **Location**: Krishna River at Karad Bridge, Maharashtra, India
-- 📐 **Catchment Area**: 5,462.0 km²
-- 📏 **Zero of Gauge (ZG)**: 549.915 m above MSL
-- 🌊 **Observed Highest Flood Level (HFL)**: 567.162 m (Discharge: 7,177 m³/s on 1976-06-07)
-- 📅 **Record Length**: 57 Water Years (1965–1966 to 2021–2022)
-- ✅ **Record Completeness**: 100% (zero missing annual instantaneous peaks)
-- 🎯 **Primary Design Method**: Log-Pearson Type III (LP3) fitted to $\ln(Q)$ per IS 11223:1985
-- 🔍 **CWC Cross-Checks**: Gumbel (EV1, Method of Moments & Maximum Likelihood) and strict 2-Parameter Log-Normal (LN2, `floc=0`)
+```text
++-----------------------------------------------------------------------------+
+|                     INPUT DATA: KRISHNA AT KARAD (AK000X6)                  |
+|          57-Year Annual Maximum Discharge Record (1965-66 to 2021-22)       |
++--------------------------------------┬--------------------------------------+
+                                       |
+                                       v
++-----------------------------------------------------------------------------+
+|                       STAGE 1: DATA INTEGRITY & AUDIT                       |
+|   +-----------------------+  +----------------------+  +------------------+ |
+|   |   14-Point QC Check   |  |  Temporal Order QC   |  | Rating Curve QC  | |
+|   |   Zero gaps or dups   |  | Reject sorted vector |  |  HFL vs Peak Q   | |
+|   +-----------------------+  +----------------------+  +------------------+ |
++--------------------------------------┬--------------------------------------+
+                                       |
+                                       v
++-----------------------------------------------------------------------------+
+|                     STAGE 2: STATISTICAL & MOMENT ANALYSIS                  |
+|   +-----------------------+  +----------------------+  +------------------+ |
+|   | Hosking L-Moments     |  | Bulletin 17B Moments |  | Serial Memory    | |
+|   | Unbiased b-statistics |  | Log-space moments    |  | ACF & Hurst R/S  | |
+|   | tau3=0.2465,tau4=0.13 |  | Cs(log) = +0.0956    |  | Lag-1 r = +0.171 | |
+|   +-----------------------+  +----------------------+  +------------------+ |
++--------------------------------------┬--------------------------------------+
+                                       |
+                                       v
++-----------------------------------------------------------------------------+
+|                    STAGE 3: CANDIDATE DISTRIBUTION FITTING                  |
+|   +-----------------------+  +----------------------+  +------------------+ |
+|   | 12 Standard Families  |  | Information Metric   |  | Diagnostic Gates | |
+|   | LP3, EV1, LN2, GEV,   |  | AICc / BIC / HQIC    |  | Jacobian Log-Lik | |
+|   | Weibull, Gamma, etc.  |  | Model Selection Rank |  | floc=0 on LN2    | |
+|   +-----------------------+  +----------------------+  +------------------+ |
++--------------------------------------┬--------------------------------------+
+                                       |
+               +-----------------------+-----------------------+
+               |                                               |
+               v                                               v
++------------------------------+               +------------------------------+
+|  STAGE 4A: POT / GPD BRANCH  |               |  STAGE 4B: BAYESIAN MCMC UQ  |
+|  - Mean Residual Life (MRL)  |               |  - Adaptive Metropolis MCMC  |
+|  - Tail Shape & Stability    |               |  - Convergence Gating:       |
+|  - Gate: REJECTED            |               |    R-hat <= 1.01, ESS >= 400 |
+|    (N_exc = 28 < 30 min)     |               |    (PASSED: R-hat = 1.0007)  |
++--------------┬---------------+               +--------------┬---------------+
+               |                                              |
+               +-----------------------+----------------------+
+                                       |
+                                       v
++-----------------------------------------------------------------------------+
+|                   STAGE 5: ADOPTED DESIGN FLOOD ESTIMATION                  |
+|   +---------------------------------------------------------------------+   |
+|   | Primary Design Method: Log-Pearson Type III (IS 11223:1985)         |   |
+|   | Q50 = 7,451 m3/s  |  Q100 = 8,667 m3/s  |  Q1000 = 13,327 m3/s      |   |
+|   | 95% Parametric Bootstrap Confidence Intervals                       |   |
+|   +---------------------------------------------------------------------+   |
+|   | CWC Comparative Cross-Checks: Gumbel EV1 (Raw Scale) & LN2 (floc=0) |   |
+|   | USGS Bulletin 17C Checklist Audit (13 Passed, 5 Manual Field Verifs)|   |
+|   +---------------------------------------------------------------------+   |
++--------------------------------------┬--------------------------------------+
+                                       |
+                                       v
++-----------------------------------------------------------------------------+
+|                       STAGE 6: REPRODUCIBLE ARTIFACTS                       |
+|   +-----------------------+  +----------------------+  +------------------+ |
+|   |  Engineering Report   |  | CSV Tables & Schemas |  | Multi-Panel Figs | |
+|   |  (outputs/report.md)  |  | Provenance sidecars  |  | Plotly & Seaborn | |
+|   +-----------------------+  +----------------------+  +------------------+ |
++-----------------------------------------------------------------------------+
+```
 
 ---
 
-## 📊 2. Adopted Design Flood Results
+## 2. Station & Record Overview
+
+- **Station Code**: AK000X6
+- **Location**: Krishna River at Karad Bridge, Maharashtra, India
+- **Catchment Area**: 5,462.0 km²
+- **Zero of Gauge (ZG)**: 549.915 m above MSL
+- **Observed Highest Flood Level (HFL)**: 567.162 m (Discharge: 7,177 m³/s on 1976-06-07)
+- **Record Length**: 57 Water Years (1965–1966 to 2021–2022)
+- **Record Completeness**: 100% (zero missing annual instantaneous peaks)
+- **Primary Design Method**: Log-Pearson Type III (LP3) fitted to $\ln(Q)$ per IS 11223:1985
+- **CWC Cross-Checks**: Gumbel (EV1, Method of Moments & Maximum Likelihood) and strict 2-Parameter Log-Normal (LN2, `floc=0`)
+
+---
+
+## 3. Adopted Design Flood Results
 
 Reproduce the complete pipeline with one command:
 
@@ -40,7 +125,7 @@ Reproduce the complete pipeline with one command:
 python -m ffa_karad.run_all
 ```
 
-### 📈 Adopted Design Floods (LP3 on $\ln Q$, Bulletin 17B moments, `n = 57`, $C_{s,\log} = +0.0956$):
+### Adopted Design Floods (LP3 on $\ln Q$, Bulletin 17B moments, `n = 57`, $C_{s,\log} = +0.0956$):
 
 | Return Period $T$ (yr) | Adopted $Q$ (m³/s) | 95% Confidence Interval (m³/s) | Gumbel EV1 (m³/s) | LN2 (m³/s) | Candidate Spread |
 | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -49,16 +134,16 @@ python -m ffa_karad.run_all
 | **500** | **11,815** | 7,196 – 20,662 | 8,934 | 10,979 | 24% |
 | **1,000** | **13,327** | 7,622 – 25,397 | 9,687 | 12,243 | 27% |
 
-> **⚠️ Engineering Insight**: Every design flood at or beyond the record length exceeds the observed HFL discharge of 7,177 m³/s, which the fitted curve places at a 43-year return period. The full report, with all engineering qualifications, is written to [`outputs/report.md`](file:///outputs/report.md).
+> **Engineering Insight**: Every design flood at or beyond the record length exceeds the observed HFL discharge of 7,177 m³/s, which the fitted curve places at a 43-year return period. The full report, with all engineering qualifications, is written to [`outputs/report.md`](file:///outputs/report.md).
 
-### 🛡️ What the Analysis Refuses (Diagnostic Gates)
-- ❌ **Peaks Over Threshold (POT)**: Attempted and gated out: only 28 exceedances over 57 years against the required minimum of 30, and the fitted shape interval $[-0.556, -0.333]$ lies entirely below zero (bounded upper tail).
-- ❌ **Bayesian MCMC Posterior Quantiles**: Withheld unless convergence diagnostics pass (split $\hat{R} \le 1.01$, $\text{ESS} \ge 400$, acceptance rate $\in [0.15, 0.40]$). Current run passes at $\hat{R} = 1.0007$ and $\text{ESS} = 7,576$.
-- ❌ **No Observation Is Ever Deleted**: Grubbs, directional Dixon Q, and Rosenblatt tests are recorded; the three lowest peaks are retained and catalogued for gauge record verification.
+### Diagnostic Gates (What the Analysis Refuses)
+- **Peaks Over Threshold (POT)**: Attempted and gated out: only 28 exceedances over 57 years against the required minimum of 30, and the fitted shape interval $[-0.556, -0.333]$ lies entirely below zero (bounded upper tail).
+- **Bayesian MCMC Posterior Quantiles**: Withheld unless convergence diagnostics pass (split $\hat{R} \le 1.01$, $\text{ESS} \ge 400$, acceptance rate $\in [0.15, 0.40]$). Current run passes at $\hat{R} = 1.0007$ and $\text{ESS} = 7,576$.
+- **No Observation Is Ever Deleted**: Grubbs, directional Dixon Q, and Rosenblatt tests are recorded; the three lowest peaks are retained and catalogued for gauge record verification.
 
 ---
 
-## 🎨 3. Publication-Grade Visualizations
+## 4. Visualizations & Figure Suite
 
 The package generates rich, multi-panel **Plotly (interactive HTML + static high-res PNG)** and **Seaborn/Matplotlib** figures saved directly to `outputs/figures/`:
 
@@ -81,39 +166,39 @@ The package generates rich, multi-panel **Plotly (interactive HTML + static high
 
 ---
 
-## 🔬 4. Scientific Foundations & Methodology
+## 5. Scientific Foundations & Methodology
 
-1. **📐 LP3 Skewness Resolution**:
+1. **LP3 Skewness Resolution**:
    - Station log-space skewness: $C_{s,\log} = \mathbf{+0.0956}$ ($SE = 0.3244$), well below the Bulletin 17C/IS 11223 threshold of $0.90$.
    - Raw arithmetic skewness: $C_{s,\text{raw}} = \mathbf{+1.0819}$ (raw asymmetry diagnostic; must **not** be confused with log-space skewness).
-2. **⚖️ Unbiased L-Moments**:
+2. **Unbiased L-Moments**:
    - Hosking (1990) unbiased $b$-statistics: $L_1 = 2856.58\text{ m}^3/\text{s}$, $L_2 = 834.17\text{ m}^3/\text{s}$, $LCV = 0.2920$, $\tau_3 = 0.2465$, $\tau_4 = 0.1306$.
-3. **📐 Log-Likelihood Jacobian Correction**:
+3. **Log-Likelihood Jacobian Correction**:
    - Rigorous comparison between raw and log-space distribution candidates via the transformation Jacobian:
      $$\ln L_Q = \ln L_Y - \sum_{i=1}^n \ln Q_i$$
-4. **🔒 Zero Magic Numbers**:
+4. **Zero Magic Numbers**:
    - Every parameter, standard coefficient, return period, and tolerance is centrally maintained in `ffa_karad/config.py` as the single source of truth.
 
 ---
 
-## 📁 5. Repository Structure
+## 6. Repository Structure
 
 ```
 FFA/
-├── .github/workflows/ci.yml                     # 🤖 Multi-OS (Ubuntu, Windows, macOS) CI pipeline
-├── .pre-commit-config.yaml                      # 🪝 Git pre-commit hooks (Black, isort, flake8)
-├── Dockerfile                                   # 🐳 Production container image
-├── docker-compose.yml                           # 🐳 Local multi-container orchestration
-├── pyproject.toml                               # 📦 PEP 518/621 package metadata & tool configs
-├── requirements.txt                             # 📌 Pinned runtime dependencies
-├── data/                                        # 📂 Observed hydrologic data
-│   ├── Dischage data KRISHNA KARAD BRIDGE.csv  # 💧 Raw 57-yr observed peaks (verified SHA-256)
-│   └── runoff data.xlsx                        # 💧 Supplementary runoff data
-├── references/                                  # 📚 Standards, literature & station abstracts
-├── notebooks/legacy_v2/                         # 📓 Baseline research notebooks & legacy outputs
-├── ffa_karad/                                   # 🐍 Core production Python package
+├── .github/workflows/ci.yml                     # Multi-OS (Ubuntu, Windows, macOS) CI pipeline
+├── .pre-commit-config.yaml                      # Git pre-commit hooks (Black, isort, flake8)
+├── Dockerfile                                   # Production container image
+├── docker-compose.yml                           # Local multi-container orchestration
+├── pyproject.toml                               # PEP 518/621 package metadata & tool configs
+├── requirements.txt                             # Pinned runtime dependencies
+├── data/                                        # Observed hydrologic data
+│   ├── Dischage data KRISHNA KARAD BRIDGE.csv  # Raw 57-yr observed peaks (verified SHA-256)
+│   └── runoff data.xlsx                        # Supplementary runoff data
+├── references/                                  # Standards, literature & station abstracts
+├── notebooks/legacy_v2/                         # Baseline research notebooks & legacy outputs
+├── ffa_karad/                                   # Core production Python package
 │   ├── __init__.py                             # Package root
-│   ├── __main__.py                             # Direct module entry point (`python -m ffa_karad`)
+│   ├── __main__.py                             # Direct module entry point (python -m ffa_karad)
 │   ├── config.py                               # Single source of truth (metadata, standards, seeds)
 │   ├── cli.py                                  # Stage-by-stage command line interface
 │   ├── run_all.py                              # Master end-to-end pipeline driver
@@ -134,17 +219,17 @@ FFA/
 │   ├── cwc_manual_check.py                     # Bulletin 17C clause-by-clause checklist
 │   ├── visualization.py                        # Publication-grade Plotly & Seaborn figure builders
 │   └── reporting.py                            # Markdown report, CSV tables, JSON dump
-├── outputs/                                     # 📤 Pipeline generated outputs
+├── outputs/                                     # Pipeline generated outputs
 │   ├── report.md                               # Generated engineering report
 │   ├── results.json                            # Serialized calculation results
 │   ├── figures/                                # 17+ publication-grade figures (.png + .html)
 │   └── tables/                                 # Structured CSV tables with provenance sidecars
-└── tests/                                       # 🧪 Unit and integration test suite (130 tests)
+└── tests/                                       # Unit and integration test suite (130 tests)
 ```
 
 ---
 
-## 🚀 6. Installation & Quickstart
+## 7. Installation & Quickstart
 
 Requires **Python 3.10+** (tested on Python 3.10, 3.11, and 3.12 across Linux, Windows, and macOS).
 
@@ -164,9 +249,9 @@ pip install -e .
 
 ---
 
-## ⚙️ 7. Running the Analysis
+## 8. Running the Analysis
 
-### 🔄 Master Pipeline
+### Master Pipeline
 ```bash
 # Run the complete end-to-end analysis
 python -m ffa_karad.run_all
@@ -175,7 +260,7 @@ python -m ffa_karad.run_all
 ffa-karad --outdir outputs
 ```
 
-### 🎛️ Stage-by-Stage CLI
+### Stage-by-Stage CLI
 ```bash
 # Run specific stages
 python -m ffa_karad.cli --stages qc stats skew fit pot design ml mcmc
@@ -188,7 +273,7 @@ The RNG is deterministically seeded (`MASTER_SEED = 20260902`), ensuring bitwise
 
 ---
 
-## 🧪 8. Verification & Test Suite
+## 9. Verification & Test Suite
 
 Run the full pytest suite:
 
@@ -206,7 +291,7 @@ pytest tests/ -v
 
 ---
 
-## 🐳 9. Docker & Containerized Execution
+## 10. Docker & Containerized Execution
 
 Build and run using Docker:
 
@@ -226,11 +311,11 @@ docker compose up
 
 ---
 
-## 📋 10. Engineering Standards & References
+## 11. Engineering Standards & References
 
-- 📜 **IS 11223:1985**: Indian Standard Guidelines for Fixation of Spillway Capacity
-- 📜 **CWC Flood Estimation Reports**: Krishna Basin Sub-zone 3(h)
-- 📜 **IRC:5-2015**: Standard Specifications and Code of Practice for Road Bridges
-- 📜 **USGS Bulletin 17C**: Guidelines for Determining Flood Flow Frequency (2018)
-- 📜 **Hosking, J. R. M. (1990)**: L-moments: Analysis and estimation of distributions using linear combinations of order statistics. *J. R. Statist. Soc. B*, 52(1), 105–124.
+- **IS 11223:1985**: Indian Standard Guidelines for Fixation of Spillway Capacity
+- **CWC Flood Estimation Reports**: Krishna Basin Sub-zone 3(h)
+- **IRC:5-2015**: Standard Specifications and Code of Practice for Road Bridges
+- **USGS Bulletin 17C**: Guidelines for Determining Flood Flow Frequency (2018)
+- **Hosking, J. R. M. (1990)**: L-moments: Analysis and estimation of distributions using linear combinations of order statistics. *J. R. Statist. Soc. B*, 52(1), 105–124.
 
