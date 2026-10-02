@@ -309,7 +309,7 @@ def normality_battery(
     add("Jarque-Bera", *sps.jarque_bera(x)[:2], _cfg.CONFIG.alpha, "asymptotic")
     add(
         "Kolmogorov-Smirnov (fitted params)",
-        *sps.kstest(x, "norm", args=(x.mean(), x.std(ddof=1)))[:2],
+        *sps.kstest(x, sps.norm.cdf, args=(x.mean(), x.std(ddof=1)))[:2],
         _cfg.CONFIG.alpha,
         "p-value is anti-conservative with estimated parameters",
     )
@@ -1027,9 +1027,63 @@ def summarise(res: StatisticalTestResults) -> str:
     return "\n".join(lines)
 
 
+def bootstrap_moment_samples(
+    values: Sequence[float] | np.ndarray, n_bootstrap: int = 2000
+) -> pd.DataFrame:
+    """Non-parametric bootstrap of the sample skewness, kurtosis and CV.
+
+    The Bulletin 17B confidence limits in :mod:`ffa_karad.skewness_limits` are
+    parametric: they refit LP3 on log Q and transform the skewness back.  This
+    is the complementary non-parametric view -- the annual peaks are resampled
+    with replacement and the ordinary sample moments are recomputed -- so the
+    asymmetry and tail-weighting of the record can be shown with their own
+    sampling distribution rather than the log-space one.
+
+    Sampling is with replacement, so the resampled series need not be monotone;
+    the order-dependent tests in this module do not apply to it.
+
+    Parameters
+    ----------
+    values:
+        The series **in water-year order**.
+    n_bootstrap:
+        Number of resamples.
+
+    Returns
+    -------
+    pandas.DataFrame
+        One row per resample with ``bootstrap``, ``skewness``, ``kurtosis``
+        (excess), ``cv`` and ``mean_cumecs``.
+    """
+    x = np.asarray(values, dtype=float).ravel()
+    n = x.size
+    if n < 3:
+        raise ValueError("at least three annual peaks are needed to bootstrap")
+    rng = util.stream_rng("bootstrap::moments")
+    rows = np.empty((int(n_bootstrap), 5), dtype=float)
+    for b in range(int(n_bootstrap)):
+        sample = x[rng.integers(0, n, size=n)]
+        rows[b, 0] = b
+        rows[b, 1] = sps.skew(sample, bias=False)
+        rows[b, 2] = sps.kurtosis(sample, fisher=True, bias=False)
+        rows[b, 3] = sample.std(ddof=1) / sample.mean() if sample.mean() else np.nan
+        rows[b, 4] = sample.mean()
+    return pd.DataFrame(
+        rows,
+        columns=[
+            "bootstrap",
+            "skewness",
+            "kurtosis",
+            "cv",
+            "mean_cumecs",
+        ],
+    )
+
+
 __all__ = [
     "MomentCoefficients",
     "StatisticalTestResults",
+    "bootstrap_moment_samples",
     "moment_coefficients",
     "secondary_skewness_estimators",
     "sd_of",

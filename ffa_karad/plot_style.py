@@ -38,6 +38,7 @@ copied.
 from __future__ import annotations
 
 import dataclasses
+import hashlib
 from pathlib import Path
 from typing import Any
 
@@ -137,7 +138,8 @@ def distribution_color(name: str) -> str:
     key = NAME_ALIASES.get(name, name)
     if key in COLORS:
         return COLORS[key]
-    return sns.color_palette("husl", 12)[abs(hash(key)) % 12]
+    digest = hashlib.sha256(key.encode("utf-8")).hexdigest()
+    return sns.color_palette("husl", 12)[int(digest[:8], 16) % 12]
 
 
 def distribution_style(name: str) -> str:
@@ -148,8 +150,7 @@ def decade_colors(n: int) -> list[str]:
     """``n`` decade colours, interpolating the ramp when more are needed."""
     if n <= len(DECADE_COLORS):
         return DECADE_COLORS[:n]
-    base = np.array([sns.color_palette("husl", n)])
-    return [tuple(row) for row in base]
+    return [tuple(color) for color in sns.color_palette("husl", n)]
 
 
 def decade_label(start_year: int) -> str:
