@@ -335,12 +335,13 @@ def _save_plotly(
             str(html_path),
             include_plotlyjs=_cfg.CONFIG.plotly_js,
             full_html=True,
-            config={"responsive": True, "displaylogo": False, "toImageButtonOptions":
-                    {"format": "png", "scale": scale}},
+            config={
+                "responsive": True,
+                "displaylogo": False,
+                "toImageButtonOptions": {"format": "png", "scale": scale},
+            },
         )
-    log.info(
-        "wrote %s%s", png_path.name, f" and {html_path.name}" if html_path else ""
-    )
+    log.info("wrote %s%s", png_path.name, f" and {html_path.name}" if html_path else "")
     return FigureRecord(
         name=name,
         path=png_path,
@@ -439,8 +440,12 @@ def plot_p1_time_series(ctx: SuiteContext) -> go.Figure:
         annotation_font_size=11,
     )
     fig.add_hrect(
-        y0=p90, y1=float(q.max()) * 1.05, fillcolor="rgba(239,83,80,0.07)", line_width=0,
-        row=1, col=1,
+        y0=p90,
+        y1=float(q.max()) * 1.05,
+        fillcolor="rgba(239,83,80,0.07)",
+        line_width=0,
+        row=1,
+        col=1,
     )
     for year, value in zip(years, q):
         if value >= p95:
@@ -556,8 +561,15 @@ def plot_p2_distribution_explorer(ctx: SuiteContext) -> plt.Figure:
 
     ax = axes[0, 0]
     sns.histplot(
-        q, bins=12, stat="density", ax=ax, color="#1565C0", alpha=0.45,
-        edgecolor="white", linewidth=0.8, label="Observed",
+        q,
+        bins=12,
+        stat="density",
+        ax=ax,
+        color="#1565C0",
+        alpha=0.45,
+        edgecolor="white",
+        linewidth=0.8,
+        label="Observed",
     )
     sns.kdeplot(q, ax=ax, color="#1565C0", linewidth=2.5, label="KDE")
     sns.rugplot(q, ax=ax, color="#B71C1C", height=0.04, alpha=0.6)
@@ -577,8 +589,14 @@ def plot_p2_distribution_explorer(ctx: SuiteContext) -> plt.Figure:
     ax = axes[0, 1]
     log_q = np.log(q)
     sns.histplot(
-        log_q, bins=12, stat="density", ax=ax, color="#2E7D32", alpha=0.45,
-        edgecolor="white", label="log(Q)",
+        log_q,
+        bins=12,
+        stat="density",
+        ax=ax,
+        color="#2E7D32",
+        alpha=0.45,
+        edgecolor="white",
+        label="log(Q)",
     )
     sns.kdeplot(log_q, ax=ax, color="#2E7D32", linewidth=2.5)
     lq_r = np.linspace(log_q.min() - 0.2, log_q.max() + 0.2, 300)
@@ -613,8 +631,16 @@ def plot_p2_distribution_explorer(ctx: SuiteContext) -> plt.Figure:
     order = sorted(decade["decade_lbl"].unique())
     ax = axes[1, 0]
     sns.violinplot(
-        data=decade, x="decade_lbl", y="discharge_cms", hue="decade_lbl", ax=ax,
-        order=order, palette="Blues", inner="box", cut=0.5, linewidth=1.2,
+        data=decade,
+        x="decade_lbl",
+        y="discharge_cms",
+        hue="decade_lbl",
+        ax=ax,
+        order=order,
+        palette="Blues",
+        inner="box",
+        cut=0.5,
+        linewidth=1.2,
         legend=False,
     )
     ax.axhline(q.mean(), color="red", ls="--", alpha=0.7, lw=1.5)
@@ -624,12 +650,27 @@ def plot_p2_distribution_explorer(ctx: SuiteContext) -> plt.Figure:
 
     ax = axes[1, 1]
     sns.boxplot(
-        data=decade, x="decade_lbl", y="discharge_cms", hue="decade_lbl", ax=ax,
-        order=order, palette="Set2", linewidth=1.5, fliersize=0, legend=False,
+        data=decade,
+        x="decade_lbl",
+        y="discharge_cms",
+        hue="decade_lbl",
+        ax=ax,
+        order=order,
+        palette="Set2",
+        linewidth=1.5,
+        fliersize=0,
+        legend=False,
     )
     sns.stripplot(
-        data=decade, x="decade_lbl", y="discharge_cms", ax=ax, order=order,
-        color="#37474F", alpha=0.55, size=4, jitter=True,
+        data=decade,
+        x="decade_lbl",
+        y="discharge_cms",
+        ax=ax,
+        order=order,
+        color="#37474F",
+        alpha=0.55,
+        size=4,
+        jitter=True,
     )
     ax.set_title("(e) Box + Jitter (decade)", fontweight="bold")
     ax.set_xlabel("Decade")
@@ -716,7 +757,9 @@ def plot_p3_frequency_curves(ctx: SuiteContext) -> go.Figure:
             mode="markers",
             name="Observed (Weibull)",
             marker=dict(
-                color="#212121", size=9, symbol="circle",
+                color="#212121",
+                size=9,
+                symbol="circle",
                 line=dict(color="white", width=1.2),
             ),
             hovertemplate=(
@@ -786,7 +829,9 @@ def plot_p3_frequency_curves(ctx: SuiteContext) -> go.Figure:
 def plot_p4a_pairplot(ctx: SuiteContext) -> plt.Figure:
     features = _feature_frame(ctx)
     importance = _importance(ctx)
-    top = list(importance.index[:5]) or [c for c in features.columns if c.startswith("lag_")]
+    top = list(importance.index[:5]) or [
+        c for c in features.columns if c.startswith("lag_")
+    ]
     columns = [c for c in [*top, "Q_peak", "decade_lbl"] if c in features.columns]
     grid = sns.pairplot(
         features[columns].dropna(),
@@ -798,7 +843,9 @@ def plot_p4a_pairplot(ctx: SuiteContext) -> plt.Figure:
         corner=False,
     )
     grid.figure.suptitle(
-        "Pairplot: Top-5 Leakage-Safe Features x Peak Flood (Karad)", y=1.02, fontsize=13
+        "Pairplot: Top-5 Leakage-Safe Features x Peak Flood (Karad)",
+        y=1.02,
+        fontsize=13,
     )
     return grid.figure
 
@@ -979,7 +1026,10 @@ def plot_p5_monte_carlo_uncertainty(ctx: SuiteContext) -> go.Figure:
         )
 
     fig.update_xaxes(
-        type="log", title_text="Return Period T (years)", row=1, col=1,
+        type="log",
+        title_text="Return Period T (years)",
+        row=1,
+        col=1,
         tickvals=[10, 25, 50, 100, 200, 500, 1000],
     )
     fig.update_yaxes(title_text="Q_T (m3/s)", row=1, col=1)
@@ -1071,7 +1121,10 @@ def plot_p6_mcmc_posteriors(ctx: SuiteContext) -> go.Figure:
 
     fig.add_trace(
         go.Histogram2dContour(
-            x=flat[:, 0], y=flat[:, 1], colorscale="Blues", ncontours=15,
+            x=flat[:, 0],
+            y=flat[:, 1],
+            colorscale="Blues",
+            ncontours=15,
             name="Joint posterior",
         ),
         row=1,
@@ -1091,9 +1144,9 @@ def plot_p6_mcmc_posteriors(ctx: SuiteContext) -> go.Figure:
 
     for column, period in ((1, 100.0), (2, 1000.0)):
         predictive = np.exp(
-            flat[:, 0] + flat[:, 1] * np.array(
-                [_skew.frequency_factor_exact(period, cs) for cs in flat[:, 2]]
-            )
+            flat[:, 0]
+            + flat[:, 1]
+            * np.array([_skew.frequency_factor_exact(period, cs) for cs in flat[:, 2]])
         )
         fig.add_trace(
             go.Histogram(
@@ -1117,8 +1170,12 @@ def plot_p6_mcmc_posteriors(ctx: SuiteContext) -> go.Figure:
         )
         low, high = np.percentile(predictive, [2.5, 97.5])
         fig.add_vrect(
-            x0=low, x1=high, fillcolor="rgba(106,27,154,0.12)", line_width=0,
-            row=2, col=column,
+            x0=low,
+            x1=high,
+            fillcolor="rgba(106,27,154,0.12)",
+            line_width=0,
+            row=2,
+            col=column,
         )
 
     fig.add_trace(
@@ -1186,7 +1243,9 @@ def plot_p7_qq_plots(ctx: SuiteContext, top_n: int = 6) -> go.Figure:
                 y=ctx.q_sorted,
                 mode="markers",
                 marker=dict(
-                    color=colour, size=7, opacity=0.75,
+                    color=colour,
+                    size=7,
+                    opacity=0.75,
                     line=dict(color="white", width=0.8),
                 ),
                 name=name,
@@ -1279,13 +1338,22 @@ def plot_p8_skewness_kurtosis(ctx: SuiteContext) -> plt.Figure:
     ):
         ax = axes[0, column]
         sns.histplot(
-            values, bins=50, stat="density", ax=ax, color=colour, alpha=0.6,
+            values,
+            bins=50,
+            stat="density",
+            ax=ax,
+            color=colour,
+            alpha=0.6,
             edgecolor="white",
         )
         sns.kdeplot(values, ax=ax, color=dark, lw=2.5)
-        ax.axvline(observed, color=dark, lw=2.5, label=f"Observed {label}={observed:.4f}")
+        ax.axvline(
+            observed, color=dark, lw=2.5, label=f"Observed {label}={observed:.4f}"
+        )
         low, high = np.percentile(values, [2.5, 97.5])
-        ax.axvspan(low, high, alpha=0.15, color=colour, label=f"95% CI [{low:.3f},{high:.3f}]")
+        ax.axvspan(
+            low, high, alpha=0.15, color=colour, label=f"95% CI [{low:.3f},{high:.3f}]"
+        )
         ax.axvline(0, color="black", ls="--", lw=1, alpha=0.5, label="Normal")
         ax.set_xlabel(xlabel)
         ax.set_title(title, fontweight="bold")
@@ -1297,8 +1365,13 @@ def plot_p8_skewness_kurtosis(ctx: SuiteContext) -> plt.Figure:
     ax.plot(cs_range, 1.5 * cs_range**2, "g--", lw=2, label="LP3 approx")
     ax.axhline(0, color="gray", ls=":", lw=1, label="Normal (Cs=Ck=0)")
     ax.scatter(
-        [moments.skewness_unadjusted], [moments.excess_kurtosis], s=150, color="red",
-        zorder=10, marker="*", label="Karad data",
+        [moments.skewness_unadjusted],
+        [moments.excess_kurtosis],
+        s=150,
+        color="red",
+        zorder=10,
+        marker="*",
+        label="Karad data",
     )
     ax.set_xlabel("Skewness Cs")
     ax.set_ylabel("Excess Kurtosis Ck")
@@ -1326,9 +1399,14 @@ def plot_p8_skewness_kurtosis(ctx: SuiteContext) -> plt.Figure:
     for label, group in decade.groupby("decade_lbl"):
         if len(group) >= 4:
             sns.kdeplot(
-                group["discharge_cms"], ax=ax,
-                color=DECADE_PALETTE.get(label, "gray"), linewidth=2.2,
-                fill=True, alpha=0.18, label=label, cut=0,
+                group["discharge_cms"],
+                ax=ax,
+                color=DECADE_PALETTE.get(label, "gray"),
+                linewidth=2.2,
+                fill=True,
+                alpha=0.18,
+                label=label,
+                cut=0,
             )
     ax.set_xlabel("Annual Peak (cumecs)")
     ax.set_ylabel("Density")
@@ -1339,12 +1417,21 @@ def plot_p8_skewness_kurtosis(ctx: SuiteContext) -> plt.Figure:
     cv_values = boot["cv"].to_numpy(dtype=float)
     cv_observed = float(q.std(ddof=1) / q.mean())
     sns.histplot(
-        cv_values, bins=50, stat="density", ax=ax, color="#00695C", alpha=0.6,
+        cv_values,
+        bins=50,
+        stat="density",
+        ax=ax,
+        color="#00695C",
+        alpha=0.6,
         edgecolor="white",
     )
-    ax.axvline(cv_observed, color="#004D40", lw=2.5, label=f"Observed CV={cv_observed:.4f}")
+    ax.axvline(
+        cv_observed, color="#004D40", lw=2.5, label=f"Observed CV={cv_observed:.4f}"
+    )
     low, high = np.percentile(cv_values, [2.5, 97.5])
-    ax.axvspan(low, high, alpha=0.15, color="#00695C", label=f"95% CI [{low:.3f},{high:.3f}]")
+    ax.axvspan(
+        low, high, alpha=0.15, color="#00695C", label=f"95% CI [{low:.3f},{high:.3f}]"
+    )
     ax.set_xlabel("Coefficient of Variation (CV)")
     ax.set_title("(f) Bootstrap CV Distribution", fontweight="bold")
     ax.legend(fontsize=8)
@@ -1405,7 +1492,9 @@ def plot_p9_dependence(ctx: SuiteContext) -> go.Figure:
         )
     for column in (1, 2):
         fig.add_hline(y=band, line_dash="dash", line_color="#90A4AE", row=1, col=column)
-        fig.add_hline(y=-band, line_dash="dash", line_color="#90A4AE", row=1, col=column)
+        fig.add_hline(
+            y=-band, line_dash="dash", line_color="#90A4AE", row=1, col=column
+        )
     fig.add_hline(y=0, line_color="#37474F", line_width=1, row=1, col=1)
 
     q = ctx.q
@@ -1415,8 +1504,11 @@ def plot_p9_dependence(ctx: SuiteContext) -> go.Figure:
             y=q[1:],
             mode="markers",
             marker=dict(
-                color=list(range(q.size - 1)), colorscale="Viridis", size=8,
-                opacity=0.75, showscale=True,
+                color=list(range(q.size - 1)),
+                colorscale="Viridis",
+                size=8,
+                opacity=0.75,
+                showscale=True,
                 colorbar=dict(title="Time", x=0.66, len=0.45, y=0.75),
             ),
             name="Q(t) vs Q(t-1)",
@@ -1426,8 +1518,13 @@ def plot_p9_dependence(ctx: SuiteContext) -> go.Figure:
     )
     rho, _ = sps.spearmanr(q[:-1], q[1:])
     fig.add_annotation(
-        x=0.05, y=0.92, xref="x3 domain", yref="y3 domain",
-        text=f"Spearman rho={rho:.3f}", showarrow=False, font=dict(size=10),
+        x=0.05,
+        y=0.92,
+        xref="x3 domain",
+        yref="y3 domain",
+        text=f"Spearman rho={rho:.3f}",
+        showarrow=False,
+        font=dict(size=10),
         bgcolor="white",
     )
 
@@ -1451,9 +1548,7 @@ def plot_p9_dependence(ctx: SuiteContext) -> go.Figure:
         np.log(rs["rs_ratio"].to_numpy(dtype=float)),
         1,
     )
-    x_fit = np.array(
-        [float(np.log(rs["lag"].min())), float(np.log(rs["lag"].max()))]
-    )
+    x_fit = np.array([float(np.log(rs["lag"].min())), float(np.log(rs["lag"].max()))])
     fig.add_trace(
         go.Scatter(
             x=x_fit,
@@ -1471,8 +1566,14 @@ def plot_p9_dependence(ctx: SuiteContext) -> go.Figure:
         h_note += " -- NOT admissible (outside 0-1)"
     h_note += f"; MC s.d. {ac.hurst_verification['monte_carlo_sd']:.3f}"
     fig.add_annotation(
-        x=0.02, y=0.98, xref="x4 domain", yref="y4 domain", text=h_note,
-        showarrow=False, font=dict(size=10, color="#B71C1C"), bgcolor="white",
+        x=0.02,
+        y=0.98,
+        xref="x4 domain",
+        yref="y4 domain",
+        text=h_note,
+        showarrow=False,
+        font=dict(size=10, color="#B71C1C"),
+        bgcolor="white",
         align="left",
     )
 
@@ -1489,8 +1590,12 @@ def plot_p9_dependence(ctx: SuiteContext) -> go.Figure:
             col=2,
         )
     fig.add_hline(
-        y=0.05, line_dash="dash", line_color="#B71C1C", annotation_text="alpha=0.05",
-        row=2, col=2,
+        y=0.05,
+        line_dash="dash",
+        line_color="#B71C1C",
+        annotation_text="alpha=0.05",
+        row=2,
+        col=2,
     )
 
     series = pd.Series(q, index=ctx.years)
@@ -1507,8 +1612,12 @@ def plot_p9_dependence(ctx: SuiteContext) -> go.Figure:
         col=3,
     )
     fig.add_hline(
-        y=float(q.var()), line_dash="dot", line_color="#9E9E9E",
-        annotation_text="Full-record var", row=2, col=3,
+        y=float(q.var()),
+        line_dash="dot",
+        line_color="#9E9E9E",
+        annotation_text="Full-record var",
+        row=2,
+        col=3,
     )
 
     fig.update_layout(
@@ -1591,9 +1700,7 @@ def plot_p10_distribution_ranking(ctx: SuiteContext) -> go.Figure:
         go.Bar(
             x=accepted["distribution"].tolist(),
             y=list(weights),
-            marker_color=[
-                _ps.distribution_color(n) for n in accepted["distribution"]
-            ],
+            marker_color=[_ps.distribution_color(n) for n in accepted["distribution"]],
             text=[f"{w:.4f}" for w in weights],
             textposition="outside",
         ),
@@ -1683,7 +1790,10 @@ def plot_p11_pot(ctx: SuiteContext) -> go.Figure:
         )
     fig.add_trace(
         go.Scatter(
-            x=ctx.t_observed, y=ctx.q_sorted, mode="markers", name="Observed",
+            x=ctx.t_observed,
+            y=ctx.q_sorted,
+            mode="markers",
+            name="Observed",
             marker=dict(color="#212121", size=7),
         ),
         row=1,
@@ -1699,7 +1809,10 @@ def plot_p11_pot(ctx: SuiteContext) -> go.Figure:
         )
         fig.add_trace(
             go.Scatter(
-                x=excess, y=empirical, mode="markers", name="Empirical",
+                x=excess,
+                y=empirical,
+                mode="markers",
+                name="Empirical",
                 marker=dict(color="#2E7D32", size=7),
             ),
             row=2,
@@ -1707,7 +1820,10 @@ def plot_p11_pot(ctx: SuiteContext) -> go.Figure:
         )
         fig.add_trace(
             go.Scatter(
-                x=excess, y=fitted, mode="lines", name="GPD CDF",
+                x=excess,
+                y=fitted,
+                mode="lines",
+                name="GPD CDF",
                 line=dict(color="#B71C1C", width=2.2),
             ),
             row=2,
@@ -1729,17 +1845,28 @@ def plot_p11_pot(ctx: SuiteContext) -> go.Figure:
             col=2,
         )
     fig.add_hline(
-        y=0, line_dash="dot", line_color="#90A4AE", annotation_text="xi=0",
-        row=2, col=2,
+        y=0,
+        line_dash="dot",
+        line_color="#90A4AE",
+        annotation_text="xi=0",
+        row=2,
+        col=2,
     )
 
     stamp = (
         "<br><sup>POT ACCEPTED</sup>"
         if pot.accepted
-        else "<br><sup>POT NOT ADOPTED: " + "; ".join(pot.reject_reasons)[:400] + "</sup>"
+        else "<br><sup>POT NOT ADOPTED: "
+        + "; ".join(pot.reject_reasons)[:400]
+        + "</sup>"
     )
-    fig.update_xaxes(type="log", title_text="Return Period (yr)", row=1, col=2,
-                     tickvals=list(T_TICKS))
+    fig.update_xaxes(
+        type="log",
+        title_text="Return Period (yr)",
+        row=1,
+        col=2,
+        tickvals=list(T_TICKS),
+    )
     fig.update_xaxes(title_text="Threshold u", row=1, col=1)
     fig.update_xaxes(title_text="Excess (m3/s)", row=2, col=1)
     fig.update_xaxes(title_text="Threshold u", row=2, col=2)
@@ -1802,8 +1929,14 @@ def plot_p12_ml_panel(ctx: SuiteContext) -> plt.Figure:
     ax = axes[0, 1]
     importance = _importance(ctx)
     if importance.empty:
-        ax.text(0.5, 0.5, "no tree model in the registry", ha="center",
-                va="center", transform=ax.transAxes)
+        ax.text(
+            0.5,
+            0.5,
+            "no tree model in the registry",
+            ha="center",
+            va="center",
+            transform=ax.transAxes,
+        )
         ax.set_axis_off()
     else:
         # One bar per feature, already in descending order; a categorical
@@ -1827,19 +1960,22 @@ def plot_p12_ml_panel(ctx: SuiteContext) -> plt.Figure:
     best = min(mlr.scores, key=lambda s: s.metrics["rmse_cumecs"])
     subset = predictions[predictions["model"] == best.model].sort_values("year")
     spread = subset.groupby("year")["predicted_cumecs"].std()
-    ax.plot(subset["year"], subset["actual_cumecs"], "ko-", lw=1, ms=4, label="Observed")
     ax.plot(
-        subset["year"], subset["predicted_cumecs"], "r-", lw=2.2,
+        subset["year"], subset["actual_cumecs"], "ko-", lw=1, ms=4, label="Observed"
+    )
+    ax.plot(
+        subset["year"],
+        subset["predicted_cumecs"],
+        "r-",
+        lw=2.2,
         label=f"{best.model} out-of-fold (R2={best.metrics['r2']:.3f})",
     )
     ax.fill_between(
         subset["year"].to_numpy(dtype=float),
-        subset["predicted_cumecs"].to_numpy(dtype=float) - spread.reindex(
-            subset["year"]
-        ).fillna(0.0).to_numpy(dtype=float),
-        subset["predicted_cumecs"].to_numpy(dtype=float) + spread.reindex(
-            subset["year"]
-        ).fillna(0.0).to_numpy(dtype=float),
+        subset["predicted_cumecs"].to_numpy(dtype=float)
+        - spread.reindex(subset["year"]).fillna(0.0).to_numpy(dtype=float),
+        subset["predicted_cumecs"].to_numpy(dtype=float)
+        + spread.reindex(subset["year"]).fillna(0.0).to_numpy(dtype=float),
         alpha=0.2,
         color="#FF9800",
         label="fold spread +/-1sd",
@@ -1852,8 +1988,11 @@ def plot_p12_ml_panel(ctx: SuiteContext) -> plt.Figure:
     ax = axes[1, 0]
     residuals = subset["actual_cumecs"] - subset["predicted_cumecs"]
     sns.residplot(
-        x=subset["predicted_cumecs"], y=residuals, ax=ax,
-        scatter_kws=dict(alpha=0.6, s=20), line_kws=dict(color="red", lw=2),
+        x=subset["predicted_cumecs"],
+        y=residuals,
+        ax=ax,
+        scatter_kws=dict(alpha=0.6, s=20),
+        line_kws=dict(color="red", lw=2),
         lowess=True,
     )
     ax.axhline(0, color="black", ls="--", lw=1)
@@ -1864,7 +2003,9 @@ def plot_p12_ml_panel(ctx: SuiteContext) -> plt.Figure:
     ax = axes[1, 1]
     r2_values = [s.metrics["r2"] for s in mlr.scores]
     bars = ax.bar(
-        models, r2_values, color=colours[: len(models)],
+        models,
+        r2_values,
+        color=colours[: len(models)],
         edgecolor="white",
     )
     ax.set_ylabel("R2 (out-of-fold)")
@@ -1883,7 +2024,9 @@ def plot_p12_ml_panel(ctx: SuiteContext) -> plt.Figure:
     ax = axes[1, 2]
     rmse_values = [s.metrics["rmse_cumecs"] for s in mlr.scores]
     bars2 = ax.bar(
-        models, rmse_values, color=list(colours[::-1])[: len(models)],
+        models,
+        rmse_values,
+        color=list(colours[::-1])[: len(models)],
         edgecolor="white",
     )
     ax.set_ylabel("RMSE (cumecs)")
@@ -1892,7 +2035,10 @@ def plot_p12_ml_panel(ctx: SuiteContext) -> plt.Figure:
     persistence = mlr.baseline.get("persistence_rmse_cumecs", float("nan"))
     if np.isfinite(persistence):
         ax.axhline(
-            persistence, color="#B71C1C", ls="--", lw=1.2,
+            persistence,
+            color="#B71C1C",
+            ls="--",
+            lw=1.2,
             label=f"persistence RMSE {persistence:,.0f}",
         )
         ax.legend(fontsize=8)
@@ -1948,8 +2094,11 @@ def plot_p13_dashboard(ctx: SuiteContext) -> go.Figure:
     )
     fig.add_trace(
         go.Scatter(
-            x=list(ctx.years), y=list(ctx.trend_line), name="Trend",
-            line=dict(color="red", dash="dash", width=2), showlegend=False,
+            x=list(ctx.years),
+            y=list(ctx.trend_line),
+            name="Trend",
+            line=dict(color="red", dash="dash", width=2),
+            showlegend=False,
         ),
         row=1,
         col=1,
@@ -1968,8 +2117,12 @@ def plot_p13_dashboard(ctx: SuiteContext) -> go.Figure:
         )
     fig.add_trace(
         go.Scatter(
-            x=ctx.t_observed, y=ctx.q_sorted, mode="markers", name="Observed",
-            marker=dict(color="#212121", size=6), showlegend=False,
+            x=ctx.t_observed,
+            y=ctx.q_sorted,
+            mode="markers",
+            name="Observed",
+            marker=dict(color="#212121", size=6),
+            showlegend=False,
         ),
         row=1,
         col=2,
@@ -1980,9 +2133,7 @@ def plot_p13_dashboard(ctx: SuiteContext) -> go.Figure:
         go.Bar(
             x=[n[:13] for n in ranked["distribution"]],
             y=ranked["aicc"].tolist(),
-            marker_color=[
-                _ps.distribution_color(n) for n in ranked["distribution"]
-            ],
+            marker_color=[_ps.distribution_color(n) for n in ranked["distribution"]],
             showlegend=False,
         ),
         row=1,
@@ -2010,15 +2161,23 @@ def plot_p13_dashboard(ctx: SuiteContext) -> go.Figure:
             sims = subset["simulated_cumecs"].to_numpy(dtype=float)
             fig.add_trace(
                 go.Histogram(
-                    x=sims, nbinsx=45, name="MC Q100", marker_color="#6A1B9A",
-                    opacity=0.7, showlegend=False,
+                    x=sims,
+                    nbinsx=45,
+                    name="MC Q100",
+                    marker_color="#6A1B9A",
+                    opacity=0.7,
+                    showlegend=False,
                 ),
                 row=2,
                 col=2,
             )
             fig.add_vline(
-                x=float(sims.mean()), line_color="red", line_width=2,
-                annotation_text=f"Mean={sims.mean():.0f}", row=2, col=2,
+                x=float(sims.mean()),
+                line_color="red",
+                line_width=2,
+                annotation_text=f"Mean={sims.mean():.0f}",
+                row=2,
+                col=2,
             )
 
     if ctx.lmoments is not None:
@@ -2026,8 +2185,11 @@ def plot_p13_dashboard(ctx: SuiteContext) -> go.Figure:
         fig.add_trace(
             go.Scatter(
                 x=tau3,
-                y=0.10701 + 0.11090 * tau3 + 0.84838 * tau3**2
-                - 0.06669 * tau3**3 + 0.00567 * tau3**4,
+                y=0.10701
+                + 0.11090 * tau3
+                + 0.84838 * tau3**2
+                - 0.06669 * tau3**3
+                + 0.00567 * tau3**4,
                 line=dict(color="#1565C0", width=2),
                 showlegend=False,
             ),
@@ -2157,7 +2319,11 @@ def plot_p14_comprehensive(ctx: SuiteContext) -> plt.Figure:
         kde_x = np.linspace(values.min(), values.max(), 300)
         kde_y = sps.gaussian_kde(values)(kde_x)
         ax.fill_between(
-            kde_x, offset, offset + kde_y * 6000, alpha=0.55, color=palette[index % 6],
+            kde_x,
+            offset,
+            offset + kde_y * 6000,
+            alpha=0.55,
+            color=palette[index % 6],
             label=label,
         )
         ax.plot(kde_x, offset + kde_y * 6000, lw=1.8, color=palette[index % 6])
@@ -2190,15 +2356,30 @@ def plot_p14_comprehensive(ctx: SuiteContext) -> plt.Figure:
     ax = fig.add_subplot(grid[1, :2])
     order = sorted(decade["decade_lbl"].unique())
     sns.boxplot(
-        data=decade, x="decade_lbl", y="discharge_cms", hue="decade_lbl",
-        order=order, palette="Blues", ax=ax, linewidth=1.5, fliersize=0,
+        data=decade,
+        x="decade_lbl",
+        y="discharge_cms",
+        hue="decade_lbl",
+        order=order,
+        palette="Blues",
+        ax=ax,
+        linewidth=1.5,
+        fliersize=0,
         legend=False,
     )
     sns.swarmplot(
-        data=decade, x="decade_lbl", y="discharge_cms", order=order,
-        color="#0D47A1", alpha=0.6, size=4, ax=ax,
+        data=decade,
+        x="decade_lbl",
+        y="discharge_cms",
+        order=order,
+        color="#0D47A1",
+        alpha=0.6,
+        size=4,
+        ax=ax,
     )
-    ax.axhline(q.mean(), color="red", ls="--", lw=1.5, alpha=0.7, label=f"Mean={q.mean():.0f}")
+    ax.axhline(
+        q.mean(), color="red", ls="--", lw=1.5, alpha=0.7, label=f"Mean={q.mean():.0f}"
+    )
     ax.set_title("(c) Decade Box + Swarm Plot", fontweight="bold")
     ax.set_xlabel("Decade")
     ax.set_ylabel("Peak Discharge (cumecs)")
@@ -2222,7 +2403,11 @@ def plot_p14_comprehensive(ctx: SuiteContext) -> plt.Figure:
 
     ax = fig.add_subplot(grid[2, :2])
     heat_periods = list(T_TICKS)
-    heat_fits = [f for f in ctx.fits.fits if f.candidate.name in ("Gumbel", "LN2", "LP3", "GEV", "Weibull")]
+    heat_fits = [
+        f
+        for f in ctx.fits.fits
+        if f.candidate.name in ("Gumbel", "LN2", "LP3", "GEV", "Weibull")
+    ]
     heat = pd.DataFrame(
         {
             f.candidate.name: np.round(
@@ -2233,8 +2418,15 @@ def plot_p14_comprehensive(ctx: SuiteContext) -> plt.Figure:
         index=[f"T={t:g}" for t in heat_periods],
     )
     sns.heatmap(
-        heat, annot=True, fmt=".0f", cmap="YlOrRd", linewidths=0.5, linecolor="white",
-        annot_kws={"size": 8}, ax=ax, cbar_kws=dict(label="Q (cumecs)"),
+        heat,
+        annot=True,
+        fmt=".0f",
+        cmap="YlOrRd",
+        linewidths=0.5,
+        linecolor="white",
+        annot_kws={"size": 8},
+        ax=ax,
+        cbar_kws=dict(label="Q (cumecs)"),
     )
     ax.set_title("(e) Design Flood Heatmap (cumecs)", fontweight="bold")
     ax.set_xlabel("Distribution")
@@ -2245,17 +2437,38 @@ def plot_p14_comprehensive(ctx: SuiteContext) -> plt.Figure:
         fan = ctx.monte_carlo.fan
         periods = fan["return_period_yr"].to_numpy(dtype=float)
         ax.fill_between(
-            periods, fan["mc_p05_cumecs"], fan["mc_p95_cumecs"], alpha=0.15,
-            color="#FF9800", label="MC 90% interval",
+            periods,
+            fan["mc_p05_cumecs"],
+            fan["mc_p95_cumecs"],
+            alpha=0.15,
+            color="#FF9800",
+            label="MC 90% interval",
         )
         ax.fill_between(
-            periods, fan["mc_p25_cumecs"], fan["mc_p75_cumecs"], alpha=0.25,
-            color="#FF9800", label="MC 50% interval",
+            periods,
+            fan["mc_p25_cumecs"],
+            fan["mc_p75_cumecs"],
+            alpha=0.25,
+            color="#FF9800",
+            label="MC 50% interval",
         )
-        ax.plot(periods, fan["mc_median_cumecs"], "o-", color="#E65100", lw=2, ms=4,
-                label="MC median")
-        ax.plot(periods, fan["observed_lp3_cumecs"], "k^", ms=5, alpha=0.7,
-                label="Observed-record LP3")
+        ax.plot(
+            periods,
+            fan["mc_median_cumecs"],
+            "o-",
+            color="#E65100",
+            lw=2,
+            ms=4,
+            label="MC median",
+        )
+        ax.plot(
+            periods,
+            fan["observed_lp3_cumecs"],
+            "k^",
+            ms=5,
+            alpha=0.7,
+            label="Observed-record LP3",
+        )
         ax.set_xscale("log")
         ax.set_yscale("log")
     ax.set_xlabel("Return Period (years, log scale)")
@@ -2278,125 +2491,177 @@ def _builders(ctx: SuiteContext) -> list[tuple[str, str, Any]]:
             "P1_time_series_trend_anomaly",
             "Annual peaks in water-year order with the Theil-Sen trend, "
             "rolling mean and standardised anomaly",
-            lambda: _save_plotly(plot_p1_time_series(ctx), ctx.outdir,
-                                 "P1_time_series_trend_anomaly",
-                                 "Annual peaks, trend, rolling mean and anomaly"),
+            lambda: _save_plotly(
+                plot_p1_time_series(ctx),
+                ctx.outdir,
+                "P1_time_series_trend_anomaly",
+                "Annual peaks, trend, rolling mean and anomaly",
+            ),
         ),
         (
             "P2_seaborn_distribution",
             "Histogram, KDE, log-space check, ECDF against fitted CDFs, "
             "decadal violin and box plots, multi-distribution Q-Q",
-            lambda: _save_mpl(plot_p2_distribution_explorer(ctx), ctx.outdir,
-                              "P2_seaborn_distribution",
-                              "Distribution explorer for the annual peaks"),
+            lambda: _save_mpl(
+                plot_p2_distribution_explorer(ctx),
+                ctx.outdir,
+                "P2_seaborn_distribution",
+                "Distribution explorer for the annual peaks",
+            ),
         ),
         (
             "P3_flood_frequency_curves",
             "Every fitted candidate with the Bulletin 17C LP3 bootstrap band "
             "and the observed record",
-            lambda: _save_plotly(plot_p3_frequency_curves(ctx), ctx.outdir,
-                                 "P3_flood_frequency_curves",
-                                 "Flood frequency curves for every candidate"),
+            lambda: _save_plotly(
+                plot_p3_frequency_curves(ctx),
+                ctx.outdir,
+                "P3_flood_frequency_curves",
+                "Flood frequency curves for every candidate",
+            ),
         ),
         (
             "P4a_pairplot",
             "Pairplot of the five most important leakage-safe features "
             "against the peak, coloured by decade",
-            lambda: _save_mpl(plot_p4a_pairplot(ctx), ctx.outdir, "P4a_pairplot",
-                              "Pairplot of the top leakage-safe features"),
+            lambda: _save_mpl(
+                plot_p4a_pairplot(ctx),
+                ctx.outdir,
+                "P4a_pairplot",
+                "Pairplot of the top leakage-safe features",
+            ),
         ),
         (
             "P4b_jointplot",
             "Joint distribution of the one-year lag and the peak, with the "
             "Spearman coefficient",
-            lambda: _save_mpl(plot_p4b_jointplot(ctx), ctx.outdir, "P4b_jointplot",
-                              "Joint distribution of lag-1 and peak discharge"),
+            lambda: _save_mpl(
+                plot_p4b_jointplot(ctx),
+                ctx.outdir,
+                "P4b_jointplot",
+                "Joint distribution of lag-1 and peak discharge",
+            ),
         ),
         (
             "P4c_correlation_heatmap",
             "Annotated Pearson correlation matrix of the modelling features "
             "and the peak discharge",
-            lambda: _save_mpl(plot_p4c_heatmap(ctx), ctx.outdir,
-                              "P4c_correlation_heatmap",
-                              "Correlation matrix of the modelling features"),
+            lambda: _save_mpl(
+                plot_p4c_heatmap(ctx),
+                ctx.outdir,
+                "P4c_correlation_heatmap",
+                "Correlation matrix of the modelling features",
+            ),
         ),
         (
             "P5_monte_carlo_uncertainty_fan",
             "Record-length uncertainty from independent simulated records, "
             "with the simulated estimates at 10, 100 and 1000 years",
-            lambda: _save_plotly(plot_p5_monte_carlo_uncertainty(ctx), ctx.outdir,
-                                 "P5_monte_carlo_uncertainty_fan",
-                                 "Monte Carlo record-length uncertainty fan"),
+            lambda: _save_plotly(
+                plot_p5_monte_carlo_uncertainty(ctx),
+                ctx.outdir,
+                "P5_monte_carlo_uncertainty_fan",
+                "Monte Carlo record-length uncertainty fan",
+            ),
         ),
         (
             "P6_bayesian_mcmc_posteriors",
             "MCMC marginals, joint density, predictive design quantiles and a "
             "trace, stamped with the convergence verdict",
-            lambda: _save_plotly(plot_p6_mcmc_posteriors(ctx), ctx.outdir,
-                                 "P6_bayesian_mcmc_posteriors",
-                                 "Bayesian MCMC posteriors for the LP3 parameters"),
+            lambda: _save_plotly(
+                plot_p6_mcmc_posteriors(ctx),
+                ctx.outdir,
+                "P6_bayesian_mcmc_posteriors",
+                "Bayesian MCMC posteriors for the LP3 parameters",
+            ),
         ),
         (
             "P7_qq_probability_plots",
             "Q-Q plots for the six lowest-AICc candidates with their R-squared "
             "and acceptance state",
-            lambda: _save_plotly(plot_p7_qq_plots(ctx), ctx.outdir,
-                                 "P7_qq_probability_plots",
-                                 "Q-Q probability plots for the best candidates"),
+            lambda: _save_plotly(
+                plot_p7_qq_plots(ctx),
+                ctx.outdir,
+                "P7_qq_probability_plots",
+                "Q-Q probability plots for the best candidates",
+            ),
         ),
         (
             "P8_skewness_kurtosis",
             "Non-parametric bootstrap of skewness, kurtosis and CV, the Cs-Ck "
             "moment space, normal probability paper and decadal densities",
-            lambda: _save_mpl(plot_p8_skewness_kurtosis(ctx), ctx.outdir,
-                              "P8_skewness_kurtosis",
-                              "Bootstrap skewness, kurtosis and CV"),
+            lambda: _save_mpl(
+                plot_p8_skewness_kurtosis(ctx),
+                ctx.outdir,
+                "P8_skewness_kurtosis",
+                "Bootstrap skewness, kurtosis and CV",
+            ),
         ),
         (
             "P9_acf_pacf_hurst_lag",
             "ACF, PACF, lag plot, rescaled-range Hurst with its resolution "
             "verdict, Ljung-Box p-values and rolling variance",
-            lambda: _save_plotly(plot_p9_dependence(ctx), ctx.outdir,
-                                 "P9_acf_pacf_hurst_lag",
-                                 "Dependence diagnostics with the Hurst verdict"),
+            lambda: _save_plotly(
+                plot_p9_dependence(ctx),
+                ctx.outdir,
+                "P9_acf_pacf_hurst_lag",
+                "Dependence diagnostics with the Hurst verdict",
+            ),
         ),
         (
             "P10_distribution_ranking",
             "AIC, AICc, BIC and HQIC for every candidate, and Akaike weights "
             "over the accepted ones",
-            lambda: _save_plotly(plot_p10_distribution_ranking(ctx), ctx.outdir,
-                                 "P10_distribution_ranking",
-                                 "Information criteria and Akaike weights"),
+            lambda: _save_plotly(
+                plot_p10_distribution_ranking(ctx),
+                ctx.outdir,
+                "P10_distribution_ranking",
+                "Information criteria and Akaike weights",
+            ),
         ),
         (
             "P11_pot_gpd",
             "Mean residual life, GPD return levels, excess CDF and threshold "
             "stability, stamped with the acceptance verdict",
-            lambda: _save_plotly(plot_p11_pot(ctx), ctx.outdir, "P11_pot_gpd",
-                                 "Peaks-over-threshold diagnostics and verdict"),
+            lambda: _save_plotly(
+                plot_p11_pot(ctx),
+                ctx.outdir,
+                "P11_pot_gpd",
+                "Peaks-over-threshold diagnostics and verdict",
+            ),
         ),
         (
             "P12_ml_panel",
             "Out-of-fold predicted versus observed, RF feature importance, "
             "reconstruction with fold spread, residuals, R-squared and RMSE",
-            lambda: _save_mpl(plot_p12_ml_panel(ctx), ctx.outdir, "P12_ml_panel",
-                              "Leakage-safe machine-learning performance panel"),
+            lambda: _save_mpl(
+                plot_p12_ml_panel(ctx),
+                ctx.outdir,
+                "P12_ml_panel",
+                "Leakage-safe machine-learning performance panel",
+            ),
         ),
         (
             "P13_publication_dashboard",
             "Nine-panel summary: series, frequency curves, ranking, design "
             "floods, Monte Carlo, L-moments, decades and feature importance",
-            lambda: _save_plotly(plot_p13_dashboard(ctx), ctx.outdir,
-                                 "P13_publication_dashboard",
-                                 "Nine-panel publication dashboard"),
+            lambda: _save_plotly(
+                plot_p13_dashboard(ctx),
+                ctx.outdir,
+                "P13_publication_dashboard",
+                "Nine-panel publication dashboard",
+            ),
         ),
         (
             "P14_comprehensive",
             "Ridgeline by decade, Gumbel probability paper, box and swarm, "
             "ECDF against CDFs, design-flood heatmap and Monte Carlo band",
-            lambda: _save_mpl(plot_p14_comprehensive(ctx), ctx.outdir,
-                              "P14_comprehensive",
-                              "Comprehensive statistical summary"),
+            lambda: _save_mpl(
+                plot_p14_comprehensive(ctx),
+                ctx.outdir,
+                "P14_comprehensive",
+                "Comprehensive statistical summary",
+            ),
         ),
     ]
 
