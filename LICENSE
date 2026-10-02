@@ -14,10 +14,15 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 - STRICT ATTRIBUTION: Any academic publication, public display, or non-commercial distribution of this Software (or modifications thereof) must prominently display this copyright notice and explicitly attribute the original authors.
 - NO PROPRIETARY RE-LICENSING: You may not distribute this Software or modified versions under a different or less restrictive license. 
 
-4. ALL RIGHTS RESERVED
+4. METHODOLOGY AND FORMULAS
+- PUBLIC DOMAIN MATH: The author claims no proprietary rights over standard mathematical formulas, statistical equations, or public domain hydrology concepts used within this Software.
+- PROPRIETARY METHODOLOGY: The specific computational methodology, analysis pipeline architecture, data orchestration, and custom implementation strategy constitute the original intellectual property of the author. 
+- MANDATORY REFERENCE: Any academic or public use of this methodology must provide explicit citation and reference to the original author and this repository.
+
+5. ALL RIGHTS RESERVED
 All rights not expressly granted in Section 2 are strictly reserved by the copyright holder.
 
-5. DISCLAIMER OF WARRANTY
+6. DISCLAIMER OF WARRANTY
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ---

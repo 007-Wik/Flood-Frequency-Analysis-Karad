@@ -62,6 +62,9 @@
 
 ---
 
+> [!WARNING]
+> **Custom License Notice**: This repository operates under a strict Custom Academic & Non-Commercial License. While standard mathematical formulas are public domain, the specific pipeline architecture and computational methodology are proprietary to the author. **Please read the [`LICENSE`](file:///LICENSE) file carefully before cloning or using this repository.**
+
 ## 1. Quickstart & Execution
 
 ### Python Setup
