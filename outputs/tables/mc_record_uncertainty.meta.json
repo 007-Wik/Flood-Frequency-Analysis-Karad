@@ -1,0 +1,29 @@
+{
+  "stage": "reporting",
+  "generated_utc": "2026-10-02T11:27:11Z",
+  "package_version": "3.0.0",
+  "station": {
+    "id": "AK000X6",
+    "name": "Karad",
+    "river": "Krishna",
+    "catchment_area_km2": 5462.0,
+    "zero_gauge_level_m": 549.915
+  },
+  "python": "3.12.10",
+  "numpy": "2.4.3",
+  "pandas": "2.3.3",
+  "scipy": "1.17.1",
+  "source": "monte_carlo",
+  "generated_by": "ffa_karad.reporting",
+  "rows": 9,
+  "columns": [
+    "return_period_yr",
+    "observed_lp3_cumecs",
+    "mc_median_cumecs",
+    "mc_lower_cumecs",
+    "mc_upper_cumecs",
+    "mc_bias_cumecs",
+    "mc_relative_bias",
+    "mc_relative_width"
+  ]
+}

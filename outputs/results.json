@@ -1,0 +1,4034 @@
+{
+  "generated_utc": "2026-10-02T11:27:11.273557+00:00",
+  "station": "AK000X6",
+  "qc": {
+    "n_pass": 14,
+    "n_warn": 3,
+    "n_fail": 0,
+    "blocking": false,
+    "admissible": true,
+    "checks": [
+      {
+        "check": "record_length",
+        "status": "PASS",
+        "value": 57,
+        "detail": "57 annual peaks available; the study record requires 57"
+      },
+      {
+        "check": "discharge_numeric",
+        "status": "PASS",
+        "value": 57,
+        "detail": "all annual peak discharges parsed as finite numbers"
+      },
+      {
+        "check": "dates_parsed",
+        "status": "PASS",
+        "value": 0,
+        "detail": "0 peak dates could not be parsed"
+      },
+      {
+        "check": "record_contiguous",
+        "status": "PASS",
+        "value": [],
+        "detail": "water years form a contiguous run"
+      },
+      {
+        "check": "water_year_labels_unique",
+        "status": "PASS",
+        "value": 57,
+        "detail": "every water-year label is unique and taken verbatim from the source"
+      },
+      {
+        "check": "discharge_positive",
+        "status": "PASS",
+        "value": 855.0,
+        "detail": "all discharges strictly positive (required for the log-normal family)"
+      },
+      {
+        "check": "water_level_above_datum",
+        "status": "PASS",
+        "value": 4.997000000000071,
+        "detail": "all water levels above the zero gauge (549.915 m)"
+      },
+      {
+        "check": "dispersion_plausible",
+        "status": "PASS",
+        "value": 0.5346033585495705,
+        "detail": "coefficient of variation 0.535 lies in the 0.4-2.5 band expected for annual maxima of a large Indian river"
+      },
+      {
+        "check": "stage_discharge_rank_monotone",
+        "status": "PASS",
+        "value": 1.0,
+        "detail": "Spearman rank correlation between discharge and water level is 1.0000"
+      },
+      {
+        "check": "rating_curve_fit",
+        "status": "PASS",
+        "value": 0.9997839079099602,
+        "detail": "log-log rating curve Q = 10**1.7204 * h**1.7209 explains 99.978% of the log-variance (RMSE 0.0033 log10 units)"
+      },
+      {
+        "check": "rating_curve_shape",
+        "status": "PASS",
+        "value": 1.7208831468362775,
+        "detail": "rating exponent b = 1.721; natural-channel values are usually 1.8-2.8, values outside 1.5-3.5 indicate an unstable datum or mixed control"
+      },
+      {
+        "check": "rating_curve_outliers",
+        "status": "WARN",
+        "value": [
+          "1976-1977",
+          "2003-2004",
+          "2021-2022"
+        ],
+        "detail": "3 water year(s) deviate from the rating curve: 1976-1977, 2003-2004, 2021-2022"
+      },
+      {
+        "check": "maximum_consistent",
+        "status": "PASS",
+        "value": [
+          "1976-1977",
+          "1976-1977"
+        ],
+        "detail": "the maximum-discharge year (1976-1977) is also the maximum-water-level year (1976-1977)"
+      },
+      {
+        "check": "hfl_matches_station_abstract",
+        "status": "PASS",
+        "value": [
+          7177.0,
+          7177.0
+        ],
+        "detail": "observed HFL 567.162 m on 1976-06-07 (7177.0 cumecs) is reproduced by the data series"
+      },
+      {
+        "check": "discharge_provenance",
+        "status": "WARN",
+        "value": "rating-curve derived",
+        "detail": "Discharge column header in the source sheet reads 'Discharge* (cumecs)'.  In NWDA/CWC station abstracts the asterisk denotes a rating-curve derived discharge, not an instantaneous volumetric gauge record.  All derived discharges carry correlated error, which is not captured by any bootstrap in this package."
+      },
+      {
+        "check": "seasonality_reasonable",
+        "status": "PASS",
+        "value": [
+          "1996-1997",
+          "2015-2016",
+          "2017-2018",
+          "2018-2019"
+        ],
+        "detail": "7.0% of annual peaks occur outside the June-September monsoon window; review 1996-1997, 2015-2016, 2017-2018, 2018-2019"
+      },
+      {
+        "check": "no_extreme_year_on_year_jumps",
+        "status": "WARN",
+        "value": [
+          "1968-1969",
+          "1970-1971",
+          "1977-1978",
+          "1995-1996",
+          "1998-1999",
+          "2000-2001",
+          "2004-2005",
+          "2007-2008",
+          "2009-2010",
+          "2012-2013",
+          "2020-2021"
+        ],
+        "detail": "large year-on-year changes at 1968-1969, 1970-1971, 1977-1978, 1995-1996, 1998-1999, 2000-2001, 2004-2005, 2007-2008, 2009-2010, 2012-2013, 2020-2021; a change-point or outlier test is required (see ffa_karad.outliers)"
+      }
+    ],
+    "rating_curve": {
+      "form": "Q = 10**a * h**b , h = WL - ZGL",
+      "coefficient_a": 1.720367388211591,
+      "exponent_b": 1.7208831468362775,
+      "r_squared_log_log": 0.9997839079099602,
+      "rmse_log10": 0.0032789443351043976,
+      "slope_stderr": 0.0034114294991693583,
+      "intercept_stderr": 0.003356085885817152,
+      "n": 57,
+      "h_min_m": 4.997000000000071,
+      "h_max_m": 17.24700000000007,
+      "outlier_water_years": [
+        "1976-1977",
+        "2003-2004",
+        "2021-2022"
+      ]
+    },
+    "summary_stats": {
+      "n": 57,
+      "record_length_years": 57,
+      "min_cumecs": 855.0,
+      "max_cumecs": 7177.0,
+      "mean_cumecs": 2856.5789473684213,
+      "median_cumecs": 2496.0,
+      "std_cumecs": 1527.1366992251549,
+      "cv": 0.5346033585495705,
+      "cv_percent": 53.46033585495705,
+      "log_mean": 7.825513076316872,
+      "log_std": 0.5181717259078744,
+      "range_ratio": 8.394152046783626,
+      "wy_start": 1965,
+      "wy_end": 2021
+    },
+    "notes": [
+      "Discharge values are rating-curve derived, so their errors are correlated across years and heteroscedastic. None of the bootstrap intervals in this package represent measurement error; a systematic rating revision shifts the whole frequency curve. This should be stated as a limitation and the rating curve can be re-derived from recent gaugings.",
+      "Peaks outside the southwest-monsoon window (1996-1997 (post_monsoon), 2015-2016 (post_monsoon), 2017-2018 (post_monsoon), 2018-2019 (pre_monsoon)) indicate either genuine non-monsoon flood mechanisms or a date transcription error. Check before design adoption; a spurious peak inflates the upper tail of every fitted distribution."
+    ]
+  },
+  "stats": {
+    "moments": {
+      "n": 57,
+      "mean_cumecs": 2856.5789473684213,
+      "sd_cumecs": 1527.1366992251549,
+      "cv": 0.5346033585495705,
+      "cs_unadjusted": 1.0531938730941839,
+      "cs_adjusted_b17b": 1.0818749765319886,
+      "ck_moment_b17b": 3.468343016626533,
+      "excess_kurtosis": 0.468343016626533,
+      "cs_standard_error": 0.3244428422615251,
+      "ck_standard_error": 0.6488856845230502
+    },
+    "skewness_estimators": [
+      {
+        "estimator": "Moment g1 (n divisor)",
+        "value": 1.053193873094184,
+        "family": "moment",
+        "robust": false,
+        "use_in_spread": true
+      },
+      {
+        "estimator": "Adjusted g1 (Bulletin 17B)",
+        "value": 1.0818749765319888,
+        "family": "moment",
+        "robust": false,
+        "use_in_spread": true
+      },
+      {
+        "estimator": "Bowley (quartile)",
+        "value": 0.12200319659030368,
+        "family": "quartile",
+        "robust": true,
+        "use_in_spread": true
+      },
+      {
+        "estimator": "Pearson 2nd (3(mean-median)/s)",
+        "value": 0.7083431644685901,
+        "family": "quartile",
+        "robust": true,
+        "use_in_spread": true
+      },
+      {
+        "estimator": "Anscombe-Glynn (symmetry check)",
+        "value": 2.3565601765211313e-16,
+        "family": "rank/normal-score",
+        "robust": true,
+        "use_in_spread": false
+      }
+    ],
+    "normality": [
+      {
+        "series": "Q",
+        "test": "Shapiro-Wilk",
+        "statistic": 0.9035869728836997,
+        "p_value": 0.0002585275391089356,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": true,
+        "note": "most powerful against departure in the tails"
+      },
+      {
+        "series": "Q",
+        "test": "D'Agostino-Pearson K2",
+        "statistic": 10.853128907667411,
+        "p_value": 0.004398180027088262,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": true,
+        "note": "tests skewness and kurtosis jointly"
+      },
+      {
+        "series": "Q",
+        "test": "Jarque-Bera",
+        "statistic": 11.058509481473976,
+        "p_value": 0.003968945880848085,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": true,
+        "note": "asymptotic"
+      },
+      {
+        "series": "Q",
+        "test": "Kolmogorov-Smirnov (fitted params)",
+        "statistic": 0.14367860676253147,
+        "p_value": 0.172281075340442,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": false,
+        "note": "p-value is anti-conservative with estimated parameters"
+      },
+      {
+        "series": "Q",
+        "test": "Anderson-Darling (bootstrap p)",
+        "statistic": 2036.997632471595,
+        "p_value": 0.16541729135432284,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": false,
+        "note": "parametric bootstrap, 2000 replicates"
+      },
+      {
+        "series": "log Q",
+        "test": "Shapiro-Wilk",
+        "statistic": 0.984867693093504,
+        "p_value": 0.6942343888142568,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": false,
+        "note": "log-transformed series"
+      },
+      {
+        "series": "log Q",
+        "test": "D'Agostino-Pearson K2",
+        "statistic": 1.8051364203417206,
+        "p_value": 0.4055268430646627,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": false,
+        "note": "log-transformed series"
+      },
+      {
+        "series": "log Q",
+        "test": "Jarque-Bera",
+        "statistic": 1.2714700142822815,
+        "p_value": 0.5295461250592279,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": false,
+        "note": "log-transformed series"
+      }
+    ],
+    "randomness": [
+      {
+        "test": "Wald-Wolfowitz runs",
+        "lag": null,
+        "statistic": -3.189279574957663,
+        "detail": "runs = 17 (expected 28.5)",
+        "p_value": 0.0014262786531484828,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": true,
+        "note": "H0 = randomness; sensitive to clustering, not just linear dependence"
+      },
+      {
+        "test": "Durbin-Watson",
+        "lag": null,
+        "statistic": 2.5750986980218094,
+        "detail": "d = 2.5751 (negative autocorrelation)",
+        "p_value": 0.029934953894820815,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": true,
+        "note": "asymptotic N(2, 4/n); approximate"
+      },
+      {
+        "test": "Ljung-Box",
+        "lag": 1.0,
+        "statistic": 1.6887627200697917,
+        "detail": "",
+        "p_value": 0.19376415021482712,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": false,
+        "note": "H0 = no linear autocorrelation up to this lag"
+      },
+      {
+        "test": "Ljung-Box",
+        "lag": 2.0,
+        "statistic": 3.27783338634489,
+        "detail": "",
+        "p_value": 0.19419029605922442,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": false,
+        "note": "H0 = no linear autocorrelation up to this lag"
+      },
+      {
+        "test": "Ljung-Box",
+        "lag": 3.0,
+        "statistic": 4.653509699253104,
+        "detail": "",
+        "p_value": 0.19899952328418102,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": false,
+        "note": "H0 = no linear autocorrelation up to this lag"
+      },
+      {
+        "test": "Ljung-Box",
+        "lag": 4.0,
+        "statistic": 8.416895259360464,
+        "detail": "",
+        "p_value": 0.07744666461408688,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": false,
+        "note": "H0 = no linear autocorrelation up to this lag"
+      },
+      {
+        "test": "Ljung-Box",
+        "lag": 5.0,
+        "statistic": 12.188588127365342,
+        "detail": "",
+        "p_value": 0.03229309544337827,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": true,
+        "note": "H0 = no linear autocorrelation up to this lag"
+      },
+      {
+        "test": "Ljung-Box",
+        "lag": 6.0,
+        "statistic": 14.072265328034721,
+        "detail": "",
+        "p_value": 0.02883925519206391,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": true,
+        "note": "H0 = no linear autocorrelation up to this lag"
+      },
+      {
+        "test": "Ljung-Box",
+        "lag": 7.0,
+        "statistic": 14.75479049090498,
+        "detail": "",
+        "p_value": 0.03927428661383137,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": true,
+        "note": "H0 = no linear autocorrelation up to this lag"
+      },
+      {
+        "test": "Ljung-Box",
+        "lag": 8.0,
+        "statistic": 14.76580105099847,
+        "detail": "",
+        "p_value": 0.06386251116212166,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": false,
+        "note": "H0 = no linear autocorrelation up to this lag"
+      },
+      {
+        "test": "Ljung-Box",
+        "lag": 9.0,
+        "statistic": 14.860057545855488,
+        "detail": "",
+        "p_value": 0.09485237965307694,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": false,
+        "note": "H0 = no linear autocorrelation up to this lag"
+      },
+      {
+        "test": "Ljung-Box",
+        "lag": 10.0,
+        "statistic": 15.195274881730024,
+        "detail": "",
+        "p_value": 0.12510301662638174,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": false,
+        "note": "H0 = no linear autocorrelation up to this lag"
+      }
+    ],
+    "stationarity": [
+      {
+        "series": "Q",
+        "test": "ADF (constant)",
+        "statistic": null,
+        "p_value": null,
+        "note": "failed: 0"
+      },
+      {
+        "series": "Q",
+        "test": "ADF (constant+trend)",
+        "statistic": null,
+        "p_value": null,
+        "note": "failed: 0"
+      },
+      {
+        "series": "Q",
+        "test": "KPSS (level)",
+        "statistic": null,
+        "p_value": null,
+        "note": "failed: int() argument must be a string, a bytes-like object or a real number, not 'dict'"
+      },
+      {
+        "series": "Q",
+        "test": "KPSS (level+trend)",
+        "statistic": null,
+        "p_value": null,
+        "note": "failed: int() argument must be a string, a bytes-like object or a real number, not 'dict'"
+      },
+      {
+        "series": "log Q",
+        "test": "ADF (constant)",
+        "statistic": null,
+        "p_value": null,
+        "note": "failed: 0"
+      },
+      {
+        "series": "log Q",
+        "test": "ADF (constant+trend)",
+        "statistic": null,
+        "p_value": null,
+        "note": "failed: 0"
+      },
+      {
+        "series": "log Q",
+        "test": "KPSS (level)",
+        "statistic": null,
+        "p_value": null,
+        "note": "failed: int() argument must be a string, a bytes-like object or a real number, not 'dict'"
+      },
+      {
+        "series": "log Q",
+        "test": "KPSS (level+trend)",
+        "statistic": null,
+        "p_value": null,
+        "note": "failed: int() argument must be a string, a bytes-like object or a real number, not 'dict'"
+      }
+    ],
+    "trend": [
+      {
+        "test": "Mann-Kendall (original)",
+        "statistic": -1.0394611874645203,
+        "p_value": 0.29859029987699914,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": false,
+        "detail": "S = -152, tau = -0.0952",
+        "h0": "no monotonic trend"
+      },
+      {
+        "test": "Mann-Kendall (Hamed-Rao corrected)",
+        "statistic": -0.6001331963948089,
+        "p_value": 0.5484174704158802,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": false,
+        "detail": "correction factor 1.7321",
+        "h0": "no monotonic trend, serially correlated series"
+      },
+      {
+        "test": "Spearman rho",
+        "statistic": -0.15951516722841588,
+        "p_value": 0.23592282767000727,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": false,
+        "detail": "monotonic association with water-year index",
+        "h0": "no monotonic trend"
+      },
+      {
+        "test": "Kendall tau",
+        "statistic": -0.09523809523809525,
+        "p_value": 0.2954017593340308,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": false,
+        "detail": "monotonic association with water-year index",
+        "h0": "no monotonic trend"
+      },
+      {
+        "test": "Sen's slope",
+        "statistic": -12.779545454545454,
+        "p_value": null,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": false,
+        "detail": "95% CI [-31.5263, 11.6667] cumecs/yr",
+        "h0": "slope = 0"
+      },
+      {
+        "test": "Trend-free pre-whitened MK",
+        "statistic": 0.0,
+        "p_value": 1.0,
+        "alpha": 0.05,
+        "reject_h0_at_alpha": false,
+        "detail": "adjusted Sen slope -12.779545 cumecs/yr after pre-whitening",
+        "h0": "no residual trend after removing the linear component"
+      }
+    ],
+    "change_point": {
+      "U_star": 5282.0,
+      "change_point_index": 50,
+      "change_point_position": 50,
+      "p_value": 0.21095780843831233,
+      "n_permutations": 5000,
+      "reject_h0_at_alpha": false,
+      "h0": "no change point",
+      "note": "change point at index k means the first k observations are one regime; interpret against the water-year labels, not the index"
+    },
+    "warnings": [
+      "Bulletin 17C: the adjusted skewness 1.0819 exceeds 0.9, so the confidence limits must be governed by KURTOSIS rather than skewness. See ffa_karad.skewness_limits.",
+      "Skewness estimators span 0.960 (from 0.122 to 1.082). The moment skewness is driven by the single largest year; the quartile-based measures are not. This divergence is the reason Bulletin 17C confidence limits are applied rather than the point skewness alone."
+    ]
+  },
+  "lmoments": {
+    "stats": {
+      "n": 57,
+      "b0": 2856.5789473684213,
+      "b1": 1845.37656641604,
+      "b2": 1403.5573479152426,
+      "b3": 1146.3846965899597,
+      "L1": 2856.5789473684213,
+      "L2": 834.1741854636589,
+      "L3": 205.66363636363667,
+      "L4": 108.91334396597676,
+      "lcv": 0.2920186001623126,
+      "lskew": 0.24654759155526096,
+      "lkurt": 0.13056427046521402,
+      "l4_over_l2": 0.13056427046521402,
+      "estimator": "Hosking (1990) unbiased b-statistics",
+      "ratios_reliable": true
+    },
+    "pwm": {
+      "pwm_1": 2856.5789473684213,
+      "pwm_2": 1845.37656641604,
+      "pwm_3": 1403.5573479152426,
+      "pwm_4": 1146.3846965899597
+    },
+    "distances": {},
+    "audit": {
+      "moment_quadrature": {
+        "Normal": {
+          "computed": {
+            "Cs": -3.3306690738754696e-16,
+            "Ck": 2.999999961505216
+          },
+          "exact": {
+            "Cs": 0.0,
+            "Ck": 3.0
+          },
+          "abs_error": {
+            "Cs": 3.3306690738754696e-16,
+            "Ck": 3.8494783805020916e-08
+          },
+          "passed": true
+        },
+        "Exponential": {
+          "computed": {
+            "Cs": 1.999999856836446,
+            "Ck": 8.999995961720035
+          },
+          "exact": {
+            "Cs": 2.0,
+            "Ck": 9.0
+          },
+          "abs_error": {
+            "Cs": 1.4316355390064928e-07,
+            "Ck": 4.038279964646563e-06
+          },
+          "passed": true
+        },
+        "Gumbel": {
+          "computed": {
+            "Cs": 1.1395470259519391,
+            "Ck": 5.3999984039329005
+          },
+          "exact": {
+            "Cs": 1.13955,
+            "Ck": 5.4
+          },
+          "abs_error": {
+            "Cs": 2.9740480609330433e-06,
+            "Ck": 1.596067099818299e-06
+          },
+          "passed": true
+        }
+      },
+      "pearson3_kurtosis_relation": {
+        "max_abs_error_vs_3_plus_1p5Cs2": 1.1554207919317605e-05,
+        "max_abs_error_vs_3_plus_0p5Cs2_wrong": 8.999986173581572,
+        "table": [
+          {
+            "Cs": 0.24999999482643914,
+            "Ck_numeric": 3.0937499378142856,
+            "Ck_3_plus_1p5Cs2": 3.0937499961198296,
+            "abs_error": 5.830554394847809e-08,
+            "Ck_3_plus_0p5Cs2_wrong": 3.0312499987066097
+          },
+          {
+            "Cs": 0.49999998822658104,
+            "Ck_numeric": 3.3749998581300336,
+            "Ck_3_plus_1p5Cs2": 3.3749999823398715,
+            "abs_error": 1.2420983797056806e-07,
+            "Ck_3_plus_0p5Cs2_wrong": 3.1249999941132907
+          },
+          {
+            "Cs": 0.9999999657060421,
+            "Ck_numeric": 4.499999417311531,
+            "Ck_3_plus_1p5Cs2": 4.499999897118128,
+            "abs_error": 4.798065971201027e-07,
+            "Ck_3_plus_0p5Cs2_wrong": 3.4999999657060425
+          },
+          {
+            "Cs": 1.4999999240979331,
+            "Ck_numeric": 6.374998288307527,
+            "Ck_3_plus_1p5Cs2": 6.374999658440708,
+            "abs_error": 1.3701331811333262e-06,
+            "Ck_3_plus_0p5Cs2_wrong": 4.124999886146902
+          },
+          {
+            "Cs": 1.999999856776446,
+            "Ck_numeric": 8.999995961560035,
+            "Ck_3_plus_1p5Cs2": 8.999999140658707,
+            "abs_error": 3.1790986714241853e-06,
+            "Ck_3_plus_0p5Cs2_wrong": 4.999999713552903
+          },
+          {
+            "Cs": 2.499999757708726,
+            "Ck_numeric": 12.374991796691651,
+            "Ck_3_plus_1p5Cs2": 12.374998182815531,
+            "abs_error": 6.386123880375294e-06,
+            "Ck_3_plus_0p5Cs2_wrong": 6.124999394271844
+          },
+          {
+            "Cs": 2.9999996212982247,
+            "Ck_numeric": 16.499985037476318,
+            "Ck_3_plus_1p5Cs2": 16.499996591684237,
+            "abs_error": 1.1554207919317605e-05,
+            "Ck_3_plus_0p5Cs2_wrong": 7.499998863894746
+          }
+        ]
+      }
+    },
+    "interpretation": "The Gumbel reference on the moment plane is (Cs, Ck) = (1.1395, 5.4000). The 2025 notebook plotted the Gumbel locus at (0, 5.4); the kurtosis 5.4 is right but the skewness is not -- 0 assumes symmetry about the mean, whereas the Gumbel is asymmetric with Cs = 1.1395. The unbiased b-statistic L-moments are also reported, but their ratio measures (LCV 0.292) are dominated by sampling noise at N = 57 and are not used for model selection."
+  },
+  "autocorrelation": {
+    "acf": [
+      {
+        "lag": 0,
+        "acf": 1.0,
+        "pacf": 1.0,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "acf_within_band": true,
+        "pacf_within_band": true
+      },
+      {
+        "lag": 1,
+        "acf": 0.1706875030035633,
+        "pacf": 0.1706875030035633,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "acf_within_band": true,
+        "pacf_within_band": true
+      },
+      {
+        "lag": 2,
+        "acf": 0.16707123489036238,
+        "pacf": 0.14207629373015682,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "acf_within_band": true,
+        "pacf_within_band": true
+      },
+      {
+        "lag": 3,
+        "acf": -0.1568818390898417,
+        "pacf": -0.2161302919426123,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "acf_within_band": true,
+        "pacf_within_band": true
+      },
+      {
+        "lag": 4,
+        "acf": -0.2619164913810232,
+        "pacf": -0.24950553692036556,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "acf_within_band": false,
+        "pacf_within_band": true
+      },
+      {
+        "lag": 5,
+        "acf": -0.2647146094773682,
+        "pacf": -0.14943315524276496,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "acf_within_band": false,
+        "pacf_within_band": true
+      },
+      {
+        "lag": 6,
+        "acf": -0.18889896335778358,
+        "pacf": -0.08876045448163314,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "acf_within_band": true,
+        "pacf_within_band": true
+      },
+      {
+        "lag": 7,
+        "acf": -0.11483803522102504,
+        "pacf": -0.10960416893113825,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "acf_within_band": true,
+        "pacf_within_band": true
+      },
+      {
+        "lag": 8,
+        "acf": 0.014733912547067036,
+        "pacf": -0.05233929699173098,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "acf_within_band": true,
+        "pacf_within_band": true
+      },
+      {
+        "lag": 9,
+        "acf": -0.04355584524448117,
+        "pacf": -0.1784318866393335,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "acf_within_band": true,
+        "pacf_within_band": true
+      },
+      {
+        "lag": 10,
+        "acf": -0.08300910439086627,
+        "pacf": -0.25993693000510576,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "acf_within_band": true,
+        "pacf_within_band": false
+      },
+      {
+        "lag": 11,
+        "acf": -0.13036502620742563,
+        "pacf": -0.2816442910970037,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "acf_within_band": true,
+        "pacf_within_band": false
+      },
+      {
+        "lag": 12,
+        "acf": -0.07253760417075904,
+        "pacf": -0.2362193639098705,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "acf_within_band": true,
+        "pacf_within_band": true
+      },
+      {
+        "lag": 13,
+        "acf": 0.10198241798512718,
+        "pacf": -0.09049610800179979,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "acf_within_band": true,
+        "pacf_within_band": true
+      },
+      {
+        "lag": 14,
+        "acf": 0.34220271435468197,
+        "pacf": 0.15574100968979696,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "acf_within_band": false,
+        "pacf_within_band": true
+      }
+    ],
+    "acf_band": [
+      -0.25960357162054326,
+      0.25960357162054326
+    ],
+    "acf_exceedance_lag": 0,
+    "effective_sample_size": {
+      "n": 57,
+      "acf_lag1": 0.1706875030035633,
+      "n_eff_ar1": 40.378676809581535,
+      "n_eff_integrated": 34.01934078497021,
+      "n_eff_conservative": 34.01934078497021,
+      "integrated_autocorrelation_time": 1.6755174757878515,
+      "note": "Bootstrap intervals elsewhere assume N independent peaks; N_eff < N is the sampling-error inflation this implies."
+    },
+    "autocorrelation_length": 6,
+    "cross_correlation_q_wl": [
+      {
+        "lag_yr": 0,
+        "cross_correlation": 0.9916425621931351,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "within_band": false
+      },
+      {
+        "lag_yr": 1,
+        "cross_correlation": 0.17977237401305696,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "within_band": true
+      },
+      {
+        "lag_yr": 2,
+        "cross_correlation": 0.1494094883581203,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "within_band": true
+      },
+      {
+        "lag_yr": 3,
+        "cross_correlation": -0.1539095029518637,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "within_band": true
+      },
+      {
+        "lag_yr": 4,
+        "cross_correlation": -0.2604303647423124,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "within_band": false
+      },
+      {
+        "lag_yr": 5,
+        "cross_correlation": -0.26377312876629117,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "within_band": false
+      },
+      {
+        "lag_yr": 6,
+        "cross_correlation": -0.1665443149736258,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "within_band": true
+      },
+      {
+        "lag_yr": 7,
+        "cross_correlation": -0.09313485260262577,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "within_band": true
+      },
+      {
+        "lag_yr": 8,
+        "cross_correlation": 0.01619754537872869,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "within_band": true
+      },
+      {
+        "lag_yr": 9,
+        "cross_correlation": -0.04182413497026429,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "within_band": true
+      },
+      {
+        "lag_yr": 10,
+        "cross_correlation": -0.06641259700575873,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "within_band": true
+      },
+      {
+        "lag_yr": 11,
+        "cross_correlation": -0.09722498422165193,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "within_band": true
+      },
+      {
+        "lag_yr": 12,
+        "cross_correlation": -0.05834247329248251,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "within_band": true
+      },
+      {
+        "lag_yr": 13,
+        "cross_correlation": 0.08882106075587487,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "within_band": true
+      },
+      {
+        "lag_yr": 14,
+        "cross_correlation": 0.27174808807940926,
+        "band_low": -0.25960357162054326,
+        "band_high": 0.25960357162054326,
+        "within_band": false
+      }
+    ],
+    "residual_acf": null,
+    "hurst_powers": -0.018388879897115445,
+    "hurst_rescaled_range": 0.46262397442446107,
+    "hurst_bootstrap": {
+      "method": "parametric: estimator re-evaluated on synthetic fGn records of the observed length at the observed exponent",
+      "ok": true,
+      "n_bootstrap": 2000,
+      "level": 0.95,
+      "point_estimate": -0.018388879897115445,
+      "point_admissible": false,
+      "simulation_exponent": 0.5,
+      "simulation_at_null": true,
+      "mean": 0.42157576637424393,
+      "sd": 0.18546115503712374,
+      "q_low": 0.06651364067692414,
+      "q_high": 0.7738104338097714,
+      "fraction_above_half": 0.3565,
+      "distinguishes_half_from_point": false,
+      "note": "The point estimate is outside (0, 1), so no interval can be attached to it as a confidence statement. This interval is the estimator's spread at the null of no persistence (H = 0.5), i.e. how poorly 57 points determine a Hurst exponent."
+    },
+    "hurst_verification": {
+      "n": 57,
+      "n_rep": 600,
+      "by_truth": {
+        "0.50": {
+          "H_true": 0.5,
+          "powers_median": 0.42359060239903923,
+          "powers_bias": -0.07640939760096077,
+          "powers_sd": 0.18938283298912273,
+          "rs_median": 0.6690590115759769,
+          "rs_bias": 0.16905901157597691,
+          "rs_sd": 0.11548384678544754
+        },
+        "0.70": {
+          "H_true": 0.7,
+          "powers_median": 0.6268614412098352,
+          "powers_bias": -0.07313855879016473,
+          "powers_sd": 0.1995648312123677,
+          "rs_median": 0.8252877742936828,
+          "rs_bias": 0.12528777429368287,
+          "rs_sd": 0.13938711434423046
+        }
+      },
+      "monte_carlo_sd": 0.1944738321007452,
+      "half_width_95": 0.19058085347119874,
+      "resolution_threshold": 0.1,
+      "resolvable_against_0_5": false,
+      "ok": true
+    },
+    "notes": [
+      "Lag-1 autocorrelation of the water-year-ordered peaks is +0.1707 against a screening band of +/-0.2596 (0.05 alpha, N = 57).",
+      "3 of the 14 reported lags leave the band (lags 4, 5, 14); lag 1 does not, so no serial dependence of the peaks is detectable in this record.  The band is wide at this N, which bounds what the test can say.",
+      "Effective sample size 34.0 of 57 observations; confidence intervals that assume independence are correspondingly optimistic by that ratio.",
+      "The Powers slope is -0.0184, outside the admissible range (0, 1): aggregation scaling with H < 0 is not a persistent process. This is reported rather than repaired. It is the expected consequence of this record's oscillatory ACF, and it is consistent with H = 0 given the Monte-Carlo standard error below.  Monte-Carlo s.d. at N = 57 is 0.194, giving a 95 per cent half-width of 0.191; persistence cannot be separated from memorylessness at this record length.",
+      "Water level and discharge are paired in the same water year (lag-0 cross-correlation +0.9916, no significant lag offset), which supports the rating-curve fit.",
+      "Hurst analysis is exploratory.  Annual peaks are a maxima process; the persistence they display is not the persistence of the underlying flow series, and no design quantity is derived from it."
+    ]
+  },
+  "outliers": {
+    "n": 57,
+    "methods": {
+      "grubbs": {
+        "method": "Grubbs",
+        "assumptions": "normal sample",
+        "flagged": [],
+        "test_statistic": 2.829099094287821,
+        "critical_value": 3.1798997558891373,
+        "p_value": 0.19485441687822844,
+        "threshold": null,
+        "weakest_low_value": 855.0,
+        "passed": true,
+        "note": ""
+      },
+      "dixon_q": {
+        "method": "Dixon Q (r10, low outlier)",
+        "assumptions": "none beyond the tabulated critical value",
+        "flagged": [],
+        "test_statistic": null,
+        "critical_value": null,
+        "p_value": null,
+        "threshold": null,
+        "weakest_low_value": 855.0,
+        "passed": false,
+        "note": "no tabulated Dixon Q critical value for n = 57"
+      }
+    },
+    "ros": [
+      {
+        "rank": 1,
+        "value_cumecs": 855.0,
+        "log_value": 6.75110146893676,
+        "normal_score": 0.017241379310344827,
+        "fitted_log_value": 7.105965363556489,
+        "residual": -0.35486389461972934,
+        "std_residual": -3.0344797659823213,
+        "is_candidate": true
+      },
+      {
+        "rank": 2,
+        "value_cumecs": 1052.0,
+        "log_value": 6.9584483932976555,
+        "normal_score": 0.034482758620689655,
+        "fitted_log_value": 7.131280902683552,
+        "residual": -0.17283250938589667,
+        "std_residual": -1.4779095889635623,
+        "is_candidate": false
+      },
+      {
+        "rank": 3,
+        "value_cumecs": 1077.0,
+        "log_value": 6.981934677156389,
+        "normal_score": 0.05172413793103448,
+        "fitted_log_value": 7.156596441810616,
+        "residual": -0.17466176465422745,
+        "std_residual": -1.4935517497545736,
+        "is_candidate": false
+      },
+      {
+        "rank": 4,
+        "value_cumecs": 1112.0,
+        "log_value": 7.013915474810528,
+        "normal_score": 0.06896551724137931,
+        "fitted_log_value": 7.181911980937679,
+        "residual": -0.16799650612715133,
+        "std_residual": -1.4365563990240429,
+        "is_candidate": false
+      },
+      {
+        "rank": 5,
+        "value_cumecs": 1248.0,
+        "log_value": 7.129297548929373,
+        "normal_score": 0.08620689655172414,
+        "fitted_log_value": 7.207227520064743,
+        "residual": -0.07792997113536959,
+        "std_residual": -0.6663876606192158,
+        "is_candidate": false
+      },
+      {
+        "rank": 6,
+        "value_cumecs": 1262.0,
+        "log_value": 7.140453043101158,
+        "normal_score": 0.10344827586206896,
+        "fitted_log_value": 7.232543059191806,
+        "residual": -0.09209001609064771,
+        "std_residual": -0.7874717454011749,
+        "is_candidate": false
+      },
+      {
+        "rank": 7,
+        "value_cumecs": 1297.0,
+        "log_value": 7.167809184316444,
+        "normal_score": 0.1206896551724138,
+        "fitted_log_value": 7.25785859831887,
+        "residual": -0.09004941400242572,
+        "std_residual": -0.7700223349623745,
+        "is_candidate": false
+      },
+      {
+        "rank": 8,
+        "value_cumecs": 1298.0,
+        "log_value": 7.168579897264035,
+        "normal_score": 0.13793103448275862,
+        "fitted_log_value": 7.283174137445933,
+        "residual": -0.11459424018189779,
+        "std_residual": -0.9799078136780225,
+        "is_candidate": false
+      },
+      {
+        "rank": 9,
+        "value_cumecs": 1414.0,
+        "log_value": 7.254177846456518,
+        "normal_score": 0.15517241379310345,
+        "fitted_log_value": 7.3084896765729965,
+        "residual": -0.05431183011647889,
+        "std_residual": -0.46442636751910804,
+        "is_candidate": false
+      },
+      {
+        "rank": 10,
+        "value_cumecs": 1479.0,
+        "log_value": 7.2991214627108,
+        "normal_score": 0.1724137931034483,
+        "fitted_log_value": 7.3338052157000595,
+        "residual": -0.03468375298925963,
+        "std_residual": -0.2965845448070157,
+        "is_candidate": false
+      },
+      {
+        "rank": 11,
+        "value_cumecs": 1488.0,
+        "log_value": 7.305188215393037,
+        "normal_score": 0.1896551724137931,
+        "fitted_log_value": 7.359120754827123,
+        "residual": -0.05393253943408638,
+        "std_residual": -0.46118301163366626,
+        "is_candidate": false
+      },
+      {
+        "rank": 12,
+        "value_cumecs": 1558.0,
+        "log_value": 7.351158226430694,
+        "normal_score": 0.20689655172413793,
+        "fitted_log_value": 7.384436293954186,
+        "residual": -0.033278067523492716,
+        "std_residual": -0.28456437547483815,
+        "is_candidate": false
+      },
+      {
+        "rank": 13,
+        "value_cumecs": 1617.0,
+        "log_value": 7.388327859577107,
+        "normal_score": 0.22413793103448276,
+        "fitted_log_value": 7.40975183308125,
+        "residual": -0.02142397350414349,
+        "std_residual": -0.18319872799381265,
+        "is_candidate": false
+      },
+      {
+        "rank": 14,
+        "value_cumecs": 1644.0,
+        "log_value": 7.404887575616125,
+        "normal_score": 0.2413793103448276,
+        "fitted_log_value": 7.435067372208313,
+        "residual": -0.03017979659218817,
+        "std_residual": -0.2580707237026577,
+        "is_candidate": false
+      },
+      {
+        "rank": 15,
+        "value_cumecs": 1672.0,
+        "log_value": 7.421775793644647,
+        "normal_score": 0.25862068965517243,
+        "fitted_log_value": 7.460382911335377,
+        "residual": -0.038607117690729886,
+        "std_residual": -0.33013366316389586,
+        "is_candidate": false
+      },
+      {
+        "rank": 16,
+        "value_cumecs": 1702.0,
+        "log_value": 7.43955930913332,
+        "normal_score": 0.27586206896551724,
+        "fitted_log_value": 7.48569845046244,
+        "residual": -0.046139141329120115,
+        "std_residual": -0.3945408166504117,
+        "is_candidate": false
+      },
+      {
+        "rank": 17,
+        "value_cumecs": 1730.0,
+        "log_value": 7.455876687491824,
+        "normal_score": 0.29310344827586204,
+        "fitted_log_value": 7.511013989589504,
+        "residual": -0.05513730209767953,
+        "std_residual": -0.47148506822751035,
+        "is_candidate": false
+      },
+      {
+        "rank": 18,
+        "value_cumecs": 1947.0,
+        "log_value": 7.5740450053721995,
+        "normal_score": 0.3103448275862069,
+        "fitted_log_value": 7.536329528716568,
+        "residual": 0.0377154766556318,
+        "std_residual": 0.32250914367756134,
+        "is_candidate": false
+      },
+      {
+        "rank": 19,
+        "value_cumecs": 1982.0,
+        "log_value": 7.591861714889934,
+        "normal_score": 0.3275862068965517,
+        "fitted_log_value": 7.561645067843631,
+        "residual": 0.030216647046303002,
+        "std_residual": 0.25838583594448933,
+        "is_candidate": false
+      },
+      {
+        "rank": 20,
+        "value_cumecs": 2006.0,
+        "log_value": 7.603897968521881,
+        "normal_score": 0.3448275862068966,
+        "fitted_log_value": 7.5869606069706945,
+        "residual": 0.016937361551186747,
+        "std_residual": 0.1448332211178569,
+        "is_candidate": false
+      },
+      {
+        "rank": 21,
+        "value_cumecs": 2072.0,
+        "log_value": 7.6362696033793735,
+        "normal_score": 0.3620689655172414,
+        "fitted_log_value": 7.6122761460977575,
+        "residual": 0.02399345728161606,
+        "std_residual": 0.20517066329062728,
+        "is_candidate": false
+      },
+      {
+        "rank": 22,
+        "value_cumecs": 2169.0,
+        "log_value": 7.682021510826875,
+        "normal_score": 0.3793103448275862,
+        "fitted_log_value": 7.637591685224821,
+        "residual": 0.04442982560205344,
+        "std_residual": 0.37992427192410916,
+        "is_candidate": false
+      },
+      {
+        "rank": 23,
+        "value_cumecs": 2216.0,
+        "log_value": 7.703459047867175,
+        "normal_score": 0.39655172413793105,
+        "fitted_log_value": 7.662907224351884,
+        "residual": 0.04055182351529041,
+        "std_residual": 0.3467630542202628,
+        "is_candidate": false
+      },
+      {
+        "rank": 24,
+        "value_cumecs": 2224.0,
+        "log_value": 7.707062655370473,
+        "normal_score": 0.41379310344827586,
+        "fitted_log_value": 7.688222763478948,
+        "residual": 0.018839891891524907,
+        "std_residual": 0.16110196502067106,
+        "is_candidate": false
+      },
+      {
+        "rank": 25,
+        "value_cumecs": 2320.0,
+        "log_value": 7.749322464660356,
+        "normal_score": 0.43103448275862066,
+        "fitted_log_value": 7.713538302606011,
+        "residual": 0.03578416205434465,
+        "std_residual": 0.3059942624281398,
+        "is_candidate": false
+      },
+      {
+        "rank": 26,
+        "value_cumecs": 2355.0,
+        "log_value": 7.764296006450518,
+        "normal_score": 0.4482758620689655,
+        "fitted_log_value": 7.738853841733075,
+        "residual": 0.025442164717443205,
+        "std_residual": 0.2175587181688403,
+        "is_candidate": false
+      },
+      {
+        "rank": 27,
+        "value_cumecs": 2364.0,
+        "log_value": 7.768110378525988,
+        "normal_score": 0.46551724137931033,
+        "fitted_log_value": 7.764169380860138,
+        "residual": 0.003940997665850432,
+        "std_residual": 0.03369989975345837,
+        "is_candidate": false
+      },
+      {
+        "rank": 28,
+        "value_cumecs": 2432.0,
+        "log_value": 7.796469243086058,
+        "normal_score": 0.4827586206896552,
+        "fitted_log_value": 7.789484919987202,
+        "residual": 0.0069843230988562155,
+        "std_residual": 0.0597237065925608,
+        "is_candidate": false
+      },
+      {
+        "rank": 29,
+        "value_cumecs": 2496.0,
+        "log_value": 7.822444729489319,
+        "normal_score": 0.5,
+        "fitted_log_value": 7.814800459114265,
+        "residual": 0.007644270375053885,
+        "std_residual": 0.06536698754224138,
+        "is_candidate": false
+      },
+      {
+        "rank": 30,
+        "value_cumecs": 2507.0,
+        "log_value": 7.826842098158293,
+        "normal_score": 0.5172413793103449,
+        "fitted_log_value": 7.840115998241329,
+        "residual": -0.013273900083035528,
+        "std_residual": -0.11350656358208992,
+        "is_candidate": false
+      },
+      {
+        "rank": 31,
+        "value_cumecs": 2534.0,
+        "log_value": 7.837554360881084,
+        "normal_score": 0.5344827586206896,
+        "fitted_log_value": 7.865431537368392,
+        "residual": -0.027877176487307587,
+        "std_residual": -0.2383807687003554,
+        "is_candidate": false
+      },
+      {
+        "rank": 32,
+        "value_cumecs": 2553.0,
+        "log_value": 7.845024417241484,
+        "normal_score": 0.5517241379310345,
+        "fitted_log_value": 7.8907470764954555,
+        "residual": -0.0457226592539719,
+        "std_residual": -0.39097943311973193,
+        "is_candidate": false
+      },
+      {
+        "rank": 33,
+        "value_cumecs": 2654.0,
+        "log_value": 7.8838232148921525,
+        "normal_score": 0.5689655172413793,
+        "fitted_log_value": 7.9160626156225185,
+        "residual": -0.03223940073036591,
+        "std_residual": -0.27568262273772604,
+        "is_candidate": false
+      },
+      {
+        "rank": 34,
+        "value_cumecs": 2677.0,
+        "log_value": 7.892452043520352,
+        "normal_score": 0.5862068965517241,
+        "fitted_log_value": 7.941378154749582,
+        "residual": -0.048926111229230074,
+        "std_residual": -0.4183724994406486,
+        "is_candidate": false
+      },
+      {
+        "rank": 35,
+        "value_cumecs": 2743.0,
+        "log_value": 7.916807490937603,
+        "normal_score": 0.603448275862069,
+        "fitted_log_value": 7.966693693876646,
+        "residual": -0.04988620293904322,
+        "std_residual": -0.4265823480927278,
+        "is_candidate": false
+      },
+      {
+        "rank": 36,
+        "value_cumecs": 2840.0,
+        "log_value": 7.951559331155252,
+        "normal_score": 0.6206896551724138,
+        "fitted_log_value": 7.992009233003709,
+        "residual": -0.04044990184845698,
+        "std_residual": -0.3458915109598456,
+        "is_candidate": false
+      },
+      {
+        "rank": 37,
+        "value_cumecs": 2999.0,
+        "log_value": 8.00603417874901,
+        "normal_score": 0.6379310344827587,
+        "fitted_log_value": 8.017324772130772,
+        "residual": -0.011290593381762193,
+        "std_residual": -0.09654709222984015,
+        "is_candidate": false
+      },
+      {
+        "rank": 38,
+        "value_cumecs": 3059.0,
+        "log_value": 8.025843344150903,
+        "normal_score": 0.6551724137931034,
+        "fitted_log_value": 8.042640311257836,
+        "residual": -0.01679696710693257,
+        "std_residual": -0.1436326929525383,
+        "is_candidate": false
+      },
+      {
+        "rank": 39,
+        "value_cumecs": 3302.0,
+        "log_value": 8.102283624480073,
+        "normal_score": 0.6724137931034483,
+        "fitted_log_value": 8.0679558503849,
+        "residual": 0.03432777409517307,
+        "std_residual": 0.2935405305592997,
+        "is_candidate": false
+      },
+      {
+        "rank": 40,
+        "value_cumecs": 3357.0,
+        "log_value": 8.118802996980035,
+        "normal_score": 0.6896551724137931,
+        "fitted_log_value": 8.093271389511964,
+        "residual": 0.02553160746807137,
+        "std_residual": 0.2183235528592948,
+        "is_candidate": false
+      },
+      {
+        "rank": 41,
+        "value_cumecs": 3512.0,
+        "log_value": 8.163940954755008,
+        "normal_score": 0.7068965517241379,
+        "fitted_log_value": 8.118586928639026,
+        "residual": 0.04535402611598194,
+        "std_residual": 0.3878272110558339,
+        "is_candidate": false
+      },
+      {
+        "rank": 42,
+        "value_cumecs": 3524.0,
+        "log_value": 8.16735198705607,
+        "normal_score": 0.7241379310344828,
+        "fitted_log_value": 8.14390246776609,
+        "residual": 0.02344951928998107,
+        "std_residual": 0.20051939035305727,
+        "is_candidate": false
+      },
+      {
+        "rank": 43,
+        "value_cumecs": 3549.0,
+        "log_value": 8.174421152646497,
+        "normal_score": 0.7413793103448276,
+        "fitted_log_value": 8.169218006893153,
+        "residual": 0.005203145753343463,
+        "std_residual": 0.04449266534961759,
+        "is_candidate": false
+      },
+      {
+        "rank": 44,
+        "value_cumecs": 3641.0,
+        "log_value": 8.200013648175434,
+        "normal_score": 0.7586206896551724,
+        "fitted_log_value": 8.194533546020217,
+        "residual": 0.0054801021552162155,
+        "std_residual": 0.04686094967012511,
+        "is_candidate": false
+      },
+      {
+        "rank": 45,
+        "value_cumecs": 3955.0,
+        "log_value": 8.282735880201754,
+        "normal_score": 0.7758620689655172,
+        "fitted_log_value": 8.21984908514728,
+        "residual": 0.06288679505447448,
+        "std_residual": 0.5377518255126269,
+        "is_candidate": false
+      },
+      {
+        "rank": 46,
+        "value_cumecs": 3989.0,
+        "log_value": 8.291295851905407,
+        "normal_score": 0.7931034482758621,
+        "fitted_log_value": 8.245164624274343,
+        "residual": 0.046131227631063254,
+        "std_residual": 0.39447314575745324,
+        "is_candidate": false
+      },
+      {
+        "rank": 47,
+        "value_cumecs": 4036.0,
+        "log_value": 8.3030093814735,
+        "normal_score": 0.8103448275862069,
+        "fitted_log_value": 8.270480163401407,
+        "residual": 0.03252921807209219,
+        "std_residual": 0.2781608823539702,
+        "is_candidate": false
+      },
+      {
+        "rank": 48,
+        "value_cumecs": 4186.0,
+        "log_value": 8.339500903005945,
+        "normal_score": 0.8275862068965517,
+        "fitted_log_value": 8.295795702528471,
+        "residual": 0.04370520047747384,
+        "std_residual": 0.3737279236570771,
+        "is_candidate": false
+      },
+      {
+        "rank": 49,
+        "value_cumecs": 4513.0,
+        "log_value": 8.414717399827001,
+        "normal_score": 0.8448275862068966,
+        "fitted_log_value": 8.321111241655533,
+        "residual": 0.09360615817146822,
+        "std_residual": 0.8004364412644559,
+        "is_candidate": false
+      },
+      {
+        "rank": 50,
+        "value_cumecs": 4678.0,
+        "log_value": 8.450625947144124,
+        "normal_score": 0.8620689655172413,
+        "fitted_log_value": 8.346426780782597,
+        "residual": 0.10419916636152671,
+        "std_residual": 0.8910184066347654,
+        "is_candidate": false
+      },
+      {
+        "rank": 51,
+        "value_cumecs": 4948.0,
+        "log_value": 8.506738733512378,
+        "normal_score": 0.8793103448275862,
+        "fitted_log_value": 8.37174231990966,
+        "residual": 0.13499641360271752,
+        "std_residual": 1.1543690180050568,
+        "is_candidate": false
+      },
+      {
+        "rank": 52,
+        "value_cumecs": 5067.0,
+        "log_value": 8.53050420547591,
+        "normal_score": 0.896551724137931,
+        "fitted_log_value": 8.397057859036725,
+        "residual": 0.13344634643918596,
+        "std_residual": 1.141114225069048,
+        "is_candidate": false
+      },
+      {
+        "rank": 53,
+        "value_cumecs": 5675.0,
+        "log_value": 8.643825842349603,
+        "normal_score": 0.9137931034482759,
+        "fitted_log_value": 8.422373398163788,
+        "residual": 0.22145244418581456,
+        "std_residual": 1.8936639404504323,
+        "is_candidate": false
+      },
+      {
+        "rank": 54,
+        "value_cumecs": 6080.0,
+        "log_value": 8.712759974960212,
+        "normal_score": 0.9310344827586207,
+        "fitted_log_value": 8.44768893729085,
+        "residual": 0.2650710376693617,
+        "std_residual": 2.2666512782810906,
+        "is_candidate": false
+      },
+      {
+        "rank": 55,
+        "value_cumecs": 6434.0,
+        "log_value": 8.769351707798972,
+        "normal_score": 0.9482758620689655,
+        "fitted_log_value": 8.473004476417914,
+        "residual": 0.29634723138105734,
+        "std_residual": 2.5340974130218084,
+        "is_candidate": false
+      },
+      {
+        "rank": 56,
+        "value_cumecs": 6548.0,
+        "log_value": 8.786914938491025,
+        "normal_score": 0.9655172413793104,
+        "fitted_log_value": 8.498320015544978,
+        "residual": 0.2885949229460465,
+        "std_residual": 2.467806580276192,
+        "is_candidate": false
+      },
+      {
+        "rank": 57,
+        "value_cumecs": 7177.0,
+        "log_value": 8.878636747430072,
+        "normal_score": 0.9827586206896551,
+        "fitted_log_value": 8.523635554672042,
+        "residual": 0.35500119275802966,
+        "std_residual": 3.035653817298604,
+        "is_candidate": true
+      }
+    ],
+    "retained": [
+      {
+        "label": "1965-1966",
+        "value_cumecs": 855.0,
+        "log_value": 6.75110146893676,
+        "rank_ascending": 1,
+        "retained": true,
+        "reason": "kept in the record: a low annual maximum is a dry year, not a measurement error, and deleting it inflates the 2- and 5-year quantiles"
+      },
+      {
+        "label": "1966-1967",
+        "value_cumecs": 1052.0,
+        "log_value": 6.9584483932976555,
+        "rank_ascending": 2,
+        "retained": true,
+        "reason": "kept in the record: a low annual maximum is a dry year, not a measurement error, and deleting it inflates the 2- and 5-year quantiles"
+      },
+      {
+        "label": "1967-1968",
+        "value_cumecs": 1077.0,
+        "log_value": 6.981934677156389,
+        "rank_ascending": 3,
+        "retained": true,
+        "reason": "kept in the record: a low annual maximum is a dry year, not a measurement error, and deleting it inflates the 2- and 5-year quantiles"
+      }
+    ],
+    "candidates": [
+      {
+        "label": "1965-1966",
+        "value_cumecs": 855.0,
+        "detected_by": [
+          "Rosenblatt"
+        ],
+        "direction": "low",
+        "severity": "-3.03 s.d. below the ROS line fitted through the central bulk"
+      }
+    ],
+    "consensus": "Rosenblatt flags a candidate but the others do not, which is the usual outcome; a single test on 57 points is weak evidence",
+    "action_required": true,
+    "notes": [
+      "No observation is deleted by this module.  Bulletin 17C screening exists to protect against a *recording* error, and the lowest annual maximum in a 57-year flood record is expected to be well below the mean.",
+      "The 2025 notebook removed the lowest peak and reported a 2-year flood of about 8,000 m3/s, larger than the second-largest peak in the record (5,895 m3/s).  That number came from the deletion, not from the data.",
+      "The lowest value in this record is 855 m3/s (1965-1966), 0.30 times the mean; the second lowest is 1,052 m3/s.",
+      "Grubbs' test assumes normality and cannot distinguish a low observation from an error.  Dixon's Q is directional but tabulated only to n = 30, beyond which the critical value is not defined for a record of this length.  Rosenblatt works on normal scores of the log record and is the recommended screen for flood-frequency data.",
+      "Rosenblatt flags both tails; flags in both tails at once indicate curvature of the log record rather than a bad observation"
+    ]
+  },
+  "fits": {
+    "fits": [
+      {
+        "distribution": "Gumbel",
+        "scipy_family": "gumbel_r",
+        "k": 2,
+        "fitted_on": "Q",
+        "jacobian_applied": false,
+        "params": {
+          "loc": 2185.3599497192527,
+          "scale": 1086.031631518607
+        },
+        "loglike_Q": -490.6749810244836,
+        "loglike_natural": -490.6749810244836,
+        "aic": 985.3499620489672,
+        "bic": 989.4360645846363,
+        "aicc": 985.5721842711894,
+        "hqic": 986.9379607338471,
+        "ks_stat": 0.0797257136346142,
+        "ks_p": 0.8334923536360656,
+        "ad_stat": 3220.0728565297036,
+        "ad_p": 0.7336331834082959,
+        "accepted": true,
+        "reject_reasons": [],
+        "quantiles": {
+          "2.0": 2583.4045748312074,
+          "5.0": 3814.3422207196872,
+          "10.0": 4629.330049716555,
+          "25.0": 5659.069332144946,
+          "50.0": 6422.988756482829,
+          "100.0": 7181.267519704478,
+          "200.0": 7936.779451092615,
+          "500.0": 8933.533984352025,
+          "1000.0": 9686.857443275294
+        },
+        "notes": [
+          "CWC cross-check: extreme value type I fitted to the peaks themselves, which is what the CWC tables use.  Fitting the Gumbel to ln Q and exponentiating would give the 'Gumbel of logs', a distribution whose quantiles grow like exp(exp(...)); on this record it returns Q1000 = 51,364 cumecs, which no annual-maxima series supports."
+        ]
+      },
+      {
+        "distribution": "LN2",
+        "scipy_family": "lognorm",
+        "k": 2,
+        "fitted_on": "Q",
+        "jacobian_applied": false,
+        "params": {
+          "s": 0.5136062472583403,
+          "loc": 0.0,
+          "scale": 2503.6703553189045
+        },
+        "loglike_Q": -488.954735050852,
+        "loglike_natural": -488.954735050852,
+        "aic": 981.909470101704,
+        "bic": 985.995572637373,
+        "aicc": 982.1316923239261,
+        "hqic": 983.4974687865839,
+        "ks_stat": 0.06238713737952434,
+        "ks_p": 0.9695239216403739,
+        "ad_stat": 3203.6562458471835,
+        "ad_p": 0.9865067466266867,
+        "accepted": true,
+        "reject_reasons": [],
+        "quantiles": {
+          "2.0": 2503.6703553189045,
+          "5.0": 3857.5016026676626,
+          "10.0": 4835.433035593522,
+          "25.0": 6152.885141542208,
+          "50.0": 7189.172452760241,
+          "100.0": 8269.587252141342,
+          "200.0": 9400.095224668685,
+          "500.0": 10979.167869112012,
+          "1000.0": 12242.584604142097
+        },
+        "notes": [
+          "Strict two-parameter log-normal, floc = 0. A free location is a three-parameter LN3 and is excluded."
+        ]
+      },
+      {
+        "distribution": "LP3",
+        "scipy_family": "pearson3",
+        "k": 3,
+        "fitted_on": "log Q",
+        "jacobian_applied": true,
+        "params": {
+          "skew": 0.19711311238218254,
+          "loc": 7.8255065587342525,
+          "scale": 0.5144784299725537
+        },
+        "loglike_Q": -488.8667973458466,
+        "loglike_natural": -42.81255199578487,
+        "aic": 983.7335946916932,
+        "bic": 989.8627484951968,
+        "aicc": 984.1864248803724,
+        "hqic": 986.115592719013,
+        "ks_stat": 0.057246442352005295,
+        "ks_p": 0.9868467581838823,
+        "ad_stat": 3202.685360478391,
+        "ad_p": 0.991504247876062,
+        "accepted": true,
+        "reject_reasons": [],
+        "quantiles": {
+          "2.0": 2461.7175621246265,
+          "5.0": 3838.5241669565767,
+          "10.0": 4888.980890175148,
+          "25.0": 6374.885005822136,
+          "50.0": 7598.240851440648,
+          "100.0": 8922.70838445756,
+          "200.0": 10360.23759360818,
+          "500.0": 12453.263236092607,
+          "1000.0": 14196.820991776389
+        },
+        "notes": [
+          "IS 11223:1985 primary method, fitted to ln Q."
+        ]
+      },
+      {
+        "distribution": "GEV",
+        "scipy_family": "genextreme",
+        "k": 3,
+        "fitted_on": "Q",
+        "jacobian_applied": false,
+        "params": {
+          "c": -4.73589910020331,
+          "loc": 857.7775970365356,
+          "scale": 13.157779501232175
+        },
+        "loglike_Q": -584.5115330716915,
+        "loglike_natural": -584.5115330716915,
+        "aic": 1175.023066143383,
+        "bic": 1181.1522199468866,
+        "aicc": 1175.4758963320621,
+        "hqic": 1177.4050641707029,
+        "ks_stat": 0.6483329064979797,
+        "ks_p": 6.4324273020271826e-24,
+        "ad_stat": 5043.429013289485,
+        "ad_p": 0.0004997501249375312,
+        "accepted": false,
+        "reject_reasons": [
+          "shape parameter -4.736 exceeds the degenerate bound 2",
+          "the fitted CDF at the smallest observed peak (855 cumecs) is 0.003227, below the 0.008772 that an order statistic of 57 can carry; the curve does not cover the lower end of the record",
+          "the KS probability-plot p-value is 6.43e-24, below 0.05; the fitted CDF does not reproduce the observed order statistics"
+        ],
+        "quantiles": {
+          "2.0": 870.7614137296047,
+          "5.0": 4234.238988996485,
+          "10.0": 118962.93429598678,
+          "25.0": 10531257.620385196,
+          "50.0": 294571486.44178337,
+          "100.0": 8039914441.599445,
+          "200.0": 216807034485.21884,
+          "500.0": 16740610323432.916,
+          "1000.0": 447145276735345.9
+        },
+        "notes": [
+          "Three-parameter; shape must stay inside the degenerate bounds below."
+        ]
+      },
+      {
+        "distribution": "Weibull",
+        "scipy_family": "weibull_min",
+        "k": 2,
+        "fitted_on": "Q",
+        "jacobian_applied": false,
+        "params": {
+          "c": 2.0264492659584312,
+          "loc": 0.0,
+          "scale": 3242.7852853462336
+        },
+        "loglike_Q": -492.6749034073559,
+        "loglike_natural": -492.6749034073559,
+        "aic": 989.3498068147118,
+        "bic": 993.4359093503808,
+        "aicc": 989.5720290369339,
+        "hqic": 990.9378054995917,
+        "ks_stat": 0.10452597051752222,
+        "ks_p": 0.5276763974023819,
+        "ad_stat": 3237.072525847421,
+        "ad_p": 0.4612693653173413,
+        "accepted": false,
+        "reject_reasons": [
+          "shape parameter 2.026 exceeds the degenerate bound 2",
+          "the fitted CDF at the largest observed peak (7,177 cumecs) is 0.9933, above the 0.9912 that an order statistic of 57 can carry; the fit has diverged into the upper tail"
+        ],
+        "quantiles": {
+          "2.0": 2706.2611261666584,
+          "5.0": 4101.158450812693,
+          "10.0": 4893.9802675814135,
+          "25.0": 5773.737316363683,
+          "50.0": 6357.009710728495,
+          "100.0": 6889.896314755397,
+          "200.0": 7383.485812424042,
+          "500.0": 7988.168902716664,
+          "1000.0": 8416.066183707595
+        },
+        "notes": [
+          "Two-parameter, floc = 0."
+        ]
+      },
+      {
+        "distribution": "Exponential",
+        "scipy_family": "expon",
+        "k": 1,
+        "fitted_on": "Q",
+        "jacobian_applied": false,
+        "params": {
+          "loc": 0.0,
+          "scale": 2856.5789473684213
+        },
+        "loglike_Q": -510.57066088806306,
+        "loglike_natural": -510.57066088806306,
+        "aic": 1023.1413217761261,
+        "bic": 1025.1843730439607,
+        "aicc": 1023.2140490488534,
+        "hqic": 1023.9353211185661,
+        "ks_stat": 0.2905276631819456,
+        "ks_p": 9.351908107726849e-05,
+        "ad_stat": 3567.2566163920287,
+        "ad_p": 0.0029985007496251873,
+        "accepted": false,
+        "reject_reasons": [
+          "the KS probability-plot p-value is 9.35e-05, below 0.05; the fitted CDF does not reproduce the observed order statistics"
+        ],
+        "quantiles": {
+          "2.0": 1980.0296434153177,
+          "5.0": 4597.486457755832,
+          "10.0": 6577.51610117115,
+          "25.0": 9194.97291551166,
+          "50.0": 11175.002558926979,
+          "100.0": 13155.032202342298,
+          "200.0": 15135.061845757613,
+          "500.0": 17752.51866009813,
+          "1000.0": 19732.548303513446
+        },
+        "notes": [
+          "One-parameter reference standard."
+        ]
+      },
+      {
+        "distribution": "GNO",
+        "scipy_family": "gennorm",
+        "k": 3,
+        "fitted_on": "Q",
+        "jacobian_applied": false,
+        "params": {
+          "beta": 1.2181578859319147,
+          "loc": 2532.9073043806284,
+          "scale": 1453.6868985037659
+        },
+        "loglike_Q": -497.6643359767167,
+        "loglike_natural": -497.6643359767167,
+        "aic": 1001.3286719534334,
+        "bic": 1007.457825756937,
+        "aicc": 1001.7815021421127,
+        "hqic": 1003.7106699807532,
+        "ks_stat": 0.12403649145753826,
+        "ks_p": 0.31771140137433884,
+        "ad_stat": 3267.6211847031086,
+        "ad_p": 0.21639180409795103,
+        "accepted": false,
+        "reject_reasons": [
+          "the fitted CDF at the largest observed peak (7,177 cumecs) is 0.9946, above the 0.9912 that an order statistic of 57 can carry; the fit has diverged into the upper tail"
+        ],
+        "quantiles": {
+          "2.0": 2532.9073043806284,
+          "5.0": 3636.4551519339757,
+          "10.0": 4380.938334308379,
+          "25.0": 5303.183985021227,
+          "50.0": 5968.119582217223,
+          "100.0": 6611.619376049647,
+          "200.0": 7237.537835858171,
+          "500.0": 8042.523869033656,
+          "1000.0": 8637.019090892492
+        },
+        "notes": [
+          "Symmetric counterpart of GLO; a symmetric model cannot describe a skewed flood record."
+        ]
+      },
+      {
+        "distribution": "GLO",
+        "scipy_family": "genlogistic",
+        "k": 3,
+        "fitted_on": "Q",
+        "jacobian_applied": false,
+        "params": {
+          "c": 1218.4701870943018,
+          "loc": -5532.347685794572,
+          "scale": 1086.365696487238
+        },
+        "loglike_Q": -490.68091247808655,
+        "loglike_natural": -490.68091247808655,
+        "aic": 987.3618249561731,
+        "bic": 993.4909787596768,
+        "aicc": 987.8146551448524,
+        "hqic": 989.7438229834929,
+        "ks_stat": 0.07987374929280183,
+        "ks_p": 0.8318768438057731,
+        "ad_stat": 3220.1227837282213,
+        "ad_p": 0.7326336831584208,
+        "accepted": false,
+        "reject_reasons": [
+          "shape parameter 1218 exceeds the degenerate bound 2"
+        ],
+        "quantiles": {
+          "2.0": 2584.52039396335,
+          "5.0": 3816.0462145719757,
+          "10.0": 4631.337242832895,
+          "25.0": 5661.4220455875875,
+          "50.0": 6425.585644620845,
+          "100.0": 7184.102181377839,
+          "200.0": 7939.848755180852,
+          "500.0": 8936.911233710176,
+          "1000.0": 9690.4668625268
+        },
+        "notes": []
+      },
+      {
+        "distribution": "Log-logistic",
+        "scipy_family": "fisk",
+        "k": 2,
+        "fitted_on": "Q",
+        "jacobian_applied": false,
+        "params": {
+          "c": 3.3112387464816786,
+          "loc": 0.0,
+          "scale": 2487.4320388328433
+        },
+        "loglike_Q": -490.50738060272187,
+        "loglike_natural": -490.50738060272187,
+        "aic": 985.0147612054437,
+        "bic": 989.1008637411128,
+        "aicc": 985.2369834276659,
+        "hqic": 986.6027598903237,
+        "ks_stat": 0.06719855042845813,
+        "ks_p": 0.9437591280761065,
+        "ad_stat": 3207.133813668815,
+        "ad_p": 0.9545227386306847,
+        "accepted": false,
+        "reject_reasons": [
+          "shape parameter 3.311 exceeds the degenerate bound 2"
+        ],
+        "quantiles": {
+          "2.0": 2487.4320388328433,
+          "5.0": 3780.71912095143,
+          "10.0": 4829.855765700021,
+          "25.0": 6494.974906991018,
+          "50.0": 8057.372666109101,
+          "100.0": 9964.066276602322,
+          "200.0": 12302.941191335294,
+          "500.0": 16239.864263049094,
+          "1000.0": 20027.435635318834
+        },
+        "notes": [
+          "Two-parameter, floc = 0."
+        ]
+      }
+    ],
+    "ranking": [
+      {
+        "distribution": "LN2",
+        "k": 2,
+        "fitted_on": "Q",
+        "jacobian_applied": false,
+        "loglike_Q": -488.954735050852,
+        "aic": 981.909470101704,
+        "bic": 985.995572637373,
+        "aicc": 982.1316923239261,
+        "hqic": 983.4974687865839,
+        "ks_stat": 0.06238713737952434,
+        "ks_p": 0.9695239216403739,
+        "ad_stat": 3203.6562458471835,
+        "ad_p": 0.9865067466266867,
+        "accepted": true,
+        "Q2": 2503.6703553189045,
+        "Q5": 3857.5016026676626,
+        "Q10": 4835.433035593522,
+        "Q25": 6152.885141542208,
+        "Q50": 7189.172452760241,
+        "Q100": 8269.587252141342,
+        "Q200": 9400.095224668685,
+        "Q500": 10979.167869112012,
+        "Q1000": 12242.584604142097,
+        "reject_reasons": "",
+        "rank": 1.0
+      },
+      {
+        "distribution": "LP3",
+        "k": 3,
+        "fitted_on": "log Q",
+        "jacobian_applied": true,
+        "loglike_Q": -488.8667973458466,
+        "aic": 983.7335946916932,
+        "bic": 989.8627484951968,
+        "aicc": 984.1864248803724,
+        "hqic": 986.115592719013,
+        "ks_stat": 0.057246442352005295,
+        "ks_p": 0.9868467581838823,
+        "ad_stat": 3202.685360478391,
+        "ad_p": 0.991504247876062,
+        "accepted": true,
+        "Q2": 2461.7175621246265,
+        "Q5": 3838.5241669565767,
+        "Q10": 4888.980890175148,
+        "Q25": 6374.885005822136,
+        "Q50": 7598.240851440648,
+        "Q100": 8922.70838445756,
+        "Q200": 10360.23759360818,
+        "Q500": 12453.263236092607,
+        "Q1000": 14196.820991776389,
+        "reject_reasons": "",
+        "rank": 2.0
+      },
+      {
+        "distribution": "Gumbel",
+        "k": 2,
+        "fitted_on": "Q",
+        "jacobian_applied": false,
+        "loglike_Q": -490.6749810244836,
+        "aic": 985.3499620489672,
+        "bic": 989.4360645846363,
+        "aicc": 985.5721842711894,
+        "hqic": 986.9379607338471,
+        "ks_stat": 0.0797257136346142,
+        "ks_p": 0.8334923536360656,
+        "ad_stat": 3220.0728565297036,
+        "ad_p": 0.7336331834082959,
+        "accepted": true,
+        "Q2": 2583.4045748312074,
+        "Q5": 3814.3422207196872,
+        "Q10": 4629.330049716555,
+        "Q25": 5659.069332144946,
+        "Q50": 6422.988756482829,
+        "Q100": 7181.267519704478,
+        "Q200": 7936.779451092615,
+        "Q500": 8933.533984352025,
+        "Q1000": 9686.857443275294,
+        "reject_reasons": "",
+        "rank": 3.0
+      },
+      {
+        "distribution": "Log-logistic",
+        "k": 2,
+        "fitted_on": "Q",
+        "jacobian_applied": false,
+        "loglike_Q": -490.50738060272187,
+        "aic": 985.0147612054437,
+        "bic": 989.1008637411128,
+        "aicc": 985.2369834276659,
+        "hqic": 986.6027598903237,
+        "ks_stat": 0.06719855042845813,
+        "ks_p": 0.9437591280761065,
+        "ad_stat": 3207.133813668815,
+        "ad_p": 0.9545227386306847,
+        "accepted": false,
+        "Q2": 2487.4320388328433,
+        "Q5": 3780.71912095143,
+        "Q10": 4829.855765700021,
+        "Q25": 6494.974906991018,
+        "Q50": 8057.372666109101,
+        "Q100": 9964.066276602322,
+        "Q200": 12302.941191335294,
+        "Q500": 16239.864263049094,
+        "Q1000": 20027.435635318834,
+        "reject_reasons": "shape parameter 3.311 exceeds the degenerate bound 2",
+        "rank": null
+      },
+      {
+        "distribution": "GLO",
+        "k": 3,
+        "fitted_on": "Q",
+        "jacobian_applied": false,
+        "loglike_Q": -490.68091247808655,
+        "aic": 987.3618249561731,
+        "bic": 993.4909787596768,
+        "aicc": 987.8146551448524,
+        "hqic": 989.7438229834929,
+        "ks_stat": 0.07987374929280183,
+        "ks_p": 0.8318768438057731,
+        "ad_stat": 3220.1227837282213,
+        "ad_p": 0.7326336831584208,
+        "accepted": false,
+        "Q2": 2584.52039396335,
+        "Q5": 3816.0462145719757,
+        "Q10": 4631.337242832895,
+        "Q25": 5661.4220455875875,
+        "Q50": 6425.585644620845,
+        "Q100": 7184.102181377839,
+        "Q200": 7939.848755180852,
+        "Q500": 8936.911233710176,
+        "Q1000": 9690.4668625268,
+        "reject_reasons": "shape parameter 1218 exceeds the degenerate bound 2",
+        "rank": null
+      },
+      {
+        "distribution": "Weibull",
+        "k": 2,
+        "fitted_on": "Q",
+        "jacobian_applied": false,
+        "loglike_Q": -492.6749034073559,
+        "aic": 989.3498068147118,
+        "bic": 993.4359093503808,
+        "aicc": 989.5720290369339,
+        "hqic": 990.9378054995917,
+        "ks_stat": 0.10452597051752222,
+        "ks_p": 0.5276763974023819,
+        "ad_stat": 3237.072525847421,
+        "ad_p": 0.4612693653173413,
+        "accepted": false,
+        "Q2": 2706.2611261666584,
+        "Q5": 4101.158450812693,
+        "Q10": 4893.9802675814135,
+        "Q25": 5773.737316363683,
+        "Q50": 6357.009710728495,
+        "Q100": 6889.896314755397,
+        "Q200": 7383.485812424042,
+        "Q500": 7988.168902716664,
+        "Q1000": 8416.066183707595,
+        "reject_reasons": "shape parameter 2.026 exceeds the degenerate bound 2; the fitted CDF at the largest observed peak (7,177 cumecs) is 0.9933, above the 0.9912 that an order statistic of 57 can carry; the fit has diverged into the upper tail",
+        "rank": null
+      },
+      {
+        "distribution": "GNO",
+        "k": 3,
+        "fitted_on": "Q",
+        "jacobian_applied": false,
+        "loglike_Q": -497.6643359767167,
+        "aic": 1001.3286719534334,
+        "bic": 1007.457825756937,
+        "aicc": 1001.7815021421127,
+        "hqic": 1003.7106699807532,
+        "ks_stat": 0.12403649145753826,
+        "ks_p": 0.31771140137433884,
+        "ad_stat": 3267.6211847031086,
+        "ad_p": 0.21639180409795103,
+        "accepted": false,
+        "Q2": 2532.9073043806284,
+        "Q5": 3636.4551519339757,
+        "Q10": 4380.938334308379,
+        "Q25": 5303.183985021227,
+        "Q50": 5968.119582217223,
+        "Q100": 6611.619376049647,
+        "Q200": 7237.537835858171,
+        "Q500": 8042.523869033656,
+        "Q1000": 8637.019090892492,
+        "reject_reasons": "the fitted CDF at the largest observed peak (7,177 cumecs) is 0.9946, above the 0.9912 that an order statistic of 57 can carry; the fit has diverged into the upper tail",
+        "rank": null
+      },
+      {
+        "distribution": "Exponential",
+        "k": 1,
+        "fitted_on": "Q",
+        "jacobian_applied": false,
+        "loglike_Q": -510.57066088806306,
+        "aic": 1023.1413217761261,
+        "bic": 1025.1843730439607,
+        "aicc": 1023.2140490488534,
+        "hqic": 1023.9353211185661,
+        "ks_stat": 0.2905276631819456,
+        "ks_p": 9.351908107726849e-05,
+        "ad_stat": 3567.2566163920287,
+        "ad_p": 0.0029985007496251873,
+        "accepted": false,
+        "Q2": 1980.0296434153177,
+        "Q5": 4597.486457755832,
+        "Q10": 6577.51610117115,
+        "Q25": 9194.97291551166,
+        "Q50": 11175.002558926979,
+        "Q100": 13155.032202342298,
+        "Q200": 15135.061845757613,
+        "Q500": 17752.51866009813,
+        "Q1000": 19732.548303513446,
+        "reject_reasons": "the KS probability-plot p-value is 9.35e-05, below 0.05; the fitted CDF does not reproduce the observed order statistics",
+        "rank": null
+      },
+      {
+        "distribution": "GEV",
+        "k": 3,
+        "fitted_on": "Q",
+        "jacobian_applied": false,
+        "loglike_Q": -584.5115330716915,
+        "aic": 1175.023066143383,
+        "bic": 1181.1522199468866,
+        "aicc": 1175.4758963320621,
+        "hqic": 1177.4050641707029,
+        "ks_stat": 0.6483329064979797,
+        "ks_p": 6.4324273020271826e-24,
+        "ad_stat": 5043.429013289485,
+        "ad_p": 0.0004997501249375312,
+        "accepted": false,
+        "Q2": 870.7614137296047,
+        "Q5": 4234.238988996485,
+        "Q10": 118962.93429598678,
+        "Q25": 10531257.620385196,
+        "Q50": 294571486.44178337,
+        "Q100": 8039914441.599445,
+        "Q200": 216807034485.21884,
+        "Q500": 16740610323432.916,
+        "Q1000": 447145276735345.9,
+        "reject_reasons": "shape parameter -4.736 exceeds the degenerate bound 2; the fitted CDF at the smallest observed peak (855 cumecs) is 0.003227, below the 0.008772 that an order statistic of 57 can carry; the curve does not cover the lower end of the record; the KS probability-plot p-value is 6.43e-24, below 0.05; the fitted CDF does not reproduce the observed order statistics",
+        "rank": null
+      }
+    ],
+    "best_accepted": "LN2",
+    "notes": [
+      "3 of 9 candidates passed every acceptance gate; the lowest AICc among them is LN2.",
+      "All log-likelihoods are on the discharge scale.  Fits performed on ln Q carry the Jacobian correction sum(ln Q_i); without it the LP3 AICc would be about 91.6 instead of about 983.7 and the ranking would be meaningless.",
+      "GPD is absent by design: it is a threshold-exceedance model, not a block-maxima family, and including it invites a bounded upper tail.",
+      "The Gumbel method-of-moments parameters are reported separately because CWC tables quote moment values, which differ slightly from the maximum-likelihood fit at this record length.",
+      "Information criteria are secondary.  IS 11223:1985 fixes LP3 as the design method; a lower AICc does not override it.",
+      "GEV was excluded: shape parameter -4.736 exceeds the degenerate bound 2; the fitted CDF at the smallest observed peak (855 cumecs) is 0.003227, below the 0.008772 that an order statistic of 57 can carry; the curve does not cover the lower end of the record; the KS probability-plot p-value is 6.43e-24, below 0.05; the fitted CDF does not reproduce the observed order statistics",
+      "Weibull was excluded: shape parameter 2.026 exceeds the degenerate bound 2; the fitted CDF at the largest observed peak (7,177 cumecs) is 0.9933, above the 0.9912 that an order statistic of 57 can carry; the fit has diverged into the upper tail",
+      "Exponential was excluded: the KS probability-plot p-value is 9.35e-05, below 0.05; the fitted CDF does not reproduce the observed order statistics",
+      "GNO was excluded: the fitted CDF at the largest observed peak (7,177 cumecs) is 0.9946, above the 0.9912 that an order statistic of 57 can carry; the fit has diverged into the upper tail",
+      "GLO was excluded: shape parameter 1218 exceeds the degenerate bound 2",
+      "Log-logistic was excluded: shape parameter 3.311 exceeds the degenerate bound 2"
+    ]
+  },
+  "lp3": {
+    "fit": {
+      "n": 57,
+      "mean_log": 7.825513076316872,
+      "sd_log": 0.5181717259078743,
+      "cs_log_b17b": 0.095558925375237,
+      "ck_log": 2.2923696286888458,
+      "cs_log_se": 0.3244428422615251,
+      "cs_raw_diagnostic": 1.0818749765319888,
+      "ck_raw_diagnostic": 3.468343016626533
+    },
+    "quantiles": [
+      {
+        "return_period_yr": 2.0,
+        "Q_cumecs": 2483.0962246296313,
+        "K_exact": -0.015924331205720677,
+        "K_wilson_hilferty": -0.015922448102660525,
+        "wh_vs_exact_pct": 0.011825319605732245
+      },
+      {
+        "return_period_yr": 5.0,
+        "Q_cumecs": 3862.372756697914,
+        "K_exact": 0.8366413669854182,
+        "K_wilson_hilferty": 0.8366005730725199,
+        "wh_vs_exact_pct": -0.004875913922991861
+      },
+      {
+        "return_period_yr": 10.0,
+        "Q_cumecs": 4888.55626195635,
+        "K_exact": 1.29134645166749,
+        "K_wilson_hilferty": 1.2913076438044762,
+        "wh_vs_exact_pct": -0.003005224737613156
+      },
+      {
+        "return_period_yr": 25.0,
+        "Q_cumecs": 6307.415960888593,
+        "K_exact": 1.7831314103654563,
+        "K_wilson_hilferty": 1.7831300134338832,
+        "wh_vs_exact_pct": -7.834148201096347e-05
+      },
+      {
+        "return_period_yr": 50.0,
+        "Q_cumecs": 7450.761212055209,
+        "K_exact": 2.104627387843607,
+        "K_wilson_hilferty": 2.1046761835262053,
+        "wh_vs_exact_pct": 0.0023184950875565435
+      },
+      {
+        "return_period_yr": 100.0,
+        "Q_cumecs": 8666.685925361164,
+        "K_exact": 2.396365166388861,
+        "K_wilson_hilferty": 2.3964805045314144,
+        "wh_vs_exact_pct": 0.004813045364324089
+      },
+      {
+        "return_period_yr": 200.0,
+        "Q_cumecs": 9963.6216237643,
+        "K_exact": 2.6654924534777784,
+        "K_wilson_hilferty": 2.6656890891679588,
+        "wh_vs_exact_pct": 0.007377086733965393
+      },
+      {
+        "return_period_yr": 500.0,
+        "Q_cumecs": 11814.826437284935,
+        "K_exact": 2.994369135920774,
+        "K_wilson_hilferty": 2.9946938574274817,
+        "wh_vs_exact_pct": 0.010844404679847569
+      },
+      {
+        "return_period_yr": 1000.0,
+        "Q_cumecs": 13327.399392844602,
+        "K_exact": 3.226853454002537,
+        "K_wilson_hilferty": 3.2272894709461006,
+        "wh_vs_exact_pct": 0.013512139605308563
+      }
+    ],
+    "bootstrap": [
+      {
+        "return_period_yr": 2.0,
+        "Q_cumecs": 2483.0962246296313,
+        "Q_lower": 2151.820118263885,
+        "Q_upper": 2861.071498184228,
+        "Q_median": 2480.8857963306464,
+        "method": "parametric bootstrap, LP3 refitted per replicate"
+      },
+      {
+        "return_period_yr": 5.0,
+        "Q_cumecs": 3862.372756697914,
+        "Q_lower": 3276.433508986622,
+        "Q_upper": 4546.515576842199,
+        "Q_median": 3845.9218819429493,
+        "method": "parametric bootstrap, LP3 refitted per replicate"
+      },
+      {
+        "return_period_yr": 10.0,
+        "Q_cumecs": 4888.55626195635,
+        "Q_lower": 3993.38067025183,
+        "Q_upper": 5961.76790009892,
+        "Q_median": 4840.214360054844,
+        "method": "parametric bootstrap, LP3 refitted per replicate"
+      },
+      {
+        "return_period_yr": 25.0,
+        "Q_cumecs": 6307.415960888593,
+        "Q_lower": 4859.7305188842865,
+        "Q_upper": 8173.474389643854,
+        "Q_median": 6218.583476238309,
+        "method": "parametric bootstrap, LP3 refitted per replicate"
+      },
+      {
+        "return_period_yr": 50.0,
+        "Q_cumecs": 7450.761212055209,
+        "Q_lower": 5484.438368481207,
+        "Q_upper": 10266.329744855331,
+        "Q_median": 7303.141992250166,
+        "method": "parametric bootstrap, LP3 refitted per replicate"
+      },
+      {
+        "return_period_yr": 100.0,
+        "Q_cumecs": 8666.685925361164,
+        "Q_lower": 6048.353846916085,
+        "Q_upper": 12923.31859538852,
+        "Q_median": 8456.74498439614,
+        "method": "parametric bootstrap, LP3 refitted per replicate"
+      },
+      {
+        "return_period_yr": 200.0,
+        "Q_cumecs": 9963.6216237643,
+        "Q_lower": 6551.009032110179,
+        "Q_upper": 15873.065221774455,
+        "Q_median": 9695.96442691928,
+        "method": "parametric bootstrap, LP3 refitted per replicate"
+      },
+      {
+        "return_period_yr": 500.0,
+        "Q_cumecs": 11814.826437284935,
+        "Q_lower": 7196.491160329869,
+        "Q_upper": 20662.3015818037,
+        "Q_median": 11466.376087884555,
+        "method": "parametric bootstrap, LP3 refitted per replicate"
+      },
+      {
+        "return_period_yr": 1000.0,
+        "Q_cumecs": 13327.399392844602,
+        "Q_lower": 7621.616083697362,
+        "Q_upper": 25397.283071941125,
+        "Q_median": 12890.147620125896,
+        "method": "parametric bootstrap, LP3 refitted per replicate"
+      }
+    ],
+    "bootstrap_parameters": [
+      {
+        "quantity": "Cs_log",
+        "fitted": 0.095558925375237,
+        "boot_mean": 0.0903762251033568,
+        "boot_sd": 0.30649136455150444,
+        "q025": -0.5069554250374795,
+        "q975": 0.6995435617131144
+      },
+      {
+        "quantity": "mean_log",
+        "fitted": 7.825513076316872,
+        "boot_mean": 7.825393773514865,
+        "boot_sd": 0.06896399955490588,
+        "q025": 7.691938321815811,
+        "q975": 7.9624284876487685
+      },
+      {
+        "quantity": "sd_log",
+        "fitted": 0.5181717259078743,
+        "boot_mean": 0.5151289159859579,
+        "boot_sd": 0.050005931303439596,
+        "q025": 0.42194035891193415,
+        "q975": 0.614960908068964
+      }
+    ],
+    "chowdhury": [
+      {
+        "return_period_yr": 2.0,
+        "Q_cumecs": 2483.0962246296313,
+        "se_log": 0.0685856657331866,
+        "Q_lower": 2170.76757120389,
+        "Q_upper": 2840.3625254777708,
+        "method": "Chowdhury closed-form (approximate)"
+      },
+      {
+        "return_period_yr": 5.0,
+        "Q_cumecs": 3862.372756697914,
+        "se_log": 0.08214058771474794,
+        "Q_lower": 3288.0316558580216,
+        "Q_upper": 4537.037617963374,
+        "method": "Chowdhury closed-form (approximate)"
+      },
+      {
+        "return_period_yr": 10.0,
+        "Q_cumecs": 4888.55626195635,
+        "se_log": 0.09615793533916979,
+        "Q_lower": 4048.8420507719634,
+        "Q_upper": 5902.423958908494,
+        "method": "Chowdhury closed-form (approximate)"
+      },
+      {
+        "return_period_yr": 25.0,
+        "Q_cumecs": 6307.415960888593,
+        "se_log": 0.11425081508574002,
+        "Q_lower": 5041.978653357796,
+        "Q_upper": 7890.453101616692,
+        "method": "Chowdhury closed-form (approximate)"
+      },
+      {
+        "return_period_yr": 50.0,
+        "Q_cumecs": 7450.761212055209,
+        "se_log": 0.12712981154913522,
+        "Q_lower": 5807.477731918831,
+        "Q_upper": 9559.028067202638,
+        "method": "Chowdhury closed-form (approximate)"
+      },
+      {
+        "return_period_yr": 100.0,
+        "Q_cumecs": 8666.685925361164,
+        "se_log": 0.1393098439960852,
+        "Q_lower": 6595.873291307662,
+        "Q_upper": 11387.642183460153,
+        "method": "Chowdhury closed-form (approximate)"
+      },
+      {
+        "return_period_yr": 200.0,
+        "Q_cumecs": 9963.6216237643,
+        "se_log": 0.15086056898254196,
+        "Q_lower": 7413.1788391524215,
+        "Q_upper": 13391.523125981124,
+        "method": "Chowdhury closed-form (approximate)"
+      },
+      {
+        "return_period_yr": 500.0,
+        "Q_cumecs": 11814.826437284935,
+        "se_log": 0.16529091302789042,
+        "Q_lower": 8545.38169168065,
+        "Q_upper": 16335.153744983083,
+        "method": "Chowdhury closed-form (approximate)"
+      },
+      {
+        "return_period_yr": 1000.0,
+        "Q_cumecs": 13327.399392844602,
+        "se_log": 0.17565760350467274,
+        "Q_lower": 9445.509509285232,
+        "Q_upper": 18804.65785374405,
+        "method": "Chowdhury closed-form (approximate)"
+      }
+    ],
+    "notes": [
+      "LP3 is fitted to ln Q: mean = 7.8255, sd = 0.5182, Bulletin 17B adjusted skewness Cs_log = 0.0956.",
+      "The arithmetic skewness of Q is 1.0819; it is a diagnostic of raw-scale asymmetry and is NOT the LP3 skewness.",
+      "Cs_log = 0.0956 lies well below 0.9, so no skewness limit or kurtosis-based alternative is invoked. IS 11223 permits the station skewness to be adopted directly.",
+      "Wilson-Hilferty and exact Pearson III factors are both reported; the exact scipy implementation is used for the design floods.",
+      "Confidence intervals come from a parametric bootstrap that refits skewness on every replicate; the Chowdhury closed form is a secondary approximation."
+    ]
+  },
+  "intervals": {
+    "estimator": "LN2 on ln Q (mean 7.8255, sd 0.5182) -- sampling uncertainty only, not the adopted LP3 model",
+    "level": 0.95,
+    "n": 57,
+    "method_relative_bias": -0.09839190789985532,
+    "nonparametric": [
+      {
+        "return_period_yr": 2.0,
+        "point": 2496.0,
+        "lower": 2169.0,
+        "upper": 2840.0,
+        "replicate_median": 2496.0,
+        "replicate_mean": 2473.5465,
+        "bias": 0.0
+      },
+      {
+        "return_period_yr": 5.0,
+        "point": 3996.52,
+        "lower": 3253.595000000002,
+        "upper": 4894.000000000001,
+        "replicate_median": 3982.2000000000003,
+        "replicate_mean": 3957.7873000000004,
+        "bias": -14.319999999999709
+      },
+      {
+        "return_period_yr": 10.0,
+        "point": 5052.72,
+        "lower": 3968.6,
+        "upper": 6434.0,
+        "replicate_median": 4995.599999999999,
+        "replicate_mean": 5046.616,
+        "bias": -57.1200000000008
+      },
+      {
+        "return_period_yr": 25.0,
+        "point": 6469.567999999999,
+        "lower": 4678.0,
+        "upper": 7026.039999999999,
+        "replicate_median": 6349.039999999999,
+        "replicate_mean": 6116.413879999999,
+        "bias": -120.52800000000025
+      },
+      {
+        "return_period_yr": 50.0,
+        "point": 6834.823999999997,
+        "lower": 5052.719999999999,
+        "upper": 7177.0,
+        "replicate_median": 6534.32,
+        "replicate_mean": 6492.061199999999,
+        "bias": -300.5039999999972
+      },
+      {
+        "return_period_yr": 100.0,
+        "point": 7177.0,
+        "lower": 5668.479999999997,
+        "upper": 7177.0,
+        "replicate_median": 6760.919999999998,
+        "replicate_mean": 6690.720799999999,
+        "bias": -416.08000000000175
+      },
+      {
+        "return_period_yr": 200.0,
+        "point": 7177.0,
+        "lower": 5796.359999999999,
+        "upper": 7177.0,
+        "replicate_median": 6968.959999999999,
+        "replicate_mean": 6791.6139,
+        "bias": -208.04000000000087
+      },
+      {
+        "return_period_yr": 500.0,
+        "point": 7177.0,
+        "lower": 5966.543999999998,
+        "upper": 7177.0,
+        "replicate_median": 7093.783999999999,
+        "replicate_mean": 6852.149759999998,
+        "bias": -83.21600000000126
+      },
+      {
+        "return_period_yr": 1000.0,
+        "point": 7177.0,
+        "lower": 6023.272000000003,
+        "upper": 7177.0,
+        "replicate_median": 7135.392000000002,
+        "replicate_mean": 6872.328380000001,
+        "bias": -41.607999999998356
+      }
+    ],
+    "parametric": [
+      {
+        "return_period_yr": 2.0,
+        "point": 2503.6703553189045,
+        "lower": 2133.5270778408026,
+        "upper": 2981.3907003918116,
+        "replicate_median": 2500.919856945383,
+        "replicate_mean": 2511.032520483011,
+        "bias": -2.750498373521623
+      },
+      {
+        "return_period_yr": 5.0,
+        "point": 3872.352194092615,
+        "lower": 3181.4829799579466,
+        "upper": 4627.621035781966,
+        "replicate_median": 3815.971924217398,
+        "replicate_mean": 3835.4632286101096,
+        "bias": -56.38026987521698
+      },
+      {
+        "return_period_yr": 10.0,
+        "point": 4863.807580216278,
+        "lower": 3809.020507479462,
+        "upper": 5981.646814829722,
+        "replicate_median": 4714.808893064717,
+        "replicate_mean": 4773.178584939187,
+        "bias": -148.99868715156117
+      },
+      {
+        "return_period_yr": 25.0,
+        "point": 6202.260487734164,
+        "lower": 4529.267379014885,
+        "upper": 7960.395822431132,
+        "replicate_median": 5870.538957885192,
+        "replicate_mean": 5974.451237425597,
+        "bias": -331.72152984897184
+      },
+      {
+        "return_period_yr": 50.0,
+        "point": 7256.897638140687,
+        "lower": 4953.153433481848,
+        "upper": 9867.932481977423,
+        "replicate_median": 6542.877634090071,
+        "replicate_mean": 6764.55850205274,
+        "bias": -714.0200040506161
+      },
+      {
+        "return_period_yr": 100.0,
+        "point": 8357.885715686403,
+        "lower": 5343.517706369126,
+        "upper": 11309.406647341366,
+        "replicate_median": 7319.6069704861875,
+        "replicate_mean": 7591.8100131066985,
+        "bias": -1038.2787452002158
+      },
+      {
+        "return_period_yr": 200.0,
+        "point": 9511.29189420147,
+        "lower": 5483.520592289637,
+        "upper": 12790.309017938107,
+        "replicate_median": 7725.207337057578,
+        "replicate_mean": 8060.224453717632,
+        "bias": -1786.0845571438913
+      },
+      {
+        "return_period_yr": 500.0,
+        "point": 11124.388198244103,
+        "lower": 5546.753652014704,
+        "upper": 13803.355839234571,
+        "replicate_median": 7957.720182690539,
+        "replicate_mean": 8341.273118084191,
+        "bias": -3166.668015553564
+      },
+      {
+        "return_period_yr": 1000.0,
+        "point": 12416.531930677518,
+        "lower": 5557.108420746361,
+        "upper": 14133.555262662408,
+        "replicate_median": 8014.342259843163,
+        "replicate_mean": 8434.956006206387,
+        "bias": -4402.189670834355
+      }
+    ],
+    "bias_corrected": [
+      {
+        "return_period_yr": 2.0,
+        "point": 2503.6703553189045,
+        "lower": 2025.9550235235465,
+        "upper": 2873.8186460745555,
+        "z0": 0.005013277548926657,
+        "replicate_median": 2500.919856945383,
+        "bias": -2.750498373521623
+      },
+      {
+        "return_period_yr": 5.0,
+        "point": 3872.352194092615,
+        "lower": 3117.2330540612984,
+        "upper": 4563.371109885318,
+        "z0": 0.14970165803543056,
+        "replicate_median": 3815.971924217398,
+        "bias": -56.38026987521698
+      },
+      {
+        "return_period_yr": 10.0,
+        "point": 4863.807580216278,
+        "lower": 3746.2178120394947,
+        "upper": 5918.844119389754,
+        "z0": 0.24946643665956378,
+        "replicate_median": 4714.808893064717,
+        "bias": -148.99868715156117
+      },
+      {
+        "return_period_yr": 25.0,
+        "point": 6202.260487734164,
+        "lower": 4444.514526364525,
+        "upper": 7875.642969780773,
+        "z0": 0.38937332732980207,
+        "replicate_median": 5870.538957885192,
+        "bias": -331.72152984897184
+      },
+      {
+        "return_period_yr": 50.0,
+        "point": 7256.897638140687,
+        "lower": 4646.3987343306,
+        "upper": 9561.177782826173,
+        "z0": 0.5359400266474902,
+        "replicate_median": 6542.877634090071,
+        "bias": -714.0200040506161
+      },
+      {
+        "return_period_yr": 100.0,
+        "point": 8357.885715686403,
+        "lower": 5407.006588727743,
+        "upper": 11372.895529699983,
+        "z0": 0.6418046963026162,
+        "replicate_median": 7319.6069704861875,
+        "bias": -1038.2787452002158
+      },
+      {
+        "return_period_yr": 200.0,
+        "point": 9511.29189420147,
+        "lower": 6233.1920427052355,
+        "upper": 13539.980468353706,
+        "z0": 0.9172722404040338,
+        "replicate_median": 7725.207337057578,
+        "bias": -1786.0845571438913
+      },
+      {
+        "return_period_yr": 500.0,
+        "point": 11124.388198244103,
+        "lower": 8446.755179540336,
+        "upper": 16703.357366760203,
+        "z0": 1.3346222867001936,
+        "replicate_median": 7957.720182690539,
+        "bias": -3166.668015553564
+      },
+      {
+        "return_period_yr": 1000.0,
+        "point": 12416.531930677518,
+        "lower": 10701.12968094348,
+        "upper": 19277.576522859526,
+        "z0": 1.6210822508524085,
+        "replicate_median": 8014.342259843163,
+        "bias": -4402.189670834355
+      }
+    ],
+    "combined": [
+      {
+        "return_period_yr": 2.0,
+        "quantile_cumecs": 2503.6703553189045,
+        "ci_lower_cumecs": 2025.9550235235465,
+        "ci_upper_cumecs": 2873.8186460745555,
+        "percentile_lower_cumecs": 2133.5270778408026,
+        "percentile_upper_cumecs": 2981.3907003918116,
+        "np_ci_lower_cumecs": 2169.0,
+        "np_ci_upper_cumecs": 2840.0,
+        "relative_width": 0.33864826523578523
+      },
+      {
+        "return_period_yr": 5.0,
+        "quantile_cumecs": 3872.352194092615,
+        "ci_lower_cumecs": 3117.2330540612984,
+        "ci_upper_cumecs": 4563.371109885318,
+        "percentile_lower_cumecs": 3181.4829799579466,
+        "percentile_upper_cumecs": 4627.621035781966,
+        "np_ci_lower_cumecs": 3253.595000000002,
+        "np_ci_upper_cumecs": 4894.000000000001,
+        "relative_width": 0.3734520992254127
+      },
+      {
+        "return_period_yr": 10.0,
+        "quantile_cumecs": 4863.807580216278,
+        "ci_lower_cumecs": 3746.2178120394947,
+        "ci_upper_cumecs": 5918.844119389754,
+        "percentile_lower_cumecs": 3809.020507479462,
+        "percentile_upper_cumecs": 5981.646814829722,
+        "np_ci_lower_cumecs": 3968.6,
+        "np_ci_upper_cumecs": 6434.0,
+        "relative_width": 0.44669248762790276
+      },
+      {
+        "return_period_yr": 25.0,
+        "quantile_cumecs": 6202.260487734164,
+        "ci_lower_cumecs": 4444.514526364525,
+        "ci_upper_cumecs": 7875.642969780773,
+        "percentile_lower_cumecs": 4529.267379014885,
+        "percentile_upper_cumecs": 7960.395822431132,
+        "np_ci_lower_cumecs": 4678.0,
+        "np_ci_upper_cumecs": 7026.039999999999,
+        "relative_width": 0.5532061173828128
+      },
+      {
+        "return_period_yr": 50.0,
+        "quantile_cumecs": 7256.897638140687,
+        "ci_lower_cumecs": 4646.3987343306,
+        "ci_upper_cumecs": 9561.177782826173,
+        "percentile_lower_cumecs": 4953.153433481848,
+        "percentile_upper_cumecs": 9867.932481977423,
+        "np_ci_lower_cumecs": 5052.719999999999,
+        "np_ci_upper_cumecs": 7177.0,
+        "relative_width": 0.6772562179552534
+      },
+      {
+        "return_period_yr": 100.0,
+        "quantile_cumecs": 8357.885715686403,
+        "ci_lower_cumecs": 5407.006588727743,
+        "ci_upper_cumecs": 11372.895529699983,
+        "percentile_lower_cumecs": 5343.517706369126,
+        "percentile_upper_cumecs": 11309.406647341366,
+        "np_ci_lower_cumecs": 5668.479999999997,
+        "np_ci_upper_cumecs": 7177.0,
+        "relative_width": 0.7138036034370784
+      },
+      {
+        "return_period_yr": 200.0,
+        "quantile_cumecs": 9511.29189420147,
+        "ci_lower_cumecs": 6233.1920427052355,
+        "ci_upper_cumecs": 13539.980468353706,
+        "percentile_lower_cumecs": 5483.520592289637,
+        "percentile_upper_cumecs": 12790.309017938107,
+        "np_ci_lower_cumecs": 5796.359999999999,
+        "np_ci_upper_cumecs": 7177.0,
+        "relative_width": 0.7682224987862093
+      },
+      {
+        "return_period_yr": 500.0,
+        "quantile_cumecs": 11124.388198244103,
+        "ci_lower_cumecs": 8446.755179540336,
+        "ci_upper_cumecs": 16703.357366760203,
+        "percentile_lower_cumecs": 5546.753652014704,
+        "percentile_upper_cumecs": 13803.355839234571,
+        "np_ci_lower_cumecs": 5966.543999999998,
+        "np_ci_upper_cumecs": 7177.0,
+        "relative_width": 0.7422073052541538
+      },
+      {
+        "return_period_yr": 1000.0,
+        "quantile_cumecs": 12416.531930677518,
+        "ci_lower_cumecs": 10701.12968094348,
+        "ci_upper_cumecs": 19277.576522859526,
+        "percentile_lower_cumecs": 5557.108420746361,
+        "percentile_upper_cumecs": 14133.555262662408,
+        "np_ci_lower_cumecs": 6023.272000000003,
+        "np_ci_upper_cumecs": 7177.0,
+        "relative_width": 0.690728046269202
+      }
+    ],
+    "notes": [
+      "Intervals are 95% equal-tail from 2,000 replicates; point estimates come from the adopted distribution, not from the sample.",
+      "The nonparametric interval resamples the observed record; the parametric interval holds the fitted parent fixed and varies only the record.  Agreement between them indicates the record, not the model, is the limiting factor.",
+      "Measurement uncertainty in the rating-curve derived discharge is NOT included.  Those errors are correlated across years and heteroscedastic in stage; no resampling scheme can represent them.  Every interval here is an understatement of the total uncertainty and the submission must state that explicitly.",
+      "Parameter uncertainty across candidate distributions is reported separately in the design-flood table, which shows the LP3, Gumbel and LN2 values side by side.",
+      "Q1000 extrapolates beyond a 57-year record by more than a factor of six in exceedance probability.  Its interval is reported because it is requested, not because the record supports it.",
+      "The nonparametric upper limit saturates at the largest observed peak once the return period approaches the record length: a case resample cannot produce a value the record does not contain.  That saturation is a property of the data, not a defect, and it is why the parametric interval is the one quoted for design."
+    ]
+  },
+  "pot": {
+    "threshold": 2496.0,
+    "threshold_source": "profile-penalty likelihood",
+    "base_series": "annual maxima (annual-exceedance POT)",
+    "record_years": 57.0,
+    "exceedance_rate_per_year": 0.49122807017543857,
+    "fit": {
+      "xi": -0.514427632591155,
+      "beta": 4026.3214285714284,
+      "threshold_scale_mean": 4026.3214285714284,
+      "n_exceed": 28,
+      "neg_loglike": 254.0653983539088,
+      "converged": true,
+      "at_shape_bound": false,
+      "xi_ci_lower": -0.55575,
+      "xi_ci_upper": -0.3325
+    },
+    "shape_ci": {
+      "lower": -0.55575,
+      "upper": -0.3325
+    },
+    "return_levels": [
+      {
+        "return_period_yr": 2.0,
+        "return_level_cumecs": 2424.4103909149194,
+        "exceedance_probability": 0.5
+      },
+      {
+        "return_period_yr": 5.0,
+        "return_level_cumecs": 5393.023100730818,
+        "exceedance_probability": 0.8
+      },
+      {
+        "return_period_yr": 10.0,
+        "return_level_cumecs": 6871.607582326968,
+        "exceedance_probability": 0.9
+      },
+      {
+        "return_period_yr": 25.0,
+        "return_level_cumecs": 8168.739237344511,
+        "exceedance_probability": 0.96
+      },
+      {
+        "return_period_yr": 50.0,
+        "return_level_cumecs": 8814.804899380637,
+        "exceedance_probability": 0.98
+      },
+      {
+        "return_period_yr": 100.0,
+        "return_level_cumecs": 9267.096488044564,
+        "exceedance_probability": 0.99
+      },
+      {
+        "return_period_yr": 200.0,
+        "return_level_cumecs": 9583.732540998422,
+        "exceedance_probability": 0.995
+      },
+      {
+        "return_period_yr": 500.0,
+        "return_level_cumecs": 9861.510816449332,
+        "exceedance_probability": 0.998
+      },
+      {
+        "return_period_yr": 1000.0,
+        "return_level_cumecs": 9999.864548496691,
+        "exceedance_probability": 0.999
+      }
+    ],
+    "threshold_scan": [
+      {
+        "threshold_quantile": 0.5,
+        "threshold": 2496.0,
+        "n_exceed": 28,
+        "xi": -0.514427632591155,
+        "beta": 4026.3214285714284,
+        "mean_exceedance": 4026.3214285714284,
+        "profile_penalty": 8591.740799318704,
+        "neg_loglike": 254.0653983539088,
+        "usable": true
+      },
+      {
+        "threshold_quantile": 0.6,
+        "threshold": 2716.6,
+        "n_exceed": 23,
+        "xi": -0.5641802690178129,
+        "beta": 4339.652173913043,
+        "mean_exceedance": 4339.652173913043,
+        "profile_penalty": 9768.932355442976,
+        "neg_loglike": 209.43931951146766,
+        "usable": true
+      },
+      {
+        "threshold_quantile": 0.7,
+        "threshold": 3387.9999999999995,
+        "n_exceed": 17,
+        "xi": -0.6348126197740909,
+        "beta": 4794.823529411765,
+        "mean_exceedance": 4794.823529411765,
+        "profile_penalty": 11772.316659280556,
+        "neg_loglike": 155.36390333650115,
+        "usable": true
+      },
+      {
+        "threshold_quantile": 0.75,
+        "threshold": 3549.0,
+        "n_exceed": 14,
+        "xi": -0.6762342862374733,
+        "beta": 5066.214285714285,
+        "mean_exceedance": 5066.214285714285,
+        "profile_penalty": 13190.23061648108,
+        "neg_loglike": 128.12071380502226,
+        "usable": true
+      },
+      {
+        "threshold_quantile": 0.8,
+        "threshold": 3982.2000000000003,
+        "n_exceed": 12,
+        "xi": -0.7084589351168985,
+        "beta": 5277.583333333333,
+        "mean_exceedance": 5277.583333333333,
+        "profile_penalty": 14418.62580784538,
+        "neg_loglike": 109.87739600677821,
+        "usable": true
+      },
+      {
+        "threshold_quantile": 0.85,
+        "threshold": 4382.200000000001,
+        "n_exceed": 9,
+        "xi": null,
+        "beta": null,
+        "mean_exceedance": null,
+        "profile_penalty": null,
+        "neg_loglike": null,
+        "usable": false
+      },
+      {
+        "threshold_quantile": 0.9,
+        "threshold": 4995.599999999999,
+        "n_exceed": 6,
+        "xi": null,
+        "beta": null,
+        "mean_exceedance": null,
+        "profile_penalty": null,
+        "neg_loglike": null,
+        "usable": false
+      },
+      {
+        "threshold_quantile": 0.925,
+        "threshold": 5553.400000000002,
+        "n_exceed": 5,
+        "xi": null,
+        "beta": null,
+        "mean_exceedance": null,
+        "profile_penalty": null,
+        "neg_loglike": null,
+        "usable": false
+      },
+      {
+        "threshold_quantile": 0.95,
+        "threshold": 6150.799999999998,
+        "n_exceed": 3,
+        "xi": null,
+        "beta": null,
+        "mean_exceedance": null,
+        "profile_penalty": null,
+        "neg_loglike": null,
+        "usable": false
+      }
+    ],
+    "accepted": false,
+    "reject_reasons": [
+      "only 28 exceedances over 57 years (minimum required 30); the shape estimate is not defensible",
+      "the shape interval [-0.556, -0.333] lies entirely below zero, i.e. the data cannot exclude a bounded upper tail; this contradicts the Gumbel and LP3 block-maxima curves"
+    ],
+    "notes": [
+      "The base series holds one value per water year, so the exceedances are annual exceedances of an annual-maxima series: 57 points over the same number of years.  This is a weak POT design and the shape estimate is wide by construction.",
+      "The Jenkinson-Collison threshold 6,080 cumecs left only 3 exceedances, which cannot support a GPD fit; the profile-penalty threshold 2,496 cumecs was used instead.",
+      "Threshold 2,496 cumecs selected by profile-penalty likelihood on a annual maxima (annual-exceedance POT) base series; 28 exceedances over 57 years (zeta = 0.4912 per year).",
+      "GPD shape xi = -0.5144 with 95% profile interval [-0.556, -0.333] and scale beta = 4,026 cumecs.",
+      "The shape interval comes from the profile likelihood, not a delta-method standard error: the likelihood is visibly asymmetric in xi at these sample sizes.",
+      "Design levels use z(T) = u + (beta/xi)[(T*zeta)**xi - 1], the exact POT relation; the 1 - 1/T form used in the 2025 notebook is a different quantity and understates long-period levels by orders of magnitude.",
+      "POT and block maxima are separate analyses.  The block-maxima design floods in the design table come from LP3 under IS 11223; these levels are an independent check and are reportable only when the gate passes.",
+      "ACCEPTANCE GATE FAILED -- the levels below must not be adopted as design values."
+    ]
+  },
+  "design": {
+    "periods": [
+      2.0,
+      5.0,
+      10.0,
+      25.0,
+      50.0,
+      100.0,
+      200.0,
+      500.0,
+      1000.0
+    ],
+    "table": [
+      {
+        "return_period_yr": 2.0,
+        "adopted_lp3_cumecs": 2483.0962246296313,
+        "adopted_ci_lower_cumecs": 2151.820118263885,
+        "adopted_ci_upper_cumecs": 2861.071498184228,
+        "gumbel_ev1_cumecs": 2583.4045748312074,
+        "ln2_cumecs": 2503.6703553189045,
+        "candidate_spread_cumecs": 100.3083502015761,
+        "candidate_spread_percent": 4.039648129888229
+      },
+      {
+        "return_period_yr": 5.0,
+        "adopted_lp3_cumecs": 3862.372756697914,
+        "adopted_ci_lower_cumecs": 3276.433508986622,
+        "adopted_ci_upper_cumecs": 4546.515576842199,
+        "gumbel_ev1_cumecs": 3814.3422207196872,
+        "ln2_cumecs": 3857.5016026676626,
+        "candidate_spread_cumecs": 48.03053597822691,
+        "candidate_spread_percent": 1.2435499886678467
+      },
+      {
+        "return_period_yr": 10.0,
+        "adopted_lp3_cumecs": 4888.55626195635,
+        "adopted_ci_lower_cumecs": 3993.38067025183,
+        "adopted_ci_upper_cumecs": 5961.76790009892,
+        "gumbel_ev1_cumecs": 4629.330049716555,
+        "ln2_cumecs": 4835.433035593522,
+        "candidate_spread_cumecs": 259.22621223979513,
+        "candidate_spread_percent": 5.302715123831989
+      },
+      {
+        "return_period_yr": 25.0,
+        "adopted_lp3_cumecs": 6307.415960888593,
+        "adopted_ci_lower_cumecs": 4859.7305188842865,
+        "adopted_ci_upper_cumecs": 8173.474389643854,
+        "gumbel_ev1_cumecs": 5659.069332144946,
+        "ln2_cumecs": 6152.885141542208,
+        "candidate_spread_cumecs": 648.3466287436468,
+        "candidate_spread_percent": 10.279116404625187
+      },
+      {
+        "return_period_yr": 50.0,
+        "adopted_lp3_cumecs": 7450.761212055209,
+        "adopted_ci_lower_cumecs": 5484.438368481207,
+        "adopted_ci_upper_cumecs": 10266.329744855331,
+        "gumbel_ev1_cumecs": 6422.988756482829,
+        "ln2_cumecs": 7189.172452760241,
+        "candidate_spread_cumecs": 1027.7724555723807,
+        "candidate_spread_percent": 13.79419399335281
+      },
+      {
+        "return_period_yr": 100.0,
+        "adopted_lp3_cumecs": 8666.685925361164,
+        "adopted_ci_lower_cumecs": 6048.353846916085,
+        "adopted_ci_upper_cumecs": 12923.31859538852,
+        "gumbel_ev1_cumecs": 7181.267519704478,
+        "ln2_cumecs": 8269.587252141342,
+        "candidate_spread_cumecs": 1485.4184056566855,
+        "candidate_spread_percent": 17.139405055742625
+      },
+      {
+        "return_period_yr": 200.0,
+        "adopted_lp3_cumecs": 9963.6216237643,
+        "adopted_ci_lower_cumecs": 6551.009032110179,
+        "adopted_ci_upper_cumecs": 15873.065221774455,
+        "gumbel_ev1_cumecs": 7936.779451092615,
+        "ln2_cumecs": 9400.095224668685,
+        "candidate_spread_cumecs": 2026.8421726716851,
+        "candidate_spread_percent": 20.342424162690506
+      },
+      {
+        "return_period_yr": 500.0,
+        "adopted_lp3_cumecs": 11814.826437284935,
+        "adopted_ci_lower_cumecs": 7196.491160329869,
+        "adopted_ci_upper_cumecs": 20662.3015818037,
+        "gumbel_ev1_cumecs": 8933.533984352025,
+        "ln2_cumecs": 10979.167869112012,
+        "candidate_spread_cumecs": 2881.2924529329102,
+        "candidate_spread_percent": 24.38709081531828
+      },
+      {
+        "return_period_yr": 1000.0,
+        "adopted_lp3_cumecs": 13327.399392844602,
+        "adopted_ci_lower_cumecs": 7621.616083697362,
+        "adopted_ci_upper_cumecs": 25397.283071941125,
+        "gumbel_ev1_cumecs": 9686.857443275294,
+        "ln2_cumecs": 12242.584604142097,
+        "candidate_spread_cumecs": 3640.5419495693077,
+        "candidate_spread_percent": 27.31622158426416
+      }
+    ],
+    "levels": [
+      {
+        "return_period_yr": 2.0,
+        "discharge_cumecs": 2483.0962246296313,
+        "water_level_m": 559.3148344624728,
+        "depth_over_zero_gauge_m": 9.399834462472876,
+        "freeboard_m": 0.0,
+        "top_of_structure_m": 559.3148344624728,
+        "rating_curve_extrapolated": false
+      },
+      {
+        "return_period_yr": 5.0,
+        "discharge_cumecs": 3862.372756697914,
+        "water_level_m": 562.0659390208087,
+        "depth_over_zero_gauge_m": 12.150939020808746,
+        "freeboard_m": 0.0,
+        "top_of_structure_m": 562.0659390208087,
+        "rating_curve_extrapolated": false
+      },
+      {
+        "return_period_yr": 10.0,
+        "discharge_cumecs": 4888.55626195635,
+        "water_level_m": 563.84885935012,
+        "depth_over_zero_gauge_m": 13.933859350120114,
+        "freeboard_m": 0.0,
+        "top_of_structure_m": 563.84885935012,
+        "rating_curve_extrapolated": false
+      },
+      {
+        "return_period_yr": 25.0,
+        "discharge_cumecs": 6307.415960888593,
+        "water_level_m": 566.0727886098199,
+        "depth_over_zero_gauge_m": 16.15778860981994,
+        "freeboard_m": 0.0,
+        "top_of_structure_m": 566.0727886098199,
+        "rating_curve_extrapolated": false
+      },
+      {
+        "return_period_yr": 50.0,
+        "discharge_cumecs": 7450.761212055209,
+        "water_level_m": 567.7151559618042,
+        "depth_over_zero_gauge_m": 17.80015596180418,
+        "freeboard_m": 0.0,
+        "top_of_structure_m": 567.7151559618042,
+        "rating_curve_extrapolated": true
+      },
+      {
+        "return_period_yr": 100.0,
+        "discharge_cumecs": 8666.685925361164,
+        "water_level_m": 569.3495382536441,
+        "depth_over_zero_gauge_m": 19.434538253644178,
+        "freeboard_m": 1.0,
+        "top_of_structure_m": 570.3495382536441,
+        "rating_curve_extrapolated": true
+      },
+      {
+        "return_period_yr": 200.0,
+        "discharge_cumecs": 9963.6216237643,
+        "water_level_m": 570.990014490667,
+        "depth_over_zero_gauge_m": 21.075014490667083,
+        "freeboard_m": 0.0,
+        "top_of_structure_m": 570.990014490667,
+        "rating_curve_extrapolated": true
+      },
+      {
+        "return_period_yr": 500.0,
+        "discharge_cumecs": 11814.826437284935,
+        "water_level_m": 573.1838510145818,
+        "depth_over_zero_gauge_m": 23.268851014581816,
+        "freeboard_m": 0.0,
+        "top_of_structure_m": 573.1838510145818,
+        "rating_curve_extrapolated": true
+      },
+      {
+        "return_period_yr": 1000.0,
+        "discharge_cumecs": 13327.399392844602,
+        "water_level_m": 574.8711053019607,
+        "depth_over_zero_gauge_m": 24.95610530196075,
+        "freeboard_m": 0.0,
+        "top_of_structure_m": 574.8711053019607,
+        "rating_curve_extrapolated": true
+      }
+    ],
+    "skew_decision": {
+      "cs_log": 0.095558925375237,
+      "se_cs_log": 0.3244428422615251,
+      "n": 57,
+      "z_cs_over_se": 0.29453238884588917,
+      "one_sided_tail_probability": 0.19208777942152458,
+      "critical_skew": 0.9,
+      "kurtosis_governed": false,
+      "limit_required": false,
+      "limit_applied": false,
+      "limit_value": null,
+      "limit_source": "parametric bootstrap",
+      "verdict": "within the sampling distribution; the fitted skewness is used directly"
+    },
+    "hfl_check": {
+      "hfl_cumecs": 7177.0,
+      "hfl_date": "1976-06-07",
+      "hfl_water_level_m": 567.162,
+      "record_length_years": 57.0,
+      "implied_return_period_yr": 42.51221833884013,
+      "implied_exceedance_probability": 0.9764773507693816,
+      "per_period": [
+        {
+          "return_period_yr": 2.0,
+          "design_cumecs": 2483.0962246296313,
+          "at_or_above_record_length": false,
+          "exceeds_hfl_discharge": false,
+          "ratio_to_hfl": 0.3459796885369418
+        },
+        {
+          "return_period_yr": 5.0,
+          "design_cumecs": 3862.372756697914,
+          "at_or_above_record_length": false,
+          "exceeds_hfl_discharge": false,
+          "ratio_to_hfl": 0.5381597821788928
+        },
+        {
+          "return_period_yr": 10.0,
+          "design_cumecs": 4888.55626195635,
+          "at_or_above_record_length": false,
+          "exceeds_hfl_discharge": false,
+          "ratio_to_hfl": 0.6811420178286679
+        },
+        {
+          "return_period_yr": 25.0,
+          "design_cumecs": 6307.415960888593,
+          "at_or_above_record_length": false,
+          "exceeds_hfl_discharge": false,
+          "ratio_to_hfl": 0.878837391791639
+        },
+        {
+          "return_period_yr": 50.0,
+          "design_cumecs": 7450.761212055209,
+          "at_or_above_record_length": false,
+          "exceeds_hfl_discharge": true,
+          "ratio_to_hfl": 1.0381442402194803
+        },
+        {
+          "return_period_yr": 100.0,
+          "design_cumecs": 8666.685925361164,
+          "at_or_above_record_length": true,
+          "exceeds_hfl_discharge": true,
+          "ratio_to_hfl": 1.2075638742317352
+        },
+        {
+          "return_period_yr": 200.0,
+          "design_cumecs": 9963.6216237643,
+          "at_or_above_record_length": true,
+          "exceeds_hfl_discharge": true,
+          "ratio_to_hfl": 1.3882710915095862
+        },
+        {
+          "return_period_yr": 500.0,
+          "design_cumecs": 11814.826437284935,
+          "at_or_above_record_length": true,
+          "exceeds_hfl_discharge": true,
+          "ratio_to_hfl": 1.646206832560253
+        },
+        {
+          "return_period_yr": 1000.0,
+          "design_cumecs": 13327.399392844602,
+          "at_or_above_record_length": true,
+          "exceeds_hfl_discharge": true,
+          "ratio_to_hfl": 1.8569596478813712
+        }
+      ],
+      "failures": [],
+      "passed": true,
+      "verdict": "the fitted curve places the observed HFL discharge at a 43-year return period, consistent with a 57-year record, and every design flood at or beyond the record length exceeds it"
+    },
+    "adopted": true,
+    "reject_reasons": [],
+    "method_notes": [
+      "Primary method: LP3 fitted to ln Q per IS 11223:1985, with the Bulletin 17B adjusted skewness Cs = +0.0956 (SE 0.3244) and kurtosis Ck = 2.2924 on the log scale.",
+      "LP3 parameters are the Bulletin 17B method-of-moments estimates (mean ln Q = 7.8255, sd ln Q = 0.5182).  The maximum-likelihood refit in the candidate table differs by at most 6.5 % at any return period, so the result is not an artefact of the estimator.",
+      "Skewness decision: within the sampling distribution; the fitted skewness is used directly.",
+      "The adopted skewness is far below the 0.9 critical value, so the kurtosis does not govern the limit and the fitted skewness is used directly.",
+      "Gumbel and strict LN2 are cross-checks, not alternatives: IS 11223 names LP3.  The candidate spread column shows how much the answer depends on that choice, which is larger than the bootstrap interval at short return periods and smaller at long ones.",
+      "Confidence limits are sampling intervals for the adopted model only.  They exclude the rating-curve measurement error in the discharge record and the choice between candidate models; both are reported separately.",
+      "Every design discharge at T above about 50 years is an extrapolation of a 57-year record.  The Q1000 value should be read as the model's extrapolation, not as a measured or guaranteed event."
+    ]
+  },
+  "monte_carlo": {
+    "n_records": 500,
+    "record_length": 57,
+    "summary": [
+      {
+        "return_period_yr": 2.0,
+        "observed_lp3_cumecs": 2483.0962246296313,
+        "mc_median_cumecs": 2466.250765295996,
+        "mc_lower_cumecs": 2074.8251356352807,
+        "mc_upper_cumecs": 2903.3721693719463,
+        "mc_bias_cumecs": -16.845459333635063,
+        "mc_relative_bias": -0.006784054184669208,
+        "mc_relative_width": 0.3336749601237255
+      },
+      {
+        "return_period_yr": 5.0,
+        "observed_lp3_cumecs": 3862.372756697914,
+        "mc_median_cumecs": 3795.234107768345,
+        "mc_lower_cumecs": 3138.3614826674907,
+        "mc_upper_cumecs": 4663.409574767491,
+        "mc_bias_cumecs": -67.13864892956917,
+        "mc_relative_bias": -0.01738274712432686,
+        "mc_relative_width": 0.3948474650602653
+      },
+      {
+        "return_period_yr": 10.0,
+        "observed_lp3_cumecs": 4888.55626195635,
+        "mc_median_cumecs": 4767.991107410071,
+        "mc_lower_cumecs": 3884.8416641901326,
+        "mc_upper_cumecs": 6047.0466571282495,
+        "mc_bias_cumecs": -120.56515454627879,
+        "mc_relative_bias": -0.024662732325398173,
+        "mc_relative_width": 0.44229929596285855
+      },
+      {
+        "return_period_yr": 25.0,
+        "observed_lp3_cumecs": 6307.415960888593,
+        "mc_median_cumecs": 5996.533831761149,
+        "mc_lower_cumecs": 4540.433680312896,
+        "mc_upper_cumecs": 8290.774004868823,
+        "mc_bias_cumecs": -310.8821291274444,
+        "mc_relative_bias": -0.04928835057893455,
+        "mc_relative_width": 0.5945921987405404
+      },
+      {
+        "return_period_yr": 50.0,
+        "observed_lp3_cumecs": 7450.761212055209,
+        "mc_median_cumecs": 6785.37499616614,
+        "mc_lower_cumecs": 4931.147345199168,
+        "mc_upper_cumecs": 10073.782675053191,
+        "mc_bias_cumecs": -665.3862158890697,
+        "mc_relative_bias": -0.08930446124249503,
+        "mc_relative_width": 0.690216097857669
+      },
+      {
+        "return_period_yr": 100.0,
+        "observed_lp3_cumecs": 8666.685925361164,
+        "mc_median_cumecs": 7676.535368764387,
+        "mc_lower_cumecs": 5358.697642193242,
+        "mc_upper_cumecs": 12348.642626210478,
+        "mc_bias_cumecs": -990.1505565967764,
+        "mc_relative_bias": -0.1142478872690329,
+        "mc_relative_width": 0.8065303213034049
+      },
+      {
+        "return_period_yr": 200.0,
+        "observed_lp3_cumecs": 9963.6216237643,
+        "mc_median_cumecs": 8069.494296578956,
+        "mc_lower_cumecs": 5468.174118451423,
+        "mc_upper_cumecs": 14815.513405330352,
+        "mc_bias_cumecs": -1894.1273271853443,
+        "mc_relative_bias": -0.19010430129819955,
+        "mc_relative_width": 0.9381467542469224
+      },
+      {
+        "return_period_yr": 500.0,
+        "observed_lp3_cumecs": 11814.826437284935,
+        "mc_median_cumecs": 8226.810940107851,
+        "mc_lower_cumecs": 5543.162027824194,
+        "mc_upper_cumecs": 15962.507929611562,
+        "mc_bias_cumecs": -3588.0154971770844,
+        "mc_relative_bias": -0.3036875333059582,
+        "mc_relative_width": 0.8818873435928145
+      },
+      {
+        "return_period_yr": 1000.0,
+        "observed_lp3_cumecs": 13327.399392844602,
+        "mc_median_cumecs": 8305.468781359441,
+        "mc_lower_cumecs": 5577.98825010739,
+        "mc_upper_cumecs": 16319.678477609134,
+        "mc_bias_cumecs": -5021.930611485161,
+        "mc_relative_bias": -0.3768124945802558,
+        "mc_relative_width": 0.8059854672974602
+      }
+    ],
+    "observed": [
+      {
+        "return_period_yr": 2.0,
+        "lp3_quantile_cumecs": 2483.0962246296313
+      },
+      {
+        "return_period_yr": 5.0,
+        "lp3_quantile_cumecs": 3862.372756697914
+      },
+      {
+        "return_period_yr": 10.0,
+        "lp3_quantile_cumecs": 4888.55626195635
+      },
+      {
+        "return_period_yr": 25.0,
+        "lp3_quantile_cumecs": 6307.415960888593
+      },
+      {
+        "return_period_yr": 50.0,
+        "lp3_quantile_cumecs": 7450.761212055209
+      },
+      {
+        "return_period_yr": 100.0,
+        "lp3_quantile_cumecs": 8666.685925361164
+      },
+      {
+        "return_period_yr": 200.0,
+        "lp3_quantile_cumecs": 9963.6216237643
+      },
+      {
+        "return_period_yr": 500.0,
+        "lp3_quantile_cumecs": 11814.826437284935
+      },
+      {
+        "return_period_yr": 1000.0,
+        "lp3_quantile_cumecs": 13327.399392844602
+      }
+    ],
+    "exceedance_probability": [
+      {
+        "return_period_yr": 2.0,
+        "observed_lp3_cumecs": 2483.0962246296313,
+        "p_true_above_estimate": 0.474
+      },
+      {
+        "return_period_yr": 5.0,
+        "observed_lp3_cumecs": 3862.372756697914,
+        "p_true_above_estimate": 0.402
+      },
+      {
+        "return_period_yr": 10.0,
+        "observed_lp3_cumecs": 4888.55626195635,
+        "p_true_above_estimate": 0.404
+      },
+      {
+        "return_period_yr": 25.0,
+        "observed_lp3_cumecs": 6307.415960888593,
+        "p_true_above_estimate": 0.376
+      },
+      {
+        "return_period_yr": 50.0,
+        "observed_lp3_cumecs": 7450.761212055209,
+        "p_true_above_estimate": 0.312
+      },
+      {
+        "return_period_yr": 100.0,
+        "observed_lp3_cumecs": 8666.685925361164,
+        "p_true_above_estimate": 0.286
+      },
+      {
+        "return_period_yr": 200.0,
+        "observed_lp3_cumecs": 9963.6216237643,
+        "p_true_above_estimate": 0.214
+      },
+      {
+        "return_period_yr": 500.0,
+        "observed_lp3_cumecs": 11814.826437284935,
+        "p_true_above_estimate": 0.114
+      },
+      {
+        "return_period_yr": 1000.0,
+        "observed_lp3_cumecs": 13327.399392844602,
+        "p_true_above_estimate": 0.062
+      }
+    ],
+    "coverage": [
+      {
+        "return_period_yr": 2.0,
+        "nominal_level": 0.95,
+        "simulated_estimate_below_true": 0.526,
+        "explanation": "fraction of independent simulated records whose LP3 estimate falls below the value fitted to the observed record; near 0.5 means no systematic bias"
+      },
+      {
+        "return_period_yr": 5.0,
+        "nominal_level": 0.95,
+        "simulated_estimate_below_true": 0.598,
+        "explanation": "fraction of independent simulated records whose LP3 estimate falls below the value fitted to the observed record; near 0.5 means no systematic bias"
+      },
+      {
+        "return_period_yr": 10.0,
+        "nominal_level": 0.95,
+        "simulated_estimate_below_true": 0.596,
+        "explanation": "fraction of independent simulated records whose LP3 estimate falls below the value fitted to the observed record; near 0.5 means no systematic bias"
+      },
+      {
+        "return_period_yr": 25.0,
+        "nominal_level": 0.95,
+        "simulated_estimate_below_true": 0.624,
+        "explanation": "fraction of independent simulated records whose LP3 estimate falls below the value fitted to the observed record; near 0.5 means no systematic bias"
+      },
+      {
+        "return_period_yr": 50.0,
+        "nominal_level": 0.95,
+        "simulated_estimate_below_true": 0.688,
+        "explanation": "fraction of independent simulated records whose LP3 estimate falls below the value fitted to the observed record; near 0.5 means no systematic bias"
+      },
+      {
+        "return_period_yr": 100.0,
+        "nominal_level": 0.95,
+        "simulated_estimate_below_true": 0.714,
+        "explanation": "fraction of independent simulated records whose LP3 estimate falls below the value fitted to the observed record; near 0.5 means no systematic bias"
+      },
+      {
+        "return_period_yr": 200.0,
+        "nominal_level": 0.95,
+        "simulated_estimate_below_true": 0.786,
+        "explanation": "fraction of independent simulated records whose LP3 estimate falls below the value fitted to the observed record; near 0.5 means no systematic bias"
+      },
+      {
+        "return_period_yr": 500.0,
+        "nominal_level": 0.95,
+        "simulated_estimate_below_true": 0.886,
+        "explanation": "fraction of independent simulated records whose LP3 estimate falls below the value fitted to the observed record; near 0.5 means no systematic bias"
+      },
+      {
+        "return_period_yr": 1000.0,
+        "nominal_level": 0.95,
+        "simulated_estimate_below_true": 0.938,
+        "explanation": "fraction of independent simulated records whose LP3 estimate falls below the value fitted to the observed record; near 0.5 means no systematic bias"
+      }
+    ],
+    "notes": [
+      "500 independent records of 57 years were simulated from the LP3 fitted to the observed record, and the design quantiles were re-estimated on each.",
+      "The median re-estimate sits 665 m3/s below the value obtained from the observed record.  A systematic gap of this kind is the estimator's bias for a 57-year sample of this skewness, and it is the reason the adopted Bulletin 17B values should not be read as unbiased expectations.",
+      "This measures record-length uncertainty.  It does not include the rating-curve error in the discharge column, which is correlated across years and cannot be simulated from this package's data alone.",
+      "The relative width of the simulated interval is the fraction of design value that a longer record would remove; it is large at every return period here because 57 years is a short record for flood-frequency analysis.",
+      "Simulating extra years of the observed record, as the 2025 notebook did, cannot measure sampling error: those years are drawn from an already-assumed distribution and carry no information the record does not contain."
+    ]
+  },
+  "mcmc": {
+    "parameters": [
+      "mean_ln_q",
+      "sd_ln_q",
+      "cs_log"
+    ],
+    "accepted": true,
+    "diagnostics": {
+      "r_hat": {
+        "mean_ln_q": 1.0002563066860635,
+        "sd_ln_q": 1.000613885386597,
+        "cs_log": 1.000678011552601
+      },
+      "ess": {
+        "mean_ln_q": 9799.326571543435,
+        "sd_ln_q": 7738.561818620116,
+        "cs_log": 7575.629555236955
+      },
+      "accept_rate": {
+        "chain_0": 0.191225,
+        "chain_1": 0.194525,
+        "chain_2": 0.192775,
+        "chain_3": 0.193425
+      },
+      "accept_rate_mean": 0.19298750000000003,
+      "n_draws": 30000,
+      "burn_in": 10000,
+      "thresholds": {
+        "max_r_hat": 1.01,
+        "min_ess": 400.0,
+        "accept_low": 0.15,
+        "accept_high": 0.4
+      },
+      "passed": true,
+      "failures": []
+    },
+    "posterior_summary": [
+      {
+        "parameter": "mean_ln_q",
+        "mean": 7.826092680921799,
+        "sd": 0.07289469216026534,
+        "lower": 7.684105862104003,
+        "median": 7.825393012640479,
+        "upper": 7.972355873973535,
+        "frequentist_mom": 7.825513076316872,
+        "analytic_standard_error": 1.0365145280217307,
+        "posterior_sd_over_analytic": 14.219341591331
+      },
+      {
+        "parameter": "sd_ln_q",
+        "mean": 0.5462268190632613,
+        "sd": 0.058388237632612125,
+        "lower": 0.4480940424954251,
+        "median": 0.5410287143667519,
+        "upper": 0.677218297918851,
+        "frequentist_mom": 0.5181717259078743,
+        "analytic_standard_error": 0.04853122864481135,
+        "posterior_sd_over_analytic": 0.8311815977419527
+      },
+      {
+        "parameter": "cs_log",
+        "mean": 0.1422205007516121,
+        "sd": 0.4035112370705976,
+        "lower": -0.6825614765827145,
+        "median": 0.15411903237604913,
+        "upper": 0.8711541742048405,
+        "frequentist_mom": 0.095558925375237,
+        "analytic_standard_error": 0.3244428422615251,
+        "posterior_sd_over_analytic": 0.8040490882407846
+      }
+    ],
+    "design_quantiles": [
+      {
+        "return_period_yr": 2.0,
+        "posterior_median_cumecs": 2468.2312181769407,
+        "posterior_mean_cumecs": 2480.373356729708,
+        "posterior_lower_cumecs": 2121.4941230535246,
+        "posterior_upper_cumecs": 2895.037061547757,
+        "probability_above_observed_max": 0.0
+      },
+      {
+        "return_period_yr": 5.0,
+        "posterior_median_cumecs": 3920.8979628783986,
+        "posterior_mean_cumecs": 3952.9980748559024,
+        "posterior_lower_cumecs": 3337.334466249953,
+        "posterior_upper_cumecs": 4756.544215984015,
+        "probability_above_observed_max": 0.0
+      },
+      {
+        "return_period_yr": 10.0,
+        "posterior_median_cumecs": 5006.493473602918,
+        "posterior_mean_cumecs": 5095.341361335081,
+        "posterior_lower_cumecs": 4190.79722399423,
+        "posterior_upper_cumecs": 6552.902884281917,
+        "probability_above_observed_max": 0.007241666666666667
+      },
+      {
+        "return_period_yr": 25.0,
+        "posterior_median_cumecs": 6509.25968750086,
+        "posterior_mean_cumecs": 6753.0111956032715,
+        "posterior_lower_cumecs": 5238.908121005391,
+        "posterior_upper_cumecs": 9678.1640456474,
+        "probability_above_observed_max": 0.27279166666666665
+      },
+      {
+        "return_period_yr": 50.0,
+        "posterior_median_cumecs": 7744.701705218038,
+        "posterior_mean_cumecs": 8164.5562769202925,
+        "posterior_lower_cumecs": 5947.691527545417,
+        "posterior_upper_cumecs": 12902.950543657946,
+        "probability_above_observed_max": 0.67085
+      },
+      {
+        "return_period_yr": 100.0,
+        "posterior_median_cumecs": 9089.49975946912,
+        "posterior_mean_cumecs": 9749.188899823677,
+        "posterior_lower_cumecs": 6586.297807762072,
+        "posterior_upper_cumecs": 16896.121254702222,
+        "probability_above_observed_max": 0.8954166666666666
+      },
+      {
+        "return_period_yr": 200.0,
+        "posterior_median_cumecs": 10536.113243392512,
+        "posterior_mean_cumecs": 11543.872810842846,
+        "posterior_lower_cumecs": 7127.592556362287,
+        "posterior_upper_cumecs": 21990.013150749626,
+        "probability_above_observed_max": 0.9723333333333334
+      },
+      {
+        "return_period_yr": 500.0,
+        "posterior_median_cumecs": 12652.538442142939,
+        "posterior_mean_cumecs": 14312.356154723926,
+        "posterior_lower_cumecs": 7792.021944438338,
+        "posterior_upper_cumecs": 30844.403912615035,
+        "probability_above_observed_max": 0.9957416666666666
+      },
+      {
+        "return_period_yr": 1000.0,
+        "posterior_median_cumecs": 14378.453108946936,
+        "posterior_mean_cumecs": 16773.60499581613,
+        "posterior_lower_cumecs": 8232.93153453969,
+        "posterior_upper_cumecs": 39524.85181962557,
+        "probability_above_observed_max": 0.9989083333333333
+      }
+    ],
+    "prior_sensitivity": [
+      {
+        "parameter": "mean_ln_q",
+        "mean": 7.826092680921799,
+        "sd": 0.07289469216026534,
+        "lower": 7.684105862104003,
+        "median": 7.825393012640479,
+        "upper": 7.972355873973535,
+        "frequentist_mom": 7.825513076316872,
+        "analytic_standard_error": 1.0365145280217307,
+        "posterior_sd_over_analytic": 14.219341591331,
+        "mean_narrow_prior": 7.827152046830386,
+        "sd_narrow_prior": 0.07162379260260168,
+        "lower_narrow_prior": 7.690141730037704,
+        "median_narrow_prior": 7.825892627642962,
+        "upper_narrow_prior": 7.968915012494993,
+        "prior_accept_rate_mean": 0.171125,
+        "posterior_mean_shift_sd": 0.014532826426615209
+      },
+      {
+        "parameter": "sd_ln_q",
+        "mean": 0.5462268190632613,
+        "sd": 0.058388237632612125,
+        "lower": 0.4480940424954251,
+        "median": 0.5410287143667519,
+        "upper": 0.677218297918851,
+        "frequentist_mom": 0.5181717259078743,
+        "analytic_standard_error": 0.04853122864481135,
+        "posterior_sd_over_analytic": 0.8311815977419527,
+        "mean_narrow_prior": 0.5408001867652752,
+        "sd_narrow_prior": 0.05384364064616104,
+        "lower_narrow_prior": 0.4457122656733616,
+        "median_narrow_prior": 0.5365284122301455,
+        "upper_narrow_prior": 0.6561598474921173,
+        "prior_accept_rate_mean": 0.171125,
+        "posterior_mean_shift_sd": -0.09294050510877443
+      },
+      {
+        "parameter": "cs_log",
+        "mean": 0.1422205007516121,
+        "sd": 0.4035112370705976,
+        "lower": -0.6825614765827145,
+        "median": 0.15411903237604913,
+        "upper": 0.8711541742048405,
+        "frequentist_mom": 0.095558925375237,
+        "analytic_standard_error": 0.3244428422615251,
+        "posterior_sd_over_analytic": 0.8040490882407846,
+        "mean_narrow_prior": 0.13318938025636964,
+        "sd_narrow_prior": 0.32121351705216417,
+        "lower_narrow_prior": -0.5239548212457772,
+        "median_narrow_prior": 0.13952684017307448,
+        "upper_narrow_prior": 0.7444922819526392,
+        "prior_accept_rate_mean": 0.171125,
+        "posterior_mean_shift_sd": -0.022381335798245423
+      }
+    ],
+    "notes": [
+      "Adaptive Metropolis over (mean ln Q, sd ln Q, Cs_log) with a proposal covariance estimated from a 5,000-draw pilot run; 4 chains of 40,000 draws, 10,000 discarded.",
+      "Mean acceptance rate 0.193 against the [0.15, 0.4] band for a well-tuned random-walk chain; the 2025 notebook reported 0.825 with a posterior standard deviation 0.49x the analytic standard error, which is what a non-mixing chain looks like.",
+      "split R-hat = 1.0007 (threshold 1.01); minimum effective sample size = 7,576 (minimum 400).",
+      "Priors are weakly informative normals centred on the Bulletin 17B estimates with s.d. 2 in log space; the prior-sensitivity table repeats the analysis at s.d. 0.5 and reports the shift in posterior means in units of the posterior standard deviation.",
+      "The posterior interval is a *model-based* interval: it assumes LP3 is the correct family.  The Monte Carlo block above measures the same sampling uncertainty without that assumption, and the two should be compared rather than conflated."
+    ]
+  },
+  "machine_learning": {
+    "scores": [
+      {
+        "model": "Linear",
+        "n_splits": 5,
+        "n_predictions": 40,
+        "rmse_cumecs": 3077.7222583840294,
+        "mae_cumecs": 2473.1640743857956,
+        "mean_error_cumecs": 1241.26470824805,
+        "r2": -2.85793952503477,
+        "nrmse_range": 0.5406151867879904,
+        "skill_vs_persistence": -0.6076490287620124
+      },
+      {
+        "model": "Ridge",
+        "n_splits": 5,
+        "n_predictions": 40,
+        "rmse_cumecs": 1767.7871761297188,
+        "mae_cumecs": 1556.6278725617801,
+        "mean_error_cumecs": 743.9216141932523,
+        "r2": -0.2727893215819046,
+        "nrmse_range": 0.31051944073945525,
+        "skill_vs_persistence": 0.07659590496802116
+      },
+      {
+        "model": "RandomForest",
+        "n_splits": 5,
+        "n_predictions": 40,
+        "rmse_cumecs": 1645.70576319803,
+        "mae_cumecs": 1413.02542975913,
+        "mean_error_cumecs": 300.44904814109543,
+        "r2": -0.10306459384382127,
+        "nrmse_range": 0.2890753141046952,
+        "skill_vs_persistence": 0.14036516302725
+      },
+      {
+        "model": "GradientBoosting",
+        "n_splits": 5,
+        "n_predictions": 40,
+        "rmse_cumecs": 1907.6868542702096,
+        "mae_cumecs": 1563.914737783216,
+        "mean_error_cumecs": 746.7740700588857,
+        "r2": -0.48221341237458626,
+        "nrmse_range": 0.3350934224960846,
+        "skill_vs_persistence": 0.0035192714043519313
+      }
+    ],
+    "baseline": {
+      "rmse_cumecs": 1914.4242327282484,
+      "mae_cumecs": 1424.3214285714287,
+      "definition": "one-step naive forecast: next year's peak equals this year's, over consecutive years of the whole record",
+      "note": "annual maxima of a large basin are close to unpredictable year to year, so this is a demanding benchmark"
+    },
+    "leakage_check": {
+      "leaky_features": {},
+      "passed": true,
+      "detail": "every feature is a function of strictly earlier years"
+    },
+    "skill_verdict": "Ridge beats persistence with skill +0.077 (RMSE 1,768 vs 1,914 cumecs); this is exploratory and must not be used to derive a design flood",
+    "notes": [
+      "This module cannot and does not produce a design flood.  A flood-frequency curve is estimated from the distribution of annual maxima; a regression on the year-to-year sequence of peaks describes that sequence, not its tail.",
+      "Features are lags and rolling statistics of strictly earlier years.  The leakage assertion is run on every invocation and its result is reported with the metrics.",
+      "Validation is TimeSeriesSplit with 5 expanding folds and no shuffling; scaling happens inside the pipeline so each fold is standardised on its own training data.",
+      "Skill is measured against one-year-ahead persistence over consecutive years of the whole record.  Because annual maxima of a large basin are close to unpredictable from one year to the next, a skill near zero is the expected honest result, not a defect.",
+      "The 2025 notebook reported R-squared near 1.0 for a Gaussian process and a gradient booster.  That came from two leaks: the target column itself used as a feature, and rolling windows that included the current year.  Both are absent here, and the honest result is that these models barely beat persistence.",
+      "Scores are out-of-fold.  In-sample R-squared is not reported anywhere in this package."
+    ]
+  },
+  "checklist": {
+    "counts": {
+      "pass": 13,
+      "fail": 0,
+      "warn": 0,
+      "manual": 5,
+      "not applicable": 0
+    },
+    "items": [
+      {
+        "clause": "17C 2.1",
+        "requirement": "The annual peak series covers every water year in the period of record with no gaps",
+        "status": "pass",
+        "evidence": "quality-control check 'record_contiguous' returned PASS",
+        "responsible": "data"
+      },
+      {
+        "clause": "17C 2.2",
+        "requirement": "Each peak is the highest discharge in its water year, taken from the maximum of the continuous record",
+        "status": "manual",
+        "evidence": "requires the continuous gauge record; this package holds one annual value per water year and cannot confirm the within-year maximum",
+        "responsible": "hydrologist"
+      },
+      {
+        "clause": "17C 2.3",
+        "requirement": "The station rating curve is current, and shifts in it are documented",
+        "status": "manual",
+        "evidence": "quality control reports rating-curve fit PASS and rating-curve outlier years WARN; a fit check cannot establish the rating *history*, which must come from the gauge records",
+        "responsible": "hydrologist / gauge office"
+      },
+      {
+        "clause": "17C 2.4",
+        "requirement": "The datum used is the same throughout, and is stated",
+        "status": "manual",
+        "evidence": "peak water levels in this study are referenced to the zero gauge; the reduction datum must be stated on the drawing",
+        "responsible": "hydrologist"
+      },
+      {
+        "clause": "17C 2.5",
+        "requirement": "Dredging, diversion, construction or reservoir changes in the channel are assessed for non-stationarity",
+        "status": "manual",
+        "evidence": "not assessable from the discharge series; the last two decades of this record show a clear regime change that must be explained",
+        "responsible": "hydrologist"
+      },
+      {
+        "clause": "17C 2.6",
+        "requirement": "Outlying values have been screened and the screening is recorded",
+        "status": "pass",
+        "evidence": "three screens run, nothing deleted: Rosenblatt flags a candidate but the others do not, which is the usual outcome; a single test on 57 points is weak evidence",
+        "responsible": "analysis package"
+      },
+      {
+        "clause": "17C 3.1",
+        "requirement": "A test of the null hypothesis of stationarity is applied",
+        "status": "pass",
+        "evidence": "Mann-Kendall tau = -0.600 (p = 0.548); Pettitt change point at index 50 (p = 0.211).  A detected change point is a physical question for a hydrologist, not a statistical verdict",
+        "responsible": "hydrologist"
+      },
+      {
+        "clause": "17C 3.2",
+        "requirement": "The record length is adequate for the return periods being reported, or the limitation is stated",
+        "status": "pass",
+        "evidence": "n = 57 years; return periods at or beyond the record length are flagged in the design table and every period carries a Monte Carlo interval",
+        "responsible": "analysis package"
+      },
+      {
+        "clause": "17C 3.3",
+        "requirement": "Where the record is too short for the required return period, independent evidence is used",
+        "status": "pass",
+        "evidence": "peaks-over-threshold was attempted and refused: only 28 exceedances over 57 years (minimum required 30); the shape estimate is not defensible; the shape interval [-0.556, -0.333] lies entirely below zero, i.e. the data cannot exclude a bounded upper tail; this contradicts the Gumbel and LP3 block-maxima curves",
+        "responsible": "analysis package"
+      },
+      {
+        "clause": "17C 4.1",
+        "requirement": "The log-Pearson III is fitted to the logarithms of the annual maxima",
+        "status": "pass",
+        "evidence": "LP3 on ln Q by Bulletin 17B moments, Cs = 0.096, n = 57",
+        "responsible": "analysis package"
+      },
+      {
+        "clause": "17C 4.2",
+        "requirement": "The skew coefficient lies inside the Bulletin 17B table bounds for the record length",
+        "status": "pass",
+        "evidence": "Cs = 0.096 +/- 0.324 (se), one-sided tail probability 0.192 against the critical value 0.90; within the sampling distribution; the fitted skewness is used directly",
+        "responsible": "analysis package"
+      },
+      {
+        "clause": "17C 4.3",
+        "requirement": "The zero flood is accounted for, and the log transform is legitimate",
+        "status": "manual",
+        "evidence": "no zero or negative discharges appear in this record; a record containing zeros cannot be fitted on a logarithmic scale",
+        "responsible": "hydrologist"
+      },
+      {
+        "clause": "17C 4.4",
+        "requirement": "Confidence limits are computed and reported with the design flood",
+        "status": "pass",
+        "evidence": "log-space parametric bootstrap on the Bulletin 17B estimators, 2,000 replicates at 95%",
+        "responsible": "analysis package"
+      },
+      {
+        "clause": "17C 4.5",
+        "requirement": "Independent methods are used as a check on the adopted distribution",
+        "status": "pass",
+        "evidence": "candidates fitted and compared on AICc with goodness-of-fit gates: LN2, LP3, Gumbel",
+        "responsible": "analysis package"
+      },
+      {
+        "clause": "17C 5.1",
+        "requirement": "The observed points are plotted on the frequency curve and the fit is judged visually as well as statistically",
+        "status": "pass",
+        "evidence": "the record-on-curve figure plots all 57 observed maxima against the adopted curve",
+        "responsible": "analysis package"
+      },
+      {
+        "clause": "17C 5.2",
+        "requirement": "An arithmetic check is performed on the adopted curve",
+        "status": "pass",
+        "evidence": "the Bulletin 17B quantile function is evaluated against an independent numerically inverted CDF in the test suite",
+        "responsible": "analysis package"
+      },
+      {
+        "clause": "17C 5.3",
+        "requirement": "The frequency curve is extrapolated only to the periods the data can support",
+        "status": "pass",
+        "evidence": "every period at or beyond the record length is flagged in the design table and carries the Monte Carlo interval",
+        "responsible": "analysis package"
+      },
+      {
+        "clause": "17C 5.4",
+        "requirement": "Bulletin 17B/B17C recommends that for n below about 25 years the confidence limits are treated as approximate",
+        "status": "pass",
+        "evidence": "n = 57 years, above the 25-year threshold",
+        "responsible": "analysis package"
+      }
+    ],
+    "failures": [],
+    "warnings": [],
+    "outstanding_manual_items": [
+      "Each peak is the highest discharge in its water year, taken from the maximum of the continuous record",
+      "The station rating curve is current, and shifts in it are documented",
+      "The datum used is the same throughout, and is stated",
+      "Dredging, diversion, construction or reservoir changes in the channel are assessed for non-stationarity",
+      "The zero flood is accounted for, and the log transform is legitimate"
+    ],
+    "notes": [
+      "This checklist records what the analysis can and cannot show.  An item marked 'manual' is not a failure; it is a question this package has no data to answer, and answering it by assumption is what turns a method into a liability.",
+      "The 2025 notebook carried none of these checks.  It fitted a log-normal to the record, reported the 1000-year flood as a central value with no interval, and mixed a Gumbel distribution of the logarithms with a Gumbel distribution of the discharges in the same table.",
+      "A reviewer signing this study should work down the 'manual' column and resolve each item from the gauge records before the report is issued."
+    ]
+  }
+}

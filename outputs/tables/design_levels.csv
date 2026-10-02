@@ -1,0 +1,10 @@
+return_period_yr,discharge_cumecs,water_level_m,depth_over_zero_gauge_m,freeboard_m,top_of_structure_m,rating_curve_extrapolated
+2,2483,559.3,9.4,0,559.3,False
+5,3862,562.1,12.15,0,562.1,False
+10,4889,563.8,13.93,0,563.8,False
+25,6307,566.1,16.16,0,566.1,False
+50,7451,567.7,17.8,0,567.7,True
+100,8667,569.3,19.43,1,570.3,True
+200,9964,571,21.08,0,571,True
+500,1.181e+04,573.2,23.27,0,573.2,True
+1000,1.333e+04,574.9,24.96,0,574.9,True

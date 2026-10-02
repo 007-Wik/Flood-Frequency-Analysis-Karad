@@ -1,0 +1,38 @@
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║         FINAL ANALYSIS REPORT — KARAD BRIDGE (AK000X6)                    ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  RECORD:  57-year instantaneous peaks · 1965-2022 · Fully stationary       ║
+║  AREA:    5,462 km² · Basin: Upper Krishna · Zero Gauge: 549.915 m MSL     ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  ADVANCED STATISTICAL TESTS                                                 ║
+║  • Shapiro-Wilk: NOT normal (p<0.001) — EV family confirmed                ║
+║  • Jarque-Bera: Cs=1.082 (right-skewed) · Ck=3.468 (excess=0.468) ║
+║  • ADF: STATIONARY (p≈0.00) · KPSS: STATIONARY · AIC-best: Weibull (EV3)         ║
+║  • Mann-Kendall: No trend (p=0.299) · Hurst H=0.556      ║
+║  • Ljung-Box: No significant autocorrelation at any lag (p>0.05)           ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  BEST-FIT DISTRIBUTIONS (AICc ranked)                                       ║
+║  ① Weibull (EV3)        AICc=   981.5  Akaike wt=0.3365  ║
+║  ② Pearson III (P3)     AICc=   981.8  Akaike wt=0.2853  ║
+║  ③ Log-Pearson III      AICc=   984.2  Akaike wt=0.0881  ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  DESIGN FLOODS (Gumbel · CWC Primary) with 95% Bootstrap CI               ║
+║  Q₁₀   =    4629 cumecs  [3905 – 5387]                      ║
+║  Q₅₀   =    6423 cumecs  [5323 – 7543]                      ║
+║  Q₁₀₀  =    7181 cumecs  [5923 – 8458]                      ║
+║  Q₅₀₀  =    8934 cumecs  [7311 – 10607]                      ║
+║  Q₁₀₀₀ =    9687 cumecs  [7913 – 11531]                      ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  ENGINEERING APPLICATIONS (CWC Flood Estimation Manual 1988)               ║
+║  • Minor bridges & culverts :   Q₂₅  ≈   5659 cumecs                        ║
+║  • Major road bridges       :   Q₁₀₀ ≈   7181 cumecs                        ║
+║  • Railway bridges          :   Q₁₀₀–Q₂₀₀ ≈ 7181–7937 cumecs            ║
+║  • Irrigation dam spillways :   Q₁₀₀₀ ≈   9687 cumecs                      ║
+║  • PMF (dam safety check)   :   ~1.5–2× Q₁₀₀₀ ≈ 14530–19374 cumecs      ║
+║  • Record HFL (1976-Jun-07) :   7,177 cumecs ≈ T~80 yr event               ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  ML REGRESSION: Out-of-fold CV R²=-0.238 · RMSE=906 cumecs       ║
+║  Top feature: lag1            (lag-based antecedent hydrology)        ║
+║  GPR uncertainty σ = ±727 cumecs                                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝

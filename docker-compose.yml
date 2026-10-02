@@ -1,0 +1,19 @@
+services:
+  test:
+    build: .
+    container_name: ffa_karad_test
+    command: pytest -v --cov=ffa_karad --cov-report=term-missing
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  analysis:
+    build: .
+    container_name: ffa_karad_analysis
+    command: python -m ffa_karad.cli
+    volumes:
+      - .:/app
+      - ./outputs:/app/outputs
+    environment:
+      - PYTHONUNBUFFERED=1

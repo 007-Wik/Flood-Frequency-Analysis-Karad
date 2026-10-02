@@ -1,0 +1,40 @@
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Output logs (keep directory, ignore transient logs)
+outputs/logs/*.log
+
+# Temporary test scripts
+_dump_nb.py
+_smoke.py
+_validate_lmo.py
+
+# Archives & Large Zips
+archives/
+*.zip

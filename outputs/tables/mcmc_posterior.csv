@@ -1,0 +1,4 @@
+parameter,mean,sd,lower,median,upper,frequentist_mom,analytic_standard_error,posterior_sd_over_analytic
+mean_ln_q,7.826,0.07289,7.684,7.825,7.972,7.826,1.037,14.22
+sd_ln_q,0.5462,0.05839,0.4481,0.541,0.6772,0.5182,0.04853,0.8312
+cs_log,0.1422,0.4035,-0.6826,0.1541,0.8712,0.09556,0.3244,0.804

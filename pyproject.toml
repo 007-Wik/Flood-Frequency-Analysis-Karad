@@ -1,0 +1,113 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ffa-karad"
+version = "3.0.0"
+description = "Rigorous flood-frequency analysis for Krishna river at Karad (AK000X6) per IS 11223:1985 and Bulletin 17C"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Agricultural & Water Resources Hydrology Team" }]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Hydrology",
+    "Intended Audience :: Science/Research",
+]
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "pandas>=2.0",
+    "matplotlib>=3.7",
+    "seaborn>=0.13",
+    "statsmodels>=0.14",
+    "scikit-learn>=1.3",
+    "plotly>=5.18",
+    "openpyxl>=3.1",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+]
+dev = [
+    "black>=23.0",
+    "isort>=5.12",
+    "flake8>=6.1",
+    "mypy>=1.5",
+    "pre-commit>=3.5",
+]
+
+[project.scripts]
+ffa-karad = "ffa_karad.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["ffa_karad*"]
+
+[tool.black]
+line-length = 88
+target-version = ["py310", "py311", "py312"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | notebooks/legacy_v2
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 88
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+skip_glob = ["notebooks/legacy_v2/*"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra -q --cov=ffa_karad --cov-report=term-missing"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "default",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["ffa_karad"]
+omit = [
+    "tests/*",
+    "ffa_karad/packages.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = false
+warn_unused_configs = true
+ignore_missing_imports = true
+exclude = ["notebooks/legacy_v2"]

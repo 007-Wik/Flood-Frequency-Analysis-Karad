@@ -1,0 +1,18 @@
+check,status,value,detail
+record_length,PASS,57,57 annual peaks available; the study record requires 57
+discharge_numeric,PASS,57,all annual peak discharges parsed as finite numbers
+dates_parsed,PASS,0,0 peak dates could not be parsed
+record_contiguous,PASS,[],water years form a contiguous run
+water_year_labels_unique,PASS,57,every water-year label is unique and taken verbatim from the source
+discharge_positive,PASS,855.0,all discharges strictly positive (required for the log-normal family)
+water_level_above_datum,PASS,4.997000000000071,all water levels above the zero gauge (549.915 m)
+dispersion_plausible,PASS,0.5346033585495705,coefficient of variation 0.535 lies in the 0.4-2.5 band expected for annual maxima of a large Indian river
+stage_discharge_rank_monotone,PASS,1.0,Spearman rank correlation between discharge and water level is 1.0000
+rating_curve_fit,PASS,0.9997839079099602,log-log rating curve Q = 10**1.7204 * h**1.7209 explains 99.978% of the log-variance (RMSE 0.0033 log10 units)
+rating_curve_shape,PASS,1.7208831468362775,"rating exponent b = 1.721; natural-channel values are usually 1.8-2.8, values outside 1.5-3.5 indicate an unstable datum or mixed control"
+rating_curve_outliers,WARN,"['1976-1977', '2003-2004', '2021-2022']","3 water year(s) deviate from the rating curve: 1976-1977, 2003-2004, 2021-2022"
+maximum_consistent,PASS,"('1976-1977', '1976-1977')",the maximum-discharge year (1976-1977) is also the maximum-water-level year (1976-1977)
+hfl_matches_station_abstract,PASS,"(7177.0, 7177.0)",observed HFL 567.162 m on 1976-06-07 (7177.0 cumecs) is reproduced by the data series
+discharge_provenance,WARN,rating-curve derived,"Discharge column header in the source sheet reads 'Discharge* (cumecs)'.  In NWDA/CWC station abstracts the asterisk denotes a rating-curve derived discharge, not an instantaneous volumetric gauge record.  All derived discharges carry correlated error, which is not captured by any bootstrap in this package."
+seasonality_reasonable,PASS,"['1996-1997', '2015-2016', '2017-2018', '2018-2019']","7.0% of annual peaks occur outside the June-September monsoon window; review 1996-1997, 2015-2016, 2017-2018, 2018-2019"
+no_extreme_year_on_year_jumps,WARN,"['1968-1969', '1970-1971', '1977-1978', '1995-1996', '1998-1999', '2000-2001', '2004-2005', '2007-2008', '2009-2010', '2012-2013', '2020-2021']","large year-on-year changes at 1968-1969, 1970-1971, 1977-1978, 1995-1996, 1998-1999, 2000-2001, 2004-2005, 2007-2008, 2009-2010, 2012-2013, 2020-2021; a change-point or outlier test is required (see ffa_karad.outliers)"

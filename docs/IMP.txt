@@ -1,0 +1,89 @@
+Objective
+- Rebuild the Krishna/Karad flood-frequency analysis as a modular, documented, testable, government-submittable GitHub repository, correcting the scientific errors and aggregation issues in FFA_Karad_Advanced_CWC_V2.ipynb.
+- Repository root: E:\FFA; preserve the original notebook unchanged in notebooks/legacy_v2/.
+- Station: AK000X6, Krishna at Karad; catchment 5462.0 km², ZG 549.915 m, observed HFL 567.162 m / 7177 cumecs on 1976-06-07; 57 WY records, 1965–2022.
+- Discharge* (cumecs) indicates likely rating-curve-derived discharge. Its correlated, heteroscedastic measurement error is not represented by ordinary bootstrap intervals and must remain a submission limitation.
+- Primary method: LP3 under IS 11223:1985; Gumbel and strict two-parameter LN2 (floc=0) are CWC cross-checks. Information criteria remain secondary.
+- One source of truth in config.py; no unexplained downstream constants or report literals.
+- Bulletin 17B definitions: Cs = sqrt(n(n-1))/(n-2) * g1, Ck = m4/m2², excess kurtosis Ck - 3.
+- Bulletin 17C decision logic will use documented parametric-bootstrap limits because exact published tables cannot be verified offline; CONFIG.bulletin_17b_table remains a substitution hook.
+- Correct Pearson III relation is Ck = 3 + 1.5*Cs²; verified numerically.
+- Deterministic RNG streams use MASTER_SEED = 20260902.
+- Order matters: DataBundle.q/wl are ascending order statistics; q_ordered/wl_ordered are required for trend, runs, ACF, stationarity, and change-point tests.
+- Fits, MCMC, and POT outputs must have acceptance gates; failed diagnostics must suppress adopted values rather than silently publish them.
+- CWC regional/freeboard coefficients and station metadata remain marked VERIFY; exact standards tables/manual constants require final human verification before formal submission.
+Work State
+Completed
+- Inspected and executed the original 67-cell notebook; confirmed four broken cells:
+- c4bba4e6: TypeError: unsupported operand type(s) for |: 'float' and 'function'
+- f282eb6a: SyntaxError: cannot assign to expression
+- 8c701863: SyntaxError: unterminated string literal
+- 46d29ac9: UnicodeEncodeError: 'charmap' codec can't encode characters
+- Verified key notebook defects:
+- LP3 AICc was not comparable; Jacobian correction changes it from about 91.6 to 983.7.
+- ML leaked the target through rank_norm; GPR/GB reported degenerate R²≈1.0.
+- Hard-coded design values contradicted computed Gumbel values at Q25/Q100/Q200/Q1000.
+- GEV diverged with c=-4.735899, loc=857.7776, scale=13.1578 and required clipping.
+- LN2 used free location; correct floc=0 changes Q100 by about +10.6% and Q1000 by +18.5%.
+- GPD was incorrectly treated as a block-maxima family.
+- POT had only 14 exceedances and implied a bounded tail conflicting with Gumbel Q1000.
+- MCMC acceptance 0.825 and posterior sd(alpha)=136 indicated non-mixing.
+- Correct Cs=1.0819, Ck=3.4683, excess kurtosis 0.4683; notebook’s Ck=0.6253 was wrong.
+- Created requirements.txt, pyproject.toml, and package scaffolding under E:\FFA\karad_ffa\ffa_karad.
+- Created:
+- config.py: station metadata, standards settings, return periods, resampling/MCMC/POT settings, seed, provenance constants.
+- util.py: logging, deterministic RNG streams, SHA-256, JSON/table/workbook writers, provenance.
+- packages.py: environment manifest and opt-in dependency installation.
+- data_processing.py: embedded 57-row record, CSV loader, canonical column mapping, verbatim water-year parsing, plotting positions, DataBundle.
+- quality_control.py: schema, continuity, positivity, datum, dispersion, stage–discharge rating curve, HFL consistency, seasonality, provenance checks.
+- Embedded-record QC result: 14 PASS, 3 WARN, 0 FAIL; rating curve Q = 10^1.7204 * h^1.7209, R²=0.9998.
+- Rating outliers: 1976-1977, 2003-2004, 2021-2022.
+- Non-monsoon peaks flagged: 1996-1997, 2015-2016, 2017-2018, 2018-2019.
+- Derived-discharge caveat recorded.
+- Created lmoments.py:
+- Hosking unbiased b-statistics and raw PWMs.
+- Intentional consistent_lmoments() guard rather than guessing PWM-to-L-moment algebra.
+- Computed (Cs, Ck) model loci by adaptive density-space quadrature.
+- Verified Normal (0,3), Exponential (2,9), Gumbel (1.139547, 5.3999984).
+- Verified Ck = 3 + 1.5Cs² within 1.16e-5; the notebook’s 0.5Cs² form is wrong by up to 9.0.
+- Created statistical_tests.py:
+- Bulletin 17B moments, secondary skewness measures, direct Anderson–Darling statistic with bootstrap p-value, normality/log-normality battery.
+- Runs test, approximate Durbin–Watson, statsmodels Ljung–Box, ADF, KPSS, Mann–Kendall, Hamed–Rao, Spearman, Kendall, Sen slope, pre-whitening, Pettitt permutation test.
+- Fixed Pearson-2 sign to 3(mean-median)/s; relabelled Anscombe–Glynn as a symmetry check excluded from spread diagnostics.
+- Added explicit guard rejecting strictly increasing input to order-dependent tests.
+- Verified current statistical results:
+- Cs unadjusted=1.053194, Cs adjusted=1.081875, Ck=3.468343, excess 0.468343.
+- Bowley +0.1220, Pearson-2 +0.7083, Anscombe–Glynn 0 by construction.
+- Raw Q non-normal; log Q passes normality tests (Shapiro-Wilk p=0.6942), supporting LP3.
+- No significant monotonic trend; Sen slope about -9.9 cumecs/yr, CI [-31.5,+11.7].
+- Pettitt does not reject homogeneity (p≈0.211), change-point label 2014-2015.
+- Runs test and Durbin–Watson reject, while low-lag Ljung–Box does not, indicating clustering rather than strong linear dependence.
+- Created docs/notebook_to_repo_map.md, mapping every notebook section and plot to new modules and documenting dropped/carried/replaced material.
+Active
+- statistical_tests.py received a final summary-column rename from lag_or_stat to lag; rerun smoke tests after this edit.
+- config.RAW_DATA_SHA256 is currently a placeholder and must be replaced with the actual source-file hash.
+- Raw CSV has not yet been copied into E:\FFA\karad_ffa\data; current runs use the embedded fallback.
+- Remaining modules: skewness_limits.py, autocorrelation.py, distribution_fitting.py, bootstrap_confidence_intervals.py, peaks_over_threshold.py, estimation_design_flood.py, machine_learning.py, uncertainty_monte_carlo_bayesian_mcmc.py, visualization modules, cwc_manual_check.py, outliers.py, reporting.py.
+- run_all.py, tests/, full documentation, Git initialization, and V3 notebook remain to be built.
+- Temporary _smoke.py and _dump_nb.py files should be removed before packaging.
+Blocked
+- Exact Bulletin 17B/17C tabulated limits and CWC Flood Estimation Manual constants cannot be verified offline; final submission requires regulator/manual verification.
+- Until the CSV hash and data directory are corrected, provenance validation is incomplete.
+Next Move
+1. Rerun the final statistical_tests.py smoke test, copy E:\FFA\Dischage data KRISHNA KARAD BRIDGE.csv into data\, and replace RAW_DATA_SHA256 with its real SHA-256.
+2. Implement skewness_limits.py and autocorrelation.py, then continue through distribution fitting, POT, design-flood estimation, uncertainty/MCMC, machine learning, reporting, tests, documentation, and the V3 notebook.
+Relevant Files
+- E:\FFA\Result\FFA_Karad_Advanced_CWC_V2.ipynb: untouched source notebook under reconstruction.
+- E:\FFA\Dischage data KRISHNA KARAD BRIDGE.csv: original 57-row station data.
+- E:\FFA\karad_ffa: new repository root.
+- E:\FFA\karad_ffa\ffa_karad\config.py: all station and analysis constants.
+- E:\FFA\karad_ffa\ffa_karad\data_processing.py: embedded record, loader, ordered/sorted accessors, plotting positions.
+- E:\FFA\karad_ffa\ffa_karad\quality_control.py: QC and rating-curve implementation.
+- E:\FFA\karad_ffa\ffa_karad\lmoments.py: L-moments, PWMs, computed Cs–Ck loci, quadrature audits.
+- E:\FFA\karad_ffa\ffa_karad\statistical_tests.py: Bulletin 17B moments and statistical batteries.
+- E:\FFA\karad_ffa\docs\notebook_to_repo_map.md: notebook-to-repository traceability map.
+- E:\FFA\karad_ffa\_smoke.py: temporary current-module smoke test.
+- E:\FFA\karad_ffa\_dump_nb.py: temporary notebook-structure dumper.
+- C:\Users\satwik\AppData\Local\Temp\opencode\ffa_run\executed.ipynb: original notebook execution with errors retained.
+- C:\Users\satwik\AppData\Local\Temp\opencode\ffa_run\fail.txt: original failed-cell diagnostics.
+- C:\Users\satwik\AppData\Local\Temp\opencode\ffa_run\verify.py, verify2.py, verify3.py: prior numerical verification scripts.
